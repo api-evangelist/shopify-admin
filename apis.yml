@@ -62,11 +62,11 @@ apis:
         url: json-schema/shopify-admin-customer-schema.json
       - type: JSONStructure
         url: json-structure/shopify-admin-product-structure.json
-      - type: JSONLD
+      - type: JSONLDContext
         url: json-ld/shopify-admin-context.jsonld
       - type: SpectralRules
         url: rules/shopify-admin-rules.yml
-      - type: NaftikoCapabilities
+      - type: Capabilities
         url: capabilities/store-management.yaml
       - type: Vocabulary
         url: vocabulary/shopify-admin-vocabulary.yml
@@ -131,6 +131,45 @@ apis:
     contact:
       - FN: Shopify Developer Support
         url: https://shopify.dev/
+
+common:
+  - type: Website
+    url: https://shopify.dev/
+  - type: Documentation
+    url: https://shopify.dev/docs/api
+  - type: Authentication
+    url: https://shopify.dev/docs/apps/auth/get-access-tokens
+  - type: RateLimits
+    url: https://shopify.dev/docs/api/usage/rate-limits
+  - type: Versioning
+    url: https://shopify.dev/docs/api/usage/versioning
+  - type: ChangeLog
+    url: https://shopify.dev/changelog
+  - type: Blog
+    url: https://shopify.dev/blog
+  - type: GitHub
+    url: https://github.com/Shopify
+  - type: JSONSchema
+    url: json-schema/shopify-admin-product-schema.json
+  - type: JSONSchema
+    url: json-schema/shopify-admin-order-schema.json
+  - type: JSONSchema
+    url: json-schema/shopify-admin-customer-schema.json
+  - type: JSONStructure
+    url: json-structure/shopify-admin-product-structure.json
+  - type: JSONLDContext
+    url: json-ld/shopify-admin-context.jsonld
+  - type: Examples
+    url: examples/shopify-admin-list-products-example.json
+  - type: Examples
+    url: examples/shopify-admin-create-order-example.json
+  - type: Vocabulary
+    url: vocabulary/shopify-admin-vocabulary.yml
+  - type: SpectralRules
+    url: rules/shopify-admin-rules.yml
+  - type: Capabilities
+    url: capabilities/store-management.yaml
+
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
