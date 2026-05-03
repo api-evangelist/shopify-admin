@@ -1,0 +1,145 @@
+vocabulary:
+  title: Shopify Admin API Vocabulary
+  description: >-
+    Core terminology, concepts, and domain vocabulary for the Shopify Admin API.
+    Covers product catalog, order management, customer relationships, inventory,
+    and store configuration.
+  version: "1.0"
+  created: "2026-05-02"
+  modified: "2026-05-02"
+  source: https://shopify.dev/docs/api/admin-rest
+
+terms:
+  - term: Product
+    definition: >-
+      A physical or digital item available for purchase in a Shopify store. Products
+      have a title, description, vendor, product type, and can have multiple variants.
+    related: [Variant, Collection, Inventory Item]
+    tags: [Catalog, Commerce]
+
+  - term: Variant
+    definition: >-
+      A specific version of a product defined by a combination of options such as
+      size and color. Each variant has its own price, SKU, and inventory quantity.
+    related: [Product, Inventory Item]
+    tags: [Catalog, Commerce]
+
+  - term: Collection
+    definition: >-
+      A grouping of products that can be displayed together in the online store.
+      Collections can be custom (manually curated) or smart (rule-based).
+    related: [Product, Custom Collection, Smart Collection]
+    tags: [Catalog, Commerce]
+
+  - term: Order
+    definition: >-
+      A record of a purchase transaction. Orders contain line items, customer
+      information, shipping details, billing details, and financial and fulfillment
+      statuses.
+    related: [Line Item, Customer, Fulfillment, Refund]
+    tags: [Commerce, Transactions]
+
+  - term: Line Item
+    definition: >-
+      A specific product variant and quantity within an order. Each line item
+      records the price at time of purchase.
+    related: [Order, Product, Variant]
+    tags: [Commerce, Transactions]
+
+  - term: Customer
+    definition: >-
+      A person who has registered with or purchased from the store. Customers
+      have contact information, purchase history, and can have multiple addresses.
+    related: [Order, Address]
+    tags: [CRM, Commerce]
+
+  - term: Fulfillment
+    definition: >-
+      The process of preparing and shipping items from an order to the customer.
+      Fulfillments track shipment details and tracking information.
+    related: [Order, Location]
+    tags: [Logistics, Commerce]
+
+  - term: Inventory Item
+    definition: >-
+      Represents a physical unit of a product variant in the Shopify inventory system.
+      Each variant has one inventory item which tracks cost and whether it requires shipping.
+    related: [Variant, Inventory Level, Location]
+    tags: [Inventory, Commerce]
+
+  - term: Inventory Level
+    definition: >-
+      The quantity of an inventory item available at a specific location.
+      Multiple inventory levels can exist for a single item across different locations.
+    related: [Inventory Item, Location]
+    tags: [Inventory, Commerce]
+
+  - term: Location
+    definition: >-
+      A physical or virtual place where inventory is stocked and fulfillments can
+      be made. Locations include stores, warehouses, and pop-up locations.
+    related: [Inventory Level, Fulfillment]
+    tags: [Logistics, Commerce]
+
+  - term: Webhook
+    definition: >-
+      A subscription to specific Shopify events that triggers an HTTP POST notification
+      to a configured URL when the event occurs (e.g., orders/create, products/update).
+    related: [Events, Notifications]
+    tags: [Integration, Events]
+
+  - term: Refund
+    definition: >-
+      A reversal or partial reversal of a completed order payment. Refunds can include
+      restocking of inventory items.
+    related: [Order, Line Item]
+    tags: [Commerce, Transactions]
+
+  - term: Financial Status
+    definition: >-
+      The payment state of an order. Possible values include authorized, paid,
+      partially_paid, partially_refunded, pending, refunded, unpaid, and voided.
+    related: [Order]
+    tags: [Commerce, Payments]
+
+  - term: Fulfillment Status
+    definition: >-
+      The shipping state of an order. Possible values are fulfilled, partial, unfulfilled,
+      and restocked.
+    related: [Order, Fulfillment]
+    tags: [Logistics, Commerce]
+
+  - term: Access Token
+    definition: >-
+      An OAuth access token used to authenticate requests to the Shopify Admin API.
+      Passed in the X-Shopify-Access-Token header. Generated through the OAuth flow.
+    related: [Authentication, OAuth]
+    tags: [Security, Authentication]
+
+  - term: Handle
+    definition: >-
+      A URL-friendly unique identifier for products, collections, and pages.
+      Handles are automatically generated from the title using lowercase and hyphens.
+    related: [Product, Collection]
+    tags: [URLs, SEO]
+
+  - term: Metafield
+    definition: >-
+      Custom key-value data that can be attached to products, customers, orders,
+      collections, and other Shopify resources to extend the data model.
+    related: [Product, Customer, Order]
+    tags: [Customization, Data]
+
+  - term: Shop
+    definition: >-
+      The top-level store configuration object containing store name, domain, currency,
+      timezone, plan, and contact information.
+    related: [Location]
+    tags: [Configuration, Commerce]
+
+  - term: API Version
+    definition: >-
+      Shopify APIs are versioned by release date (e.g., 2024-10). Each version is
+      supported for at least 12 months before deprecation.
+    related: [Versioning, Deprecation]
+    tags: [API Governance]

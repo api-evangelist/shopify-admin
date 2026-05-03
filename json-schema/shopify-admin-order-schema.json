@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/shopify-admin/json-schema/shopify-admin-order-schema.json",
+  "title": "Shopify Admin Order",
+  "description": "Schema for a Shopify order resource in the Admin API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique numeric identifier for the order"
+    },
+    "order_number": {
+      "type": "integer",
+      "description": "The sequential order number used to identify orders in the admin"
+    },
+    "name": {
+      "type": "string",
+      "description": "The human-readable name of the order (e.g., #1001)"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "The customer email address"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the order was created"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the order was last modified"
+    },
+    "processed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when an order was processed"
+    },
+    "total_price": {
+      "type": "string",
+      "description": "The sum of all line item prices, discounts, shipping, and taxes"
+    },
+    "subtotal_price": {
+      "type": "string",
+      "description": "The price of the order after discounts but before shipping and taxes"
+    },
+    "total_tax": {
+      "type": "string",
+      "description": "The sum of all the taxes applied to the order"
+    },
+    "total_discounts": {
+      "type": "string",
+      "description": "The total discounts applied to the price of the order"
+    },
+    "currency": {
+      "type": "string",
+      "description": "The three-letter code for the currency used for the payment"
+    },
+    "financial_status": {
+      "type": "string",
+      "enum": ["authorized", "paid", "partially_paid", "partially_refunded", "pending", "refunded", "unpaid", "voided"],
+      "description": "The payment status of the order"
+    },
+    "fulfillment_status": {
+      "type": ["string", "null"],
+      "enum": ["fulfilled", "null", "partial", "restocked"],
+      "description": "The order fulfillment status"
+    },
+    "note": {
+      "type": ["string", "null"],
+      "description": "An optional note that a shop owner can attach to the order"
+    },
+    "tags": {
+      "type": "string",
+      "description": "Tags attached to the order"
+    },
+    "customer": {
+      "type": "object",
+      "description": "The customer who placed the order"
+    },
+    "line_items": {
+      "type": "array",
+      "description": "A list of line item objects, each containing information about an item in the order",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "product_id": { "type": "integer" },
+          "variant_id": { "type": "integer" },
+          "title": { "type": "string" },
+          "quantity": { "type": "integer" },
+          "price": { "type": "string" },
+          "sku": { "type": "string" },
+          "vendor": { "type": "string" },
+          "requires_shipping": { "type": "boolean" },
+          "taxable": { "type": "boolean" }
+        }
+      }
+    },
+    "shipping_address": {
+      "type": "object",
+      "description": "The mailing address to where the order will be shipped"
+    },
+    "billing_address": {
+      "type": "object",
+      "description": "The mailing address associated with the payment method"
+    },
+    "fulfillments": {
+      "type": "array",
+      "description": "A list of fulfillments associated with the order",
+      "items": {
+        "type": "object"
+      }
+    },
+    "refunds": {
+      "type": "array",
+      "description": "A list of refunds applied to the order",
+      "items": {
+        "type": "object"
+      }
+    }
+  }
+}

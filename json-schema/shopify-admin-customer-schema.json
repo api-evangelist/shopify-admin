@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/shopify-admin/json-schema/shopify-admin-customer-schema.json",
+  "title": "Shopify Admin Customer",
+  "description": "Schema for a Shopify customer resource in the Admin API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique numeric identifier for the customer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "The unique email address of the customer"
+    },
+    "first_name": {
+      "type": "string",
+      "description": "The customer's first name"
+    },
+    "last_name": {
+      "type": "string",
+      "description": "The customer's last name"
+    },
+    "phone": {
+      "type": ["string", "null"],
+      "description": "The customer's phone number"
+    },
+    "verified_email": {
+      "type": "boolean",
+      "description": "Whether the customer has verified their email address"
+    },
+    "accepts_marketing": {
+      "type": "boolean",
+      "description": "Whether the customer has consented to receive marketing material via email"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the customer was created"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the customer information was last updated"
+    },
+    "orders_count": {
+      "type": "integer",
+      "description": "The number of orders associated with the customer"
+    },
+    "total_spent": {
+      "type": "string",
+      "description": "The total amount of money that the customer has spent across their order history"
+    },
+    "note": {
+      "type": ["string", "null"],
+      "description": "A note about the customer"
+    },
+    "tags": {
+      "type": "string",
+      "description": "Tags that the shop owner has attached to the customer"
+    },
+    "currency": {
+      "type": "string",
+      "description": "The three-letter code for the currency that the customer used when they paid for their last order"
+    },
+    "tax_exempt": {
+      "type": "boolean",
+      "description": "Whether the customer is exempt from paying taxes on their order"
+    },
+    "addresses": {
+      "type": "array",
+      "description": "A list of the customer's addresses",
+      "items": {
+        "$ref": "#/$defs/Address"
+      }
+    },
+    "default_address": {
+      "$ref": "#/$defs/Address"
+    }
+  },
+  "$defs": {
+    "Address": {
+      "type": "object",
+      "description": "A customer mailing address",
+      "properties": {
+        "id": { "type": "integer" },
+        "customer_id": { "type": "integer" },
+        "first_name": { "type": "string" },
+        "last_name": { "type": "string" },
+        "company": { "type": ["string", "null"] },
+        "address1": { "type": "string" },
+        "address2": { "type": ["string", "null"] },
+        "city": { "type": "string" },
+        "province": { "type": "string" },
+        "country": { "type": "string" },
+        "zip": { "type": "string" },
+        "phone": { "type": ["string", "null"] },
+        "name": { "type": "string" },
+        "province_code": { "type": "string" },
+        "country_code": { "type": "string" },
+        "country_name": { "type": "string" },
+        "default": { "type": "boolean" }
+      }
+    }
+  }
+}

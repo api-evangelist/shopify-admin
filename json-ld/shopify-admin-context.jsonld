@@ -1,0 +1,67 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "shopify": "https://shopify.dev/docs/api/admin-rest/latest/resources/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Product": "schema:Product",
+    "title": "schema:name",
+    "body_html": "schema:description",
+    "vendor": "schema:brand",
+    "product_type": "schema:category",
+    "created_at": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "updated_at": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    "published_at": {
+      "@id": "schema:datePublished",
+      "@type": "xsd:dateTime"
+    },
+    "status": "schema:status",
+    "tags": "schema:keywords",
+    "handle": "schema:identifier",
+    "variants": "schema:hasVariant",
+    "images": "schema:image",
+    "price": "schema:price",
+    "sku": "schema:sku",
+
+    "Order": "schema:Order",
+    "order_number": "schema:orderNumber",
+    "financial_status": "schema:paymentStatus",
+    "fulfillment_status": "schema:orderStatus",
+    "total_price": "schema:totalPrice",
+    "currency": "schema:priceCurrency",
+    "line_items": "schema:orderedItem",
+    "customer": "schema:customer",
+    "shipping_address": "schema:deliveryAddress",
+    "billing_address": "schema:billingAddress",
+
+    "Customer": "schema:Person",
+    "email": "schema:email",
+    "first_name": "schema:givenName",
+    "last_name": "schema:familyName",
+    "phone": "schema:telephone",
+    "addresses": "schema:address",
+
+    "Location": "schema:Place",
+    "address1": "schema:streetAddress",
+    "city": "schema:addressLocality",
+    "province": "schema:addressRegion",
+    "country": "schema:addressCountry",
+    "zip": "schema:postalCode",
+
+    "Webhook": "schema:Action",
+    "address": "schema:url",
+    "topic": "schema:name",
+
+    "Shop": "schema:Store",
+    "name": "schema:name",
+    "domain": "schema:url",
+    "plan_name": "schema:description"
+  }
+}

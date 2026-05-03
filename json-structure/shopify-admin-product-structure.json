@@ -1,0 +1,51 @@
+{
+  "title": "Shopify Admin Product Structure",
+  "description": "Hierarchical structure of the Shopify Admin API Product resource",
+  "resource": "Product",
+  "endpoint": "/products/{product_id}.json",
+  "structure": {
+    "id": { "type": "integer", "description": "Unique product identifier" },
+    "title": { "type": "string", "required": true, "description": "Product name" },
+    "body_html": { "type": "string", "description": "Product description in HTML" },
+    "vendor": { "type": "string", "description": "Product vendor/manufacturer name" },
+    "product_type": { "type": "string", "description": "Product category label" },
+    "handle": { "type": "string", "description": "URL-friendly slug for the product" },
+    "status": { "type": "string", "enum": ["active", "archived", "draft"], "description": "Product publication status" },
+    "tags": { "type": "string", "description": "Comma-separated product tags" },
+    "created_at": { "type": "datetime", "description": "Creation timestamp" },
+    "updated_at": { "type": "datetime", "description": "Last modification timestamp" },
+    "published_at": { "type": "datetime", "nullable": true, "description": "Publication timestamp" },
+    "variants": {
+      "type": "array",
+      "description": "Product variants (size, color, etc.)",
+      "items": {
+        "id": { "type": "integer" },
+        "title": { "type": "string" },
+        "price": { "type": "string" },
+        "sku": { "type": "string" },
+        "inventory_quantity": { "type": "integer" },
+        "weight": { "type": "number" },
+        "weight_unit": { "type": "string" }
+      }
+    },
+    "images": {
+      "type": "array",
+      "description": "Product images",
+      "items": {
+        "id": { "type": "integer" },
+        "src": { "type": "uri" },
+        "alt": { "type": "string" },
+        "position": { "type": "integer" }
+      }
+    },
+    "options": {
+      "type": "array",
+      "description": "Product option definitions (e.g., Size, Color)",
+      "items": {
+        "id": { "type": "integer" },
+        "name": { "type": "string" },
+        "values": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

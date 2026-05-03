@@ -1,0 +1,82 @@
+extends: spectral:oas
+rules:
+  shopify-admin-path-version:
+    description: Shopify Admin REST API paths must include the API version in the server URL, not the path
+    severity: warn
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "^/admin/api/"
+
+  shopify-admin-json-suffix:
+    description: Shopify Admin REST API paths typically end with .json
+    severity: info
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "\\.(json)$|\\{[a-z_]+\\}"
+
+  shopify-admin-resource-naming:
+    description: Shopify Admin REST API resource names should use plural snake_case
+    severity: warn
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/[a-z][a-z0-9_]*s(\\.json|/|$)"
+
+  shopify-admin-access-token-required:
+    description: Shopify Admin REST API requires X-Shopify-Access-Token authentication
+    severity: error
+    given: "$.components.securitySchemes"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          required:
+            - AccessToken
+
+  shopify-admin-operation-ids:
+    description: All Shopify Admin API operations must have unique operationIds
+    severity: error
+    given: "$.paths[*][get,post,put,delete,patch]"
+    then:
+      field: operationId
+      function: truthy
+
+  shopify-admin-response-200:
+    description: GET operations must have a 200 response defined
+    severity: error
+    given: "$.paths[*].get"
+    then:
+      field: responses.200
+      function: truthy
+
+  shopify-admin-tag-defined:
+    description: All operations must have at least one tag for grouping
+    severity: warn
+    given: "$.paths[*][get,post,put,delete,patch]"
+    then:
+      field: tags
+      function: truthy
+
+  shopify-admin-path-parameter-names:
+    description: Path parameters should use snake_case naming (e.g., product_id, customer_id)
+    severity: warn
+    given: "$.paths[*].parameters[?(@.in == 'path')].name"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-z0-9_]*$"
+
+  shopify-admin-no-trailing-slash:
+    description: Shopify Admin API paths must not have trailing slashes
+    severity: warn
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "/$"

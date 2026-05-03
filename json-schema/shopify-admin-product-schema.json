@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/shopify-admin/json-schema/shopify-admin-product-schema.json",
+  "title": "Shopify Admin Product",
+  "description": "Schema for a Shopify product resource in the Admin API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique identifier for the product"
+    },
+    "title": {
+      "type": "string",
+      "description": "The name of the product"
+    },
+    "body_html": {
+      "type": ["string", "null"],
+      "description": "A description of the product in HTML format"
+    },
+    "vendor": {
+      "type": "string",
+      "description": "The name of the product vendor"
+    },
+    "product_type": {
+      "type": "string",
+      "description": "A categorization for the product used for filtering and searching"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the product was created"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the product was last modified"
+    },
+    "published_at": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "The date and time when the product was published to the online store"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "archived", "draft"],
+      "description": "The status of the product"
+    },
+    "tags": {
+      "type": "string",
+      "description": "A string of comma-separated tags for the product"
+    },
+    "handle": {
+      "type": "string",
+      "description": "A unique, human-readable string for the product used in URLs"
+    },
+    "variants": {
+      "type": "array",
+      "description": "An array of product variants",
+      "items": {
+        "$ref": "#/$defs/ProductVariant"
+      }
+    },
+    "images": {
+      "type": "array",
+      "description": "An array of product images",
+      "items": {
+        "$ref": "#/$defs/ProductImage"
+      }
+    },
+    "options": {
+      "type": "array",
+      "description": "The custom product properties such as Size or Color",
+      "items": {
+        "$ref": "#/$defs/ProductOption"
+      }
+    }
+  },
+  "required": ["title"],
+  "$defs": {
+    "ProductVariant": {
+      "type": "object",
+      "description": "A specific version of a product",
+      "properties": {
+        "id": { "type": "integer" },
+        "product_id": { "type": "integer" },
+        "title": { "type": "string" },
+        "price": { "type": "string" },
+        "sku": { "type": ["string", "null"] },
+        "position": { "type": "integer" },
+        "inventory_policy": { "type": "string", "enum": ["deny", "continue"] },
+        "compare_at_price": { "type": ["string", "null"] },
+        "fulfillment_service": { "type": "string" },
+        "inventory_management": { "type": ["string", "null"] },
+        "option1": { "type": ["string", "null"] },
+        "option2": { "type": ["string", "null"] },
+        "option3": { "type": ["string", "null"] },
+        "created_at": { "type": "string", "format": "date-time" },
+        "updated_at": { "type": "string", "format": "date-time" },
+        "taxable": { "type": "boolean" },
+        "barcode": { "type": ["string", "null"] },
+        "grams": { "type": "integer" },
+        "weight": { "type": "number" },
+        "weight_unit": { "type": "string", "enum": ["g", "kg", "oz", "lb"] },
+        "inventory_item_id": { "type": "integer" },
+        "inventory_quantity": { "type": "integer" },
+        "requires_shipping": { "type": "boolean" }
+      }
+    },
+    "ProductImage": {
+      "type": "object",
+      "description": "An image associated with a product",
+      "properties": {
+        "id": { "type": "integer" },
+        "product_id": { "type": "integer" },
+        "position": { "type": "integer" },
+        "created_at": { "type": "string", "format": "date-time" },
+        "updated_at": { "type": "string", "format": "date-time" },
+        "alt": { "type": ["string", "null"] },
+        "width": { "type": "integer" },
+        "height": { "type": "integer" },
+        "src": { "type": "string", "format": "uri" },
+        "variant_ids": { "type": "array", "items": { "type": "integer" } }
+      }
+    },
+    "ProductOption": {
+      "type": "object",
+      "description": "A custom product option such as Size or Color",
+      "properties": {
+        "id": { "type": "integer" },
+        "product_id": { "type": "integer" },
+        "name": { "type": "string" },
+        "position": { "type": "integer" },
+        "values": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}
