@@ -4,7 +4,8 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Shopify Admin API
 providerId: shopify-admin
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
 tags:
   - Commerce
   - Ecommerce
@@ -13,88 +14,95 @@ tags:
   - Orders
   - Customers
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Shopify Admin API API surface. Captures per-tier
-  quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to
-  be replaced with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+description: Shopify Admin API uses a calculated query cost (points-based) model for GraphQL. Per-second
+  budgets vary by the store's commerce plan. A single GraphQL query may not exceed 1,000 points regardless
+  of plan. REST endpoints share the underlying bucket on store-scoped traffic. Customer Account API
+  shares a similar points scheme with its own ceilings.
+sources:
+  - https://shopify.dev/docs/api/usage/rate-limits
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
+  graphqlThrottled: 200
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Shopify Admin REST API
-      - Shopify Admin GraphQL API
-      - Shopify Webhooks
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Shopify Admin REST API
-      - Shopify Admin GraphQL API
-      - Shopify Webhooks
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
+  - name: GraphQL Admin API (Standard, Basic/Grow plans)
+    scope: shop
+    metric: points_per_second
     limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Shopify Admin REST API
-      - Shopify Admin GraphQL API
-      - Shopify Webhooks
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Shopify Admin REST API
-      - Shopify Admin GraphQL API
-      - Shopify Webhooks
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
+    timeFrame: second
+    notes: Calculated query cost model; query cost returned in extensions.cost.
+  - name: GraphQL Admin API (Advanced Shopify)
+    scope: shop
+    metric: points_per_second
+    limit: 200
+    timeFrame: second
+  - name: GraphQL Admin API (Shopify Plus)
+    scope: shop
+    metric: points_per_second
     limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Shopify Admin REST API
-      - Shopify Admin GraphQL API
-      - Shopify Webhooks
+    timeFrame: second
+  - name: GraphQL Admin API (Enterprise)
+    scope: shop
+    metric: points_per_second
+    limit: 2000
+    timeFrame: second
+  - name: GraphQL Admin API single-query maximum cost
+    scope: query
+    metric: points_per_query
+    limit: 1000
+    notes: A single query may not exceed 1,000 points regardless of plan limits.
+  - name: Payments Apps API (Standard)
+    scope: shop
+    metric: points_per_second
+    limit: 27300
+    timeFrame: second
+  - name: Payments Apps API (Shopify Plus)
+    scope: shop
+    metric: points_per_second
+    limit: 54600
+    timeFrame: second
+  - name: Payments Apps API (Enterprise)
+    scope: shop
+    metric: points_per_second
+    limit: 109200
+    timeFrame: second
+  - name: Customer Account API (Standard)
+    scope: shop
+    metric: points_per_second
+    limit: 100
+    timeFrame: second
+  - name: Customer Account API (Advanced Shopify)
+    scope: shop
+    metric: points_per_second
+    limit: 200
+    timeFrame: second
+  - name: Customer Account API (Enterprise)
+    scope: shop
+    metric: points_per_second
+    limit: 400
+    timeFrame: second
+  - name: Input array size
+    scope: query
+    metric: array_size
+    limit: 250
+    notes: Input arguments that accept an array have a maximum size of 250.
+  - name: Pagination ceiling
+    scope: query
+    metric: objects
+    limit: 25000
+    notes: Pagination is limited to 25,000 objects; deeper pagination is resource-intensive.
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  - name: Calculated Query Cost
+    description: GraphQL APIs return requestedQueryCost, actualQueryCost, and throttle status in the
+      extensions key. Clients should read this and slow down before hitting the bucket ceiling.
+  - name: Leaky Bucket
+    description: Shopify uses a leaky bucket algorithm; capacity refills at the per-second leak rate.
+      Sustained requests above the leak rate will throttle.
+  - name: Throttled Status
+    description: Throttled GraphQL responses return 200 with a THROTTLED error code; REST responses
+      return 429. Clients should retry after the bucket refills.
+  - name: Plan-Based Limits
+    description: Limits scale with the merchant's commerce plan (Basic/Grow, Advanced, Plus, Enterprise).
+      Upgrade the plan to raise limits.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
