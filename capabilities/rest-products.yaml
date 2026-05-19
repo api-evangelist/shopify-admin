@@ -1,0 +1,253 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify Admin REST API — Products
+  description: 'Shopify Admin REST API — Products. 5 operations. Lead operation: List Products. Self-contained Naftiko capability
+    covering one Shopify Admin business surface.'
+  tags:
+  - Shopify Admin
+  - Products
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_ADMIN_API_KEY: SHOPIFY_ADMIN_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-products
+    baseUri: https://{store_name}.myshopify.com/admin/api/2024-10
+    description: Shopify Admin REST API — Products business capability. Self-contained, no shared references.
+    resources:
+    - name: products.json
+      path: /products.json
+      operations:
+      - name: listproducts
+        method: GET
+        description: List Products
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          description: The maximum number of results to show (maximum 250, default 50)
+        - name: page_info
+          in: query
+          type: string
+          description: A unique ID used to access a specific page in results
+        - name: ids
+          in: query
+          type: string
+          description: Show only products specified by a comma-separated list of IDs
+        - name: status
+          in: query
+          type: string
+          description: Filter by product status
+      - name: createproduct
+        method: POST
+        description: Create Product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: products-product_id}.json
+      path: /products/{product_id}.json
+      operations:
+      - name: getproduct
+        method: GET
+        description: Get Product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: integer
+          description: The ID of the product
+          required: true
+      - name: updateproduct
+        method: PUT
+        description: Update Product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: integer
+          description: The ID of the product
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteproduct
+        method: DELETE
+        description: Delete Product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: integer
+          description: The ID of the product
+          required: true
+    authentication:
+      type: apikey
+      key: X-Shopify-Access-Token
+      value: '{{env.SHOPIFY_ADMIN_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: rest-products-rest
+    port: 8080
+    description: REST adapter for Shopify Admin REST API — Products. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/products-json
+      name: products-json
+      description: REST surface for products.json.
+      operations:
+      - method: GET
+        name: listproducts
+        description: List Products
+        call: rest-products.listproducts
+        with:
+          limit: rest.limit
+          page_info: rest.page_info
+          ids: rest.ids
+          status: rest.status
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createproduct
+        description: Create Product
+        call: rest-products.createproduct
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/products/product-id-json
+      name: products-product-id-json
+      description: REST surface for products-product_id}.json.
+      operations:
+      - method: GET
+        name: getproduct
+        description: Get Product
+        call: rest-products.getproduct
+        with:
+          product_id: rest.product_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateproduct
+        description: Update Product
+        call: rest-products.updateproduct
+        with:
+          product_id: rest.product_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteproduct
+        description: Delete Product
+        call: rest-products.deleteproduct
+        with:
+          product_id: rest.product_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-products-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify Admin REST API — Products. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-products
+      description: List Products
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-products.listproducts
+      with:
+        limit: tools.limit
+        page_info: tools.page_info
+        ids: tools.ids
+        status: tools.status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-product
+      description: Create Product
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-products.createproduct
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-product
+      description: Get Product
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-products.getproduct
+      with:
+        product_id: tools.product_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-product
+      description: Update Product
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-products.updateproduct
+      with:
+        product_id: tools.product_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-product
+      description: Delete Product
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rest-products.deleteproduct
+      with:
+        product_id: tools.product_id
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,72 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify Admin REST API — Locations
+  description: 'Shopify Admin REST API — Locations. 1 operations. Lead operation: List Locations. Self-contained Naftiko capability
+    covering one Shopify Admin business surface.'
+  tags:
+  - Shopify Admin
+  - Locations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_ADMIN_API_KEY: SHOPIFY_ADMIN_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-locations
+    baseUri: https://{store_name}.myshopify.com/admin/api/2024-10
+    description: Shopify Admin REST API — Locations business capability. Self-contained, no shared references.
+    resources:
+    - name: locations.json
+      path: /locations.json
+      operations:
+      - name: listlocations
+        method: GET
+        description: List Locations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-Shopify-Access-Token
+      value: '{{env.SHOPIFY_ADMIN_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: rest-locations-rest
+    port: 8080
+    description: REST adapter for Shopify Admin REST API — Locations. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/locations-json
+      name: locations-json
+      description: REST surface for locations.json.
+      operations:
+      - method: GET
+        name: listlocations
+        description: List Locations
+        call: rest-locations.listlocations
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-locations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify Admin REST API — Locations. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-locations
+      description: List Locations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-locations.listlocations
+      outputParameters:
+      - type: object
+        mapping: $.
