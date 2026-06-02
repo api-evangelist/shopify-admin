@@ -15,7 +15,7 @@ tags:
 - Customers
 url: https://raw.githubusercontent.com/api-evangelist/shopify-admin/refs/heads/main/apis.yml
 created: '2026-05-02'
-modified: '2026-05-19'
+modified: '2026-05-30'
 specificationVersion: '0.19'
 apis:
 - aid: shopify-admin:shopify-admin-rest-api
@@ -131,6 +131,8 @@ apis:
     url: https://shopify.dev/docs/api/webhooks
   - type: Reference
     url: https://shopify.dev/docs/api/webhooks/2024-10
+  - type: AsyncAPI
+    url: asyncapi/shopify-admin-webhooks-asyncapi.yml
   contact:
   - FN: Shopify Developer Support
     url: https://shopify.dev/

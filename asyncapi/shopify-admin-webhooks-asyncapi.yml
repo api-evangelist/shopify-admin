@@ -1,0 +1,1822 @@
+asyncapi: 2.6.0
+info:
+  title: Shopify Admin Webhooks
+  version: '2024-10'
+  description: |
+    AsyncAPI 2.6 specification modeling the Shopify Admin webhook event surface.
+
+    Shopify webhooks allow apps to subscribe to events that occur in a Shopify
+    store. When a subscribed event occurs, Shopify sends an HTTP POST request
+    with a JSON payload to the configured endpoint URL.
+
+    Every webhook delivery from Shopify includes the following HTTP headers:
+
+    - `X-Shopify-Topic` — the webhook topic (for example, `orders/create`)
+    - `X-Shopify-Shop-Domain` — the `*.myshopify.com` domain that triggered the event
+    - `X-Shopify-Hmac-Sha256` — base64-encoded HMAC-SHA256 of the raw request
+      body computed using the app's client secret (or, for shop-created webhooks
+      via the REST/GraphQL Admin API, the app's API secret key) as the key
+    - `X-Shopify-API-Version` — the Admin API version used to format the payload
+    - `X-Shopify-Webhook-Id` — a unique identifier for the webhook delivery
+
+    Receivers MUST verify the HMAC signature before processing a payload.
+    Receivers MUST respond with a `2xx` status code within 5 seconds; Shopify
+    retries failed deliveries up to 19 times over 48 hours.
+
+    Every topic enumerated in this specification is drawn from the official
+    Shopify Admin webhooks reference at
+    https://shopify.dev/docs/api/webhooks/2024-10.
+  termsOfService: https://www.shopify.com/legal/terms
+  contact:
+    name: Shopify Developer Support
+    url: https://shopify.dev/
+    email: api@shopify.com
+  license:
+    name: Proprietary
+    url: https://www.shopify.com/legal/terms
+  x-apis-json-aid: shopify-admin:shopify-webhooks
+  x-spec-source: https://shopify.dev/docs/api/webhooks/2024-10
+defaultContentType: application/json
+servers:
+  webhook-receiver:
+    url: '{endpoint}'
+    protocol: https
+    description: |
+      The application-hosted HTTPS endpoint to which Shopify delivers webhook
+      events. This URL is registered via the `webhookSubscriptionCreate`
+      GraphQL mutation, the REST `POST /admin/api/2024-10/webhooks.json`
+      endpoint, or declaratively in `shopify.app.toml`.
+    variables:
+      endpoint:
+        default: https://example.com/shopify/webhooks
+        description: The fully-qualified HTTPS callback URL hosted by the app.
+channels:
+  app/scopes_update:
+    description: Triggered when the access scopes granted to an app are updated.
+    subscribe:
+      operationId: subscribeAppScopesUpdate
+      summary: Receive app/scopes_update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: app/scopes_update
+  app/uninstalled:
+    description: Triggered when an app is uninstalled from a shop. Mandatory compliance topic for App Store apps.
+    subscribe:
+      operationId: subscribeAppUninstalled
+      summary: Receive app/uninstalled events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: app/uninstalled
+  app_purchases_one_time/update:
+    description: Triggered when a one-time application charge is updated.
+    subscribe:
+      operationId: subscribeAppPurchasesOneTimeUpdate
+      summary: Receive app_purchases_one_time/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: app_purchases_one_time/update
+  app_subscriptions/approaching_capped_amount:
+    description: Triggered when an app subscription's usage charges approach the capped amount.
+    subscribe:
+      operationId: subscribeAppSubscriptionsApproachingCappedAmount
+      summary: Receive app_subscriptions/approaching_capped_amount events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: app_subscriptions/approaching_capped_amount
+  app_subscriptions/update:
+    description: Triggered when an app subscription is updated.
+    subscribe:
+      operationId: subscribeAppSubscriptionsUpdate
+      summary: Receive app_subscriptions/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: app_subscriptions/update
+  audit_events/admin_api_activity:
+    description: Triggered when admin API activity is recorded as an audit event.
+    subscribe:
+      operationId: subscribeAuditEventsAdminApiActivity
+      summary: Receive audit_events/admin_api_activity events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: audit_events/admin_api_activity
+  bulk_operations/finish:
+    description: Triggered when a bulk operation finishes.
+    subscribe:
+      operationId: subscribeBulkOperationsFinish
+      summary: Receive bulk_operations/finish events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: bulk_operations/finish
+  carts/create:
+    description: Triggered when a cart is created in the online store.
+    subscribe:
+      operationId: subscribeCartsCreate
+      summary: Receive carts/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: carts/create
+  carts/update:
+    description: Triggered when a cart is updated in the online store.
+    subscribe:
+      operationId: subscribeCartsUpdate
+      summary: Receive carts/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: carts/update
+  channels/delete:
+    description: Triggered when a sales channel is removed from the shop.
+    subscribe:
+      operationId: subscribeChannelsDelete
+      summary: Receive channels/delete events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: channels/delete
+  checkouts/create:
+    description: Triggered when a checkout is created.
+    subscribe:
+      operationId: subscribeCheckoutsCreate
+      summary: Receive checkouts/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: checkouts/create
+  checkouts/delete:
+    description: Triggered when a checkout is deleted.
+    subscribe:
+      operationId: subscribeCheckoutsDelete
+      summary: Receive checkouts/delete events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: checkouts/delete
+  checkouts/update:
+    description: Triggered when a checkout is updated.
+    subscribe:
+      operationId: subscribeCheckoutsUpdate
+      summary: Receive checkouts/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: checkouts/update
+  collection_listings/add:
+    description: Triggered when a collection listing is added to a sales channel.
+    subscribe:
+      operationId: subscribeCollectionListingsAdd
+      summary: Receive collection_listings/add events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: collection_listings/add
+  collection_listings/remove:
+    description: Triggered when a collection listing is removed from a sales channel.
+    subscribe:
+      operationId: subscribeCollectionListingsRemove
+      summary: Receive collection_listings/remove events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: collection_listings/remove
+  collection_listings/update:
+    description: Triggered when a collection listing is updated on a sales channel.
+    subscribe:
+      operationId: subscribeCollectionListingsUpdate
+      summary: Receive collection_listings/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: collection_listings/update
+  collection_publications/create:
+    description: Triggered when a collection publication is created.
+    subscribe:
+      operationId: subscribeCollectionPublicationsCreate
+      summary: Receive collection_publications/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: collection_publications/create
+  collection_publications/delete:
+    description: Triggered when a collection publication is deleted.
+    subscribe:
+      operationId: subscribeCollectionPublicationsDelete
+      summary: Receive collection_publications/delete events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: collection_publications/delete
+  collection_publications/update:
+    description: Triggered when a collection publication is updated.
+    subscribe:
+      operationId: subscribeCollectionPublicationsUpdate
+      summary: Receive collection_publications/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: collection_publications/update
+  collections/create:
+    description: Triggered when a collection is created.
+    subscribe:
+      operationId: subscribeCollectionsCreate
+      summary: Receive collections/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: collections/create
+  collections/delete:
+    description: Triggered when a collection is deleted.
+    subscribe:
+      operationId: subscribeCollectionsDelete
+      summary: Receive collections/delete events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: collections/delete
+  collections/update:
+    description: Triggered when a collection is updated.
+    subscribe:
+      operationId: subscribeCollectionsUpdate
+      summary: Receive collections/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: collections/update
+  companies/create:
+    description: Triggered when a B2B company is created.
+    subscribe:
+      operationId: subscribeCompaniesCreate
+      summary: Receive companies/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: companies/create
+  companies/delete:
+    description: Triggered when a B2B company is deleted.
+    subscribe:
+      operationId: subscribeCompaniesDelete
+      summary: Receive companies/delete events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: companies/delete
+  companies/update:
+    description: Triggered when a B2B company is updated.
+    subscribe:
+      operationId: subscribeCompaniesUpdate
+      summary: Receive companies/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: companies/update
+  company_contact_roles/assign:
+    description: Triggered when a role is assigned to a company contact.
+    subscribe:
+      operationId: subscribeCompanyContactRolesAssign
+      summary: Receive company_contact_roles/assign events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: company_contact_roles/assign
+  company_contact_roles/revoke:
+    description: Triggered when a role is revoked from a company contact.
+    subscribe:
+      operationId: subscribeCompanyContactRolesRevoke
+      summary: Receive company_contact_roles/revoke events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: company_contact_roles/revoke
+  company_contacts/create:
+    description: Triggered when a company contact is created.
+    subscribe:
+      operationId: subscribeCompanyContactsCreate
+      summary: Receive company_contacts/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: company_contacts/create
+  company_contacts/delete:
+    description: Triggered when a company contact is deleted.
+    subscribe:
+      operationId: subscribeCompanyContactsDelete
+      summary: Receive company_contacts/delete events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: company_contacts/delete
+  company_contacts/update:
+    description: Triggered when a company contact is updated.
+    subscribe:
+      operationId: subscribeCompanyContactsUpdate
+      summary: Receive company_contacts/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: company_contacts/update
+  company_locations/create:
+    description: Triggered when a company location is created.
+    subscribe:
+      operationId: subscribeCompanyLocationsCreate
+      summary: Receive company_locations/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: company_locations/create
+  company_locations/delete:
+    description: Triggered when a company location is deleted.
+    subscribe:
+      operationId: subscribeCompanyLocationsDelete
+      summary: Receive company_locations/delete events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: company_locations/delete
+  company_locations/update:
+    description: Triggered when a company location is updated.
+    subscribe:
+      operationId: subscribeCompanyLocationsUpdate
+      summary: Receive company_locations/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: company_locations/update
+  customer.joined_segment:
+    description: Triggered when a customer joins a customer segment.
+    subscribe:
+      operationId: subscribeCustomerJoinedSegment
+      summary: Receive customer.joined_segment events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: customer.joined_segment
+  customer.left_segment:
+    description: Triggered when a customer leaves a customer segment.
+    subscribe:
+      operationId: subscribeCustomerLeftSegment
+      summary: Receive customer.left_segment events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: customer.left_segment
+  customer.tags_added:
+    description: Triggered when tags are added to a customer.
+    subscribe:
+      operationId: subscribeCustomerTagsAdded
+      summary: Receive customer.tags_added events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: customer.tags_added
+  customer.tags_removed:
+    description: Triggered when tags are removed from a customer.
+    subscribe:
+      operationId: subscribeCustomerTagsRemoved
+      summary: Receive customer.tags_removed events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: customer.tags_removed
+  customer_account_settings/update:
+    description: Triggered when customer account settings (login requirements, storefront visibility, etc.) are updated.
+    subscribe:
+      operationId: subscribeCustomerAccountSettingsUpdate
+      summary: Receive customer_account_settings/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: customer_account_settings/update
+  customer_groups/create:
+    description: Triggered when a customer saved search (group) is created.
+    subscribe:
+      operationId: subscribeCustomerGroupsCreate
+      summary: Receive customer_groups/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: customer_groups/create
+  customer_groups/delete:
+    description: Triggered when a customer saved search (group) is deleted.
+    subscribe:
+      operationId: subscribeCustomerGroupsDelete
+      summary: Receive customer_groups/delete events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: customer_groups/delete
+  customer_groups/update:
+    description: Triggered when a customer saved search (group) is updated.
+    subscribe:
+      operationId: subscribeCustomerGroupsUpdate
+      summary: Receive customer_groups/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: customer_groups/update
+  customer_payment_methods/create:
+    description: Triggered when a customer payment method is created.
+    subscribe:
+      operationId: subscribeCustomerPaymentMethodsCreate
+      summary: Receive customer_payment_methods/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: customer_payment_methods/create
+  customer_payment_methods/revoke:
+    description: Triggered when a customer payment method is revoked.
+    subscribe:
+      operationId: subscribeCustomerPaymentMethodsRevoke
+      summary: Receive customer_payment_methods/revoke events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: customer_payment_methods/revoke
+  customer_payment_methods/update:
+    description: Triggered when a customer payment method is updated.
+    subscribe:
+      operationId: subscribeCustomerPaymentMethodsUpdate
+      summary: Receive customer_payment_methods/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: customer_payment_methods/update
+  customers/create:
+    description: Triggered when a customer is created.
+    subscribe:
+      operationId: subscribeCustomersCreate
+      summary: Receive customers/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: customers/create
+  customers/data_request:
+    description: Triggered when a store owner requests a customer's data on their behalf. Mandatory compliance topic for App Store apps.
+    subscribe:
+      operationId: subscribeCustomersDataRequest
+      summary: Receive customers/data_request events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: customers/data_request
+  customers/delete:
+    description: Triggered when a customer is deleted.
+    subscribe:
+      operationId: subscribeCustomersDelete
+      summary: Receive customers/delete events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: customers/delete
+  customers/disable:
+    description: Triggered when a customer account is disabled.
+    subscribe:
+      operationId: subscribeCustomersDisable
+      summary: Receive customers/disable events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: customers/disable
+  customers/enable:
+    description: Triggered when a customer account is enabled.
+    subscribe:
+      operationId: subscribeCustomersEnable
+      summary: Receive customers/enable events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: customers/enable
+  customers/merge:
+    description: Triggered when two customer records are merged.
+    subscribe:
+      operationId: subscribeCustomersMerge
+      summary: Receive customers/merge events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: customers/merge
+  customers/purchasing_summary:
+    description: Triggered when a customer's purchasing summary changes.
+    subscribe:
+      operationId: subscribeCustomersPurchasingSummary
+      summary: Receive customers/purchasing_summary events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: customers/purchasing_summary
+  customers/redact:
+    description: Triggered 48 hours after a store owner requests that a customer's personal data be redacted. Mandatory compliance topic for App Store apps.
+    subscribe:
+      operationId: subscribeCustomersRedact
+      summary: Receive customers/redact events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: customers/redact
+  customers/update:
+    description: Triggered when a customer is updated.
+    subscribe:
+      operationId: subscribeCustomersUpdate
+      summary: Receive customers/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: customers/update
+  customers_email_marketing_consent/update:
+    description: Triggered when a customer's email marketing consent is updated.
+    subscribe:
+      operationId: subscribeCustomersEmailMarketingConsentUpdate
+      summary: Receive customers_email_marketing_consent/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: customers_email_marketing_consent/update
+  customers_marketing_consent/update:
+    description: Triggered when a customer's SMS marketing consent is updated.
+    subscribe:
+      operationId: subscribeCustomersMarketingConsentUpdate
+      summary: Receive customers_marketing_consent/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: customers_marketing_consent/update
+  delivery_promise_settings/update:
+    description: Triggered when delivery promise settings (processing time, delivery date availability) are updated.
+    subscribe:
+      operationId: subscribeDeliveryPromiseSettingsUpdate
+      summary: Receive delivery_promise_settings/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: delivery_promise_settings/update
+  discounts/create:
+    description: Triggered when a discount is created.
+    subscribe:
+      operationId: subscribeDiscountsCreate
+      summary: Receive discounts/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: discounts/create
+  discounts/delete:
+    description: Triggered when a discount is deleted.
+    subscribe:
+      operationId: subscribeDiscountsDelete
+      summary: Receive discounts/delete events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: discounts/delete
+  discounts/redeemcode_added:
+    description: Triggered when a redeem code is added to a discount.
+    subscribe:
+      operationId: subscribeDiscountsRedeemcodeAdded
+      summary: Receive discounts/redeemcode_added events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: discounts/redeemcode_added
+  discounts/redeemcode_removed:
+    description: Triggered when a redeem code is removed from a discount.
+    subscribe:
+      operationId: subscribeDiscountsRedeemcodeRemoved
+      summary: Receive discounts/redeemcode_removed events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: discounts/redeemcode_removed
+  discounts/update:
+    description: Triggered when a discount is updated.
+    subscribe:
+      operationId: subscribeDiscountsUpdate
+      summary: Receive discounts/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: discounts/update
+  disputes/create:
+    description: Triggered when a payment dispute (chargeback or inquiry) is created.
+    subscribe:
+      operationId: subscribeDisputesCreate
+      summary: Receive disputes/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: disputes/create
+  disputes/update:
+    description: Triggered when a payment dispute is updated.
+    subscribe:
+      operationId: subscribeDisputesUpdate
+      summary: Receive disputes/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: disputes/update
+  domains/create:
+    description: Triggered when a shop adds a domain.
+    subscribe:
+      operationId: subscribeDomainsCreate
+      summary: Receive domains/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: domains/create
+  domains/destroy:
+    description: Triggered when a shop removes a domain.
+    subscribe:
+      operationId: subscribeDomainsDestroy
+      summary: Receive domains/destroy events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: domains/destroy
+  domains/update:
+    description: Triggered when a shop updates a domain.
+    subscribe:
+      operationId: subscribeDomainsUpdate
+      summary: Receive domains/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: domains/update
+  draft_orders/create:
+    description: Triggered when a draft order is created.
+    subscribe:
+      operationId: subscribeDraftOrdersCreate
+      summary: Receive draft_orders/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: draft_orders/create
+  draft_orders/delete:
+    description: Triggered when a draft order is deleted.
+    subscribe:
+      operationId: subscribeDraftOrdersDelete
+      summary: Receive draft_orders/delete events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: draft_orders/delete
+  draft_orders/update:
+    description: Triggered when a draft order is updated.
+    subscribe:
+      operationId: subscribeDraftOrdersUpdate
+      summary: Receive draft_orders/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: draft_orders/update
+  fulfillment_events/create:
+    description: Triggered when a fulfillment event is created.
+    subscribe:
+      operationId: subscribeFulfillmentEventsCreate
+      summary: Receive fulfillment_events/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: fulfillment_events/create
+  fulfillment_events/delete:
+    description: Triggered when a fulfillment event is deleted.
+    subscribe:
+      operationId: subscribeFulfillmentEventsDelete
+      summary: Receive fulfillment_events/delete events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: fulfillment_events/delete
+  fulfillment_holds/added:
+    description: Triggered when a hold is added to a fulfillment order.
+    subscribe:
+      operationId: subscribeFulfillmentHoldsAdded
+      summary: Receive fulfillment_holds/added events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: fulfillment_holds/added
+  fulfillment_holds/released:
+    description: Triggered when a hold is released from a fulfillment order.
+    subscribe:
+      operationId: subscribeFulfillmentHoldsReleased
+      summary: Receive fulfillment_holds/released events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: fulfillment_holds/released
+  fulfillment_orders/cancellation_request_accepted:
+    description: Triggered when a fulfillment service accepts a cancellation request.
+    subscribe:
+      operationId: subscribeFulfillmentOrdersCancellationRequestAccepted
+      summary: Receive fulfillment_orders/cancellation_request_accepted events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: fulfillment_orders/cancellation_request_accepted
+  fulfillment_orders/cancellation_request_rejected:
+    description: Triggered when a fulfillment service rejects a cancellation request.
+    subscribe:
+      operationId: subscribeFulfillmentOrdersCancellationRequestRejected
+      summary: Receive fulfillment_orders/cancellation_request_rejected events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: fulfillment_orders/cancellation_request_rejected
+  fulfillment_orders/cancellation_request_submitted:
+    description: Triggered when a cancellation request is submitted for a fulfillment order.
+    subscribe:
+      operationId: subscribeFulfillmentOrdersCancellationRequestSubmitted
+      summary: Receive fulfillment_orders/cancellation_request_submitted events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: fulfillment_orders/cancellation_request_submitted
+  fulfillment_orders/cancelled:
+    description: Triggered when a fulfillment order is cancelled.
+    subscribe:
+      operationId: subscribeFulfillmentOrdersCancelled
+      summary: Receive fulfillment_orders/cancelled events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: fulfillment_orders/cancelled
+  fulfillment_orders/fulfillment_request_accepted:
+    description: Triggered when a fulfillment service accepts a fulfillment request.
+    subscribe:
+      operationId: subscribeFulfillmentOrdersFulfillmentRequestAccepted
+      summary: Receive fulfillment_orders/fulfillment_request_accepted events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: fulfillment_orders/fulfillment_request_accepted
+  fulfillment_orders/fulfillment_request_rejected:
+    description: Triggered when a fulfillment service rejects a fulfillment request.
+    subscribe:
+      operationId: subscribeFulfillmentOrdersFulfillmentRequestRejected
+      summary: Receive fulfillment_orders/fulfillment_request_rejected events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: fulfillment_orders/fulfillment_request_rejected
+  fulfillment_orders/fulfillment_request_submitted:
+    description: Triggered when a fulfillment request is submitted for a fulfillment order.
+    subscribe:
+      operationId: subscribeFulfillmentOrdersFulfillmentRequestSubmitted
+      summary: Receive fulfillment_orders/fulfillment_request_submitted events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: fulfillment_orders/fulfillment_request_submitted
+  fulfillment_orders/fulfillment_service_failed_to_complete:
+    description: Triggered when a fulfillment service fails to complete a fulfillment order.
+    subscribe:
+      operationId: subscribeFulfillmentOrdersFulfillmentServiceFailedToComplete
+      summary: Receive fulfillment_orders/fulfillment_service_failed_to_complete events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: fulfillment_orders/fulfillment_service_failed_to_complete
+  fulfillment_orders/hold_released:
+    description: Triggered when a hold is released on a fulfillment order.
+    subscribe:
+      operationId: subscribeFulfillmentOrdersHoldReleased
+      summary: Receive fulfillment_orders/hold_released events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: fulfillment_orders/hold_released
+  fulfillment_orders/line_items_prepared_for_local_delivery:
+    description: Triggered when line items on a fulfillment order are prepared for local delivery.
+    subscribe:
+      operationId: subscribeFulfillmentOrdersLineItemsPreparedForLocalDelivery
+      summary: Receive fulfillment_orders/line_items_prepared_for_local_delivery events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: fulfillment_orders/line_items_prepared_for_local_delivery
+  fulfillment_orders/line_items_prepared_for_pickup:
+    description: Triggered when line items on a fulfillment order are prepared for in-store pickup.
+    subscribe:
+      operationId: subscribeFulfillmentOrdersLineItemsPreparedForPickup
+      summary: Receive fulfillment_orders/line_items_prepared_for_pickup events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: fulfillment_orders/line_items_prepared_for_pickup
+  fulfillment_orders/manually_reported_progress_stopped:
+    description: Triggered when manual progress reporting is stopped on a fulfillment order.
+    subscribe:
+      operationId: subscribeFulfillmentOrdersManuallyReportedProgressStopped
+      summary: Receive fulfillment_orders/manually_reported_progress_stopped events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: fulfillment_orders/manually_reported_progress_stopped
+  fulfillment_orders/merged:
+    description: Triggered when fulfillment orders are merged.
+    subscribe:
+      operationId: subscribeFulfillmentOrdersMerged
+      summary: Receive fulfillment_orders/merged events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: fulfillment_orders/merged
+  fulfillment_orders/moved:
+    description: Triggered when a fulfillment order is moved to a different location.
+    subscribe:
+      operationId: subscribeFulfillmentOrdersMoved
+      summary: Receive fulfillment_orders/moved events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: fulfillment_orders/moved
+  fulfillment_orders/order_routing_complete:
+    description: Triggered when order routing has completed for a fulfillment order.
+    subscribe:
+      operationId: subscribeFulfillmentOrdersOrderRoutingComplete
+      summary: Receive fulfillment_orders/order_routing_complete events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: fulfillment_orders/order_routing_complete
+  fulfillment_orders/placed_on_hold:
+    description: Triggered when a fulfillment order is placed on hold.
+    subscribe:
+      operationId: subscribeFulfillmentOrdersPlacedOnHold
+      summary: Receive fulfillment_orders/placed_on_hold events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: fulfillment_orders/placed_on_hold
+  fulfillment_orders/progress_reported:
+    description: Triggered when progress is reported on a fulfillment order.
+    subscribe:
+      operationId: subscribeFulfillmentOrdersProgressReported
+      summary: Receive fulfillment_orders/progress_reported events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: fulfillment_orders/progress_reported
+  fulfillment_orders/rescheduled:
+    description: Triggered when a fulfillment order is rescheduled.
+    subscribe:
+      operationId: subscribeFulfillmentOrdersRescheduled
+      summary: Receive fulfillment_orders/rescheduled events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: fulfillment_orders/rescheduled
+  fulfillment_orders/scheduled_fulfillment_order_ready:
+    description: Triggered when a scheduled fulfillment order is ready to be fulfilled.
+    subscribe:
+      operationId: subscribeFulfillmentOrdersScheduledFulfillmentOrderReady
+      summary: Receive fulfillment_orders/scheduled_fulfillment_order_ready events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: fulfillment_orders/scheduled_fulfillment_order_ready
+  fulfillment_orders/split:
+    description: Triggered when a fulfillment order is split.
+    subscribe:
+      operationId: subscribeFulfillmentOrdersSplit
+      summary: Receive fulfillment_orders/split events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: fulfillment_orders/split
+  fulfillments/create:
+    description: Triggered when a fulfillment is created.
+    subscribe:
+      operationId: subscribeFulfillmentsCreate
+      summary: Receive fulfillments/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: fulfillments/create
+  fulfillments/update:
+    description: Triggered when a fulfillment is updated.
+    subscribe:
+      operationId: subscribeFulfillmentsUpdate
+      summary: Receive fulfillments/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: fulfillments/update
+  inventory_items/create:
+    description: Triggered when an inventory item is created.
+    subscribe:
+      operationId: subscribeInventoryItemsCreate
+      summary: Receive inventory_items/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: inventory_items/create
+  inventory_items/delete:
+    description: Triggered when an inventory item is deleted.
+    subscribe:
+      operationId: subscribeInventoryItemsDelete
+      summary: Receive inventory_items/delete events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: inventory_items/delete
+  inventory_items/update:
+    description: Triggered when an inventory item is updated.
+    subscribe:
+      operationId: subscribeInventoryItemsUpdate
+      summary: Receive inventory_items/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: inventory_items/update
+  inventory_levels/connect:
+    description: Triggered when an inventory level is connected to a location.
+    subscribe:
+      operationId: subscribeInventoryLevelsConnect
+      summary: Receive inventory_levels/connect events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: inventory_levels/connect
+  inventory_levels/disconnect:
+    description: Triggered when an inventory level is disconnected from a location.
+    subscribe:
+      operationId: subscribeInventoryLevelsDisconnect
+      summary: Receive inventory_levels/disconnect events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: inventory_levels/disconnect
+  inventory_levels/update:
+    description: Triggered when an inventory level is updated.
+    subscribe:
+      operationId: subscribeInventoryLevelsUpdate
+      summary: Receive inventory_levels/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: inventory_levels/update
+  locales/create:
+    description: Triggered when a shop locale is created.
+    subscribe:
+      operationId: subscribeLocalesCreate
+      summary: Receive locales/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: locales/create
+  locales/delete:
+    description: Triggered when a shop locale is deleted.
+    subscribe:
+      operationId: subscribeLocalesDelete
+      summary: Receive locales/delete events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: locales/delete
+  locales/update:
+    description: Triggered when a shop locale is updated.
+    subscribe:
+      operationId: subscribeLocalesUpdate
+      summary: Receive locales/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: locales/update
+  locations/activate:
+    description: Triggered when a location is reactivated.
+    subscribe:
+      operationId: subscribeLocationsActivate
+      summary: Receive locations/activate events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: locations/activate
+  locations/create:
+    description: Triggered when a location is created.
+    subscribe:
+      operationId: subscribeLocationsCreate
+      summary: Receive locations/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: locations/create
+  locations/deactivate:
+    description: Triggered when a location is deactivated.
+    subscribe:
+      operationId: subscribeLocationsDeactivate
+      summary: Receive locations/deactivate events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: locations/deactivate
+  locations/delete:
+    description: Triggered when a location is deleted.
+    subscribe:
+      operationId: subscribeLocationsDelete
+      summary: Receive locations/delete events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: locations/delete
+  locations/update:
+    description: Triggered when a location is updated.
+    subscribe:
+      operationId: subscribeLocationsUpdate
+      summary: Receive locations/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: locations/update
+  markets/create:
+    description: Triggered when a market is created.
+    subscribe:
+      operationId: subscribeMarketsCreate
+      summary: Receive markets/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: markets/create
+  markets/delete:
+    description: Triggered when a market is deleted.
+    subscribe:
+      operationId: subscribeMarketsDelete
+      summary: Receive markets/delete events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: markets/delete
+  markets/update:
+    description: Triggered when a market is updated.
+    subscribe:
+      operationId: subscribeMarketsUpdate
+      summary: Receive markets/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: markets/update
+  metaobjects/create:
+    description: Triggered when a metaobject is created.
+    subscribe:
+      operationId: subscribeMetaobjectsCreate
+      summary: Receive metaobjects/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: metaobjects/create
+  metaobjects/delete:
+    description: Triggered when a metaobject is deleted.
+    subscribe:
+      operationId: subscribeMetaobjectsDelete
+      summary: Receive metaobjects/delete events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: metaobjects/delete
+  metaobjects/update:
+    description: Triggered when a metaobject is updated.
+    subscribe:
+      operationId: subscribeMetaobjectsUpdate
+      summary: Receive metaobjects/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: metaobjects/update
+  order_transactions/create:
+    description: Triggered when an order transaction is created.
+    subscribe:
+      operationId: subscribeOrderTransactionsCreate
+      summary: Receive order_transactions/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: order_transactions/create
+  orders/cancelled:
+    description: Triggered when an order is cancelled.
+    subscribe:
+      operationId: subscribeOrdersCancelled
+      summary: Receive orders/cancelled events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: orders/cancelled
+  orders/create:
+    description: Triggered when an order is created.
+    subscribe:
+      operationId: subscribeOrdersCreate
+      summary: Receive orders/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: orders/create
+  orders/delete:
+    description: Triggered when an order is deleted.
+    subscribe:
+      operationId: subscribeOrdersDelete
+      summary: Receive orders/delete events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: orders/delete
+  orders/edited:
+    description: Triggered when an order is edited.
+    subscribe:
+      operationId: subscribeOrdersEdited
+      summary: Receive orders/edited events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: orders/edited
+  orders/fulfilled:
+    description: Triggered when an order is fulfilled.
+    subscribe:
+      operationId: subscribeOrdersFulfilled
+      summary: Receive orders/fulfilled events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: orders/fulfilled
+  orders/fully_paid:
+    description: Triggered when an order is fully paid.
+    subscribe:
+      operationId: subscribeOrdersFullyPaid
+      summary: Receive orders/fully_paid events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: orders/fully_paid
+  orders/paid:
+    description: Triggered when an order is paid.
+    subscribe:
+      operationId: subscribeOrdersPaid
+      summary: Receive orders/paid events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: orders/paid
+  orders/partially_fulfilled:
+    description: Triggered when an order is partially fulfilled.
+    subscribe:
+      operationId: subscribeOrdersPartiallyFulfilled
+      summary: Receive orders/partially_fulfilled events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: orders/partially_fulfilled
+  orders/partially_refunded:
+    description: Triggered when an order is partially refunded.
+    subscribe:
+      operationId: subscribeOrdersPartiallyRefunded
+      summary: Receive orders/partially_refunded events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: orders/partially_refunded
+  orders/refunded:
+    description: Triggered when an order is refunded.
+    subscribe:
+      operationId: subscribeOrdersRefunded
+      summary: Receive orders/refunded events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: orders/refunded
+  orders/risk_assessment_changed:
+    description: Triggered when the risk assessment of an order changes.
+    subscribe:
+      operationId: subscribeOrdersRiskAssessmentChanged
+      summary: Receive orders/risk_assessment_changed events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: orders/risk_assessment_changed
+  orders/updated:
+    description: Triggered when an order is updated.
+    subscribe:
+      operationId: subscribeOrdersUpdated
+      summary: Receive orders/updated events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: orders/updated
+  payment_schedules/due_soon:
+    description: Triggered when a payment schedule is due soon.
+    subscribe:
+      operationId: subscribePaymentSchedulesDueSoon
+      summary: Receive payment_schedules/due_soon events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: payment_schedules/due_soon
+  payment_schedules/overdue:
+    description: Triggered when a payment schedule is overdue.
+    subscribe:
+      operationId: subscribePaymentSchedulesOverdue
+      summary: Receive payment_schedules/overdue events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: payment_schedules/overdue
+  payment_schedules/paid:
+    description: Triggered when a payment schedule is paid.
+    subscribe:
+      operationId: subscribePaymentSchedulesPaid
+      summary: Receive payment_schedules/paid events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: payment_schedules/paid
+  payment_schedules/updated:
+    description: Triggered when a payment schedule is updated.
+    subscribe:
+      operationId: subscribePaymentSchedulesUpdated
+      summary: Receive payment_schedules/updated events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: payment_schedules/updated
+  payment_terms/create:
+    description: Triggered when a payment terms template is created.
+    subscribe:
+      operationId: subscribePaymentTermsCreate
+      summary: Receive payment_terms/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: payment_terms/create
+  payment_terms/delete:
+    description: Triggered when a payment terms template is deleted.
+    subscribe:
+      operationId: subscribePaymentTermsDelete
+      summary: Receive payment_terms/delete events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: payment_terms/delete
+  payment_terms/update:
+    description: Triggered when a payment terms template is updated.
+    subscribe:
+      operationId: subscribePaymentTermsUpdate
+      summary: Receive payment_terms/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: payment_terms/update
+  product_feeds/create:
+    description: Triggered when a product feed is created.
+    subscribe:
+      operationId: subscribeProductFeedsCreate
+      summary: Receive product_feeds/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: product_feeds/create
+  product_feeds/delete:
+    description: Triggered when a product feed is deleted.
+    subscribe:
+      operationId: subscribeProductFeedsDelete
+      summary: Receive product_feeds/delete events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: product_feeds/delete
+  product_feeds/full_sync:
+    description: Triggered when a full sync of a product feed occurs.
+    subscribe:
+      operationId: subscribeProductFeedsFullSync
+      summary: Receive product_feeds/full_sync events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: product_feeds/full_sync
+  product_feeds/incremental_sync:
+    description: Triggered when an incremental sync of a product feed occurs.
+    subscribe:
+      operationId: subscribeProductFeedsIncrementalSync
+      summary: Receive product_feeds/incremental_sync events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: product_feeds/incremental_sync
+  product_feeds/update:
+    description: Triggered when a product feed is updated.
+    subscribe:
+      operationId: subscribeProductFeedsUpdate
+      summary: Receive product_feeds/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: product_feeds/update
+  product_listings/add:
+    description: Triggered when a product listing is added to a sales channel.
+    subscribe:
+      operationId: subscribeProductListingsAdd
+      summary: Receive product_listings/add events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: product_listings/add
+  product_listings/remove:
+    description: Triggered when a product listing is removed from a sales channel.
+    subscribe:
+      operationId: subscribeProductListingsRemove
+      summary: Receive product_listings/remove events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: product_listings/remove
+  product_listings/update:
+    description: Triggered when a product listing is updated on a sales channel.
+    subscribe:
+      operationId: subscribeProductListingsUpdate
+      summary: Receive product_listings/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: product_listings/update
+  product_publications/create:
+    description: Triggered when a product publication is created.
+    subscribe:
+      operationId: subscribeProductPublicationsCreate
+      summary: Receive product_publications/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: product_publications/create
+  product_publications/delete:
+    description: Triggered when a product publication is deleted.
+    subscribe:
+      operationId: subscribeProductPublicationsDelete
+      summary: Receive product_publications/delete events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: product_publications/delete
+  product_publications/update:
+    description: Triggered when a product publication is updated.
+    subscribe:
+      operationId: subscribeProductPublicationsUpdate
+      summary: Receive product_publications/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: product_publications/update
+  products/create:
+    description: Triggered when a product is created.
+    subscribe:
+      operationId: subscribeProductsCreate
+      summary: Receive products/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: products/create
+  products/delete:
+    description: Triggered when a product is deleted.
+    subscribe:
+      operationId: subscribeProductsDelete
+      summary: Receive products/delete events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: products/delete
+  products/update:
+    description: Triggered when a product is updated.
+    subscribe:
+      operationId: subscribeProductsUpdate
+      summary: Receive products/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: products/update
+  profiles/create:
+    description: Triggered when a delivery profile is created.
+    subscribe:
+      operationId: subscribeProfilesCreate
+      summary: Receive profiles/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: profiles/create
+  profiles/delete:
+    description: Triggered when a delivery profile is deleted.
+    subscribe:
+      operationId: subscribeProfilesDelete
+      summary: Receive profiles/delete events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: profiles/delete
+  profiles/update:
+    description: Triggered when a delivery profile is updated.
+    subscribe:
+      operationId: subscribeProfilesUpdate
+      summary: Receive profiles/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: profiles/update
+  publications/create:
+    description: Triggered when a publication is created.
+    subscribe:
+      operationId: subscribePublicationsCreate
+      summary: Receive publications/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: publications/create
+  publications/delete:
+    description: Triggered when a publication is deleted.
+    subscribe:
+      operationId: subscribePublicationsDelete
+      summary: Receive publications/delete events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: publications/delete
+  publications/update:
+    description: Triggered when a publication is updated.
+    subscribe:
+      operationId: subscribePublicationsUpdate
+      summary: Receive publications/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: publications/update
+  refunds/create:
+    description: Triggered when a refund is created.
+    subscribe:
+      operationId: subscribeRefundsCreate
+      summary: Receive refunds/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: refunds/create
+  returns/cancel:
+    description: Triggered when a return is cancelled.
+    subscribe:
+      operationId: subscribeReturnsCancel
+      summary: Receive returns/cancel events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: returns/cancel
+  returns/close:
+    description: Triggered when a return is closed.
+    subscribe:
+      operationId: subscribeReturnsClose
+      summary: Receive returns/close events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: returns/close
+  returns/create:
+    description: Triggered when a return is created.
+    subscribe:
+      operationId: subscribeReturnsCreate
+      summary: Receive returns/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: returns/create
+  returns/update:
+    description: Triggered when a return is updated.
+    subscribe:
+      operationId: subscribeReturnsUpdate
+      summary: Receive returns/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: returns/update
+  reverse_deliveries/complete:
+    description: Triggered when a reverse delivery is completed.
+    subscribe:
+      operationId: subscribeReverseDeliveriesComplete
+      summary: Receive reverse_deliveries/complete events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: reverse_deliveries/complete
+  reverse_deliveries/create:
+    description: Triggered when a reverse delivery is created.
+    subscribe:
+      operationId: subscribeReverseDeliveriesCreate
+      summary: Receive reverse_deliveries/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: reverse_deliveries/create
+  reverse_deliveries/reopen:
+    description: Triggered when a reverse delivery is reopened.
+    subscribe:
+      operationId: subscribeReverseDeliveriesReopen
+      summary: Receive reverse_deliveries/reopen events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: reverse_deliveries/reopen
+  reverse_deliveries/update:
+    description: Triggered when a reverse delivery is updated.
+    subscribe:
+      operationId: subscribeReverseDeliveriesUpdate
+      summary: Receive reverse_deliveries/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: reverse_deliveries/update
+  reverse_fulfillment_orders/dispose:
+    description: Triggered when a reverse fulfillment order is disposed.
+    subscribe:
+      operationId: subscribeReverseFulfillmentOrdersDispose
+      summary: Receive reverse_fulfillment_orders/dispose events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: reverse_fulfillment_orders/dispose
+  reverse_fulfillment_orders/request:
+    description: Triggered when a reverse fulfillment order is requested.
+    subscribe:
+      operationId: subscribeReverseFulfillmentOrdersRequest
+      summary: Receive reverse_fulfillment_orders/request events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: reverse_fulfillment_orders/request
+  scheduled_product_listings/create:
+    description: Triggered when a scheduled product listing is created.
+    subscribe:
+      operationId: subscribeScheduledProductListingsCreate
+      summary: Receive scheduled_product_listings/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: scheduled_product_listings/create
+  scheduled_product_listings/delete:
+    description: Triggered when a scheduled product listing is deleted.
+    subscribe:
+      operationId: subscribeScheduledProductListingsDelete
+      summary: Receive scheduled_product_listings/delete events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: scheduled_product_listings/delete
+  scheduled_product_listings/update:
+    description: Triggered when a scheduled product listing is updated.
+    subscribe:
+      operationId: subscribeScheduledProductListingsUpdate
+      summary: Receive scheduled_product_listings/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: scheduled_product_listings/update
+  segments/create:
+    description: Triggered when a customer segment is created.
+    subscribe:
+      operationId: subscribeSegmentsCreate
+      summary: Receive segments/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: segments/create
+  segments/delete:
+    description: Triggered when a customer segment is deleted.
+    subscribe:
+      operationId: subscribeSegmentsDelete
+      summary: Receive segments/delete events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: segments/delete
+  segments/update:
+    description: Triggered when a customer segment is updated.
+    subscribe:
+      operationId: subscribeSegmentsUpdate
+      summary: Receive segments/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: segments/update
+  selling_plan_groups/create:
+    description: Triggered when a selling plan group is created.
+    subscribe:
+      operationId: subscribeSellingPlanGroupsCreate
+      summary: Receive selling_plan_groups/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: selling_plan_groups/create
+  selling_plan_groups/delete:
+    description: Triggered when a selling plan group is deleted.
+    subscribe:
+      operationId: subscribeSellingPlanGroupsDelete
+      summary: Receive selling_plan_groups/delete events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: selling_plan_groups/delete
+  selling_plan_groups/update:
+    description: Triggered when a selling plan group is updated.
+    subscribe:
+      operationId: subscribeSellingPlanGroupsUpdate
+      summary: Receive selling_plan_groups/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: selling_plan_groups/update
+  shipping_addresses/create:
+    description: Triggered when a shipping address is created.
+    subscribe:
+      operationId: subscribeShippingAddressesCreate
+      summary: Receive shipping_addresses/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: shipping_addresses/create
+  shipping_addresses/delete:
+    description: Triggered when a shipping address is deleted.
+    subscribe:
+      operationId: subscribeShippingAddressesDelete
+      summary: Receive shipping_addresses/delete events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: shipping_addresses/delete
+  shipping_addresses/update:
+    description: Triggered when a shipping address is updated.
+    subscribe:
+      operationId: subscribeShippingAddressesUpdate
+      summary: Receive shipping_addresses/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: shipping_addresses/update
+  shop/redact:
+    description: Triggered 48 hours after a shop owner uninstalls an app, requesting that shop data be redacted. Mandatory compliance topic for App Store apps.
+    subscribe:
+      operationId: subscribeShopRedact
+      summary: Receive shop/redact events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: shop/redact
+  shop/update:
+    description: Triggered when a shop's configuration is updated.
+    subscribe:
+      operationId: subscribeShopUpdate
+      summary: Receive shop/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: shop/update
+  subscription_billing_attempts/challenged:
+    description: Triggered when a subscription billing attempt is challenged.
+    subscribe:
+      operationId: subscribeSubscriptionBillingAttemptsChallenged
+      summary: Receive subscription_billing_attempts/challenged events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: subscription_billing_attempts/challenged
+  subscription_billing_attempts/failure:
+    description: Triggered when a subscription billing attempt fails.
+    subscribe:
+      operationId: subscribeSubscriptionBillingAttemptsFailure
+      summary: Receive subscription_billing_attempts/failure events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: subscription_billing_attempts/failure
+  subscription_billing_attempts/success:
+    description: Triggered when a subscription billing attempt succeeds.
+    subscribe:
+      operationId: subscribeSubscriptionBillingAttemptsSuccess
+      summary: Receive subscription_billing_attempts/success events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: subscription_billing_attempts/success
+  subscription_billing_cycle_edits/create:
+    description: Triggered when a subscription billing cycle edit is created.
+    subscribe:
+      operationId: subscribeSubscriptionBillingCycleEditsCreate
+      summary: Receive subscription_billing_cycle_edits/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: subscription_billing_cycle_edits/create
+  subscription_billing_cycle_edits/delete:
+    description: Triggered when a subscription billing cycle edit is deleted.
+    subscribe:
+      operationId: subscribeSubscriptionBillingCycleEditsDelete
+      summary: Receive subscription_billing_cycle_edits/delete events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: subscription_billing_cycle_edits/delete
+  subscription_contracts/create:
+    description: Triggered when a subscription contract is created.
+    subscribe:
+      operationId: subscribeSubscriptionContractsCreate
+      summary: Receive subscription_contracts/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: subscription_contracts/create
+  subscription_contracts/delete:
+    description: Triggered when a subscription contract is deleted.
+    subscribe:
+      operationId: subscribeSubscriptionContractsDelete
+      summary: Receive subscription_contracts/delete events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: subscription_contracts/delete
+  subscription_contracts/expire:
+    description: Triggered when a subscription contract expires.
+    subscribe:
+      operationId: subscribeSubscriptionContractsExpire
+      summary: Receive subscription_contracts/expire events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: subscription_contracts/expire
+  subscription_contracts/update:
+    description: Triggered when a subscription contract is updated.
+    subscribe:
+      operationId: subscribeSubscriptionContractsUpdate
+      summary: Receive subscription_contracts/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: subscription_contracts/update
+  tax_partners/create:
+    description: Triggered when a tax partner is created.
+    subscribe:
+      operationId: subscribeTaxPartnersCreate
+      summary: Receive tax_partners/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: tax_partners/create
+  tax_partners/delete:
+    description: Triggered when a tax partner is deleted.
+    subscribe:
+      operationId: subscribeTaxPartnersDelete
+      summary: Receive tax_partners/delete events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: tax_partners/delete
+  tax_partners/update:
+    description: Triggered when a tax partner is updated.
+    subscribe:
+      operationId: subscribeTaxPartnersUpdate
+      summary: Receive tax_partners/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: tax_partners/update
+  tax_services/create:
+    description: Triggered when a tax service is created.
+    subscribe:
+      operationId: subscribeTaxServicesCreate
+      summary: Receive tax_services/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: tax_services/create
+  tax_services/delete:
+    description: Triggered when a tax service is deleted.
+    subscribe:
+      operationId: subscribeTaxServicesDelete
+      summary: Receive tax_services/delete events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: tax_services/delete
+  tax_services/update:
+    description: Triggered when a tax service is updated.
+    subscribe:
+      operationId: subscribeTaxServicesUpdate
+      summary: Receive tax_services/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: tax_services/update
+  tender_transactions/create:
+    description: Triggered when a tender transaction is created.
+    subscribe:
+      operationId: subscribeTenderTransactionsCreate
+      summary: Receive tender_transactions/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: tender_transactions/create
+  themes/create:
+    description: Triggered when a theme is created.
+    subscribe:
+      operationId: subscribeThemesCreate
+      summary: Receive themes/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: themes/create
+  themes/delete:
+    description: Triggered when a theme is deleted.
+    subscribe:
+      operationId: subscribeThemesDelete
+      summary: Receive themes/delete events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: themes/delete
+  themes/publish:
+    description: Triggered when a theme is published.
+    subscribe:
+      operationId: subscribeThemesPublish
+      summary: Receive themes/publish events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: themes/publish
+  themes/update:
+    description: Triggered when a theme is updated.
+    subscribe:
+      operationId: subscribeThemesUpdate
+      summary: Receive themes/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: themes/update
+  variants/create:
+    description: Triggered when a product variant is created.
+    subscribe:
+      operationId: subscribeVariantsCreate
+      summary: Receive variants/create events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: variants/create
+  variants/delete:
+    description: Triggered when a product variant is deleted.
+    subscribe:
+      operationId: subscribeVariantsDelete
+      summary: Receive variants/delete events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: variants/delete
+  variants/update:
+    description: Triggered when a product variant is updated.
+    subscribe:
+      operationId: subscribeVariantsUpdate
+      summary: Receive variants/update events.
+      message:
+        $ref: '#/components/messages/ShopifyWebhook'
+        x-topic: variants/update
+components:
+  messages:
+    ShopifyWebhook:
+      name: ShopifyWebhook
+      title: Shopify Webhook Delivery
+      summary: A signed Shopify webhook HTTP POST delivery.
+      description: |
+        Shopify delivers a JSON payload via HTTP POST to the registered endpoint.
+        The payload shape depends on the topic and follows the schema of the
+        underlying Admin API resource (for example, an `orders/create` payload
+        matches the Order resource shape from the Admin API).
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/WebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookPayload'
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: 0.3.0
+      examples:
+        - name: ordersCreateExample
+          summary: An orders/create delivery
+          headers:
+            X-Shopify-Topic: orders/create
+            X-Shopify-Shop-Domain: example.myshopify.com
+            X-Shopify-API-Version: '2024-10'
+            X-Shopify-Webhook-Id: b54557e4-bcc6-4f9a-b4dc-2b6f8b1c9b8e
+            X-Shopify-Hmac-Sha256: 'aGVsbG8td29ybGQtaG1hYy1zaWduYXR1cmU='
+          payload:
+            id: 820982911946154508
+            admin_graphql_api_id: gid://shopify/Order/820982911946154508
+            name: '#1001'
+            email: customer@example.com
+            financial_status: paid
+            fulfillment_status: null
+            currency: USD
+            total_price: '199.99'
+  schemas:
+    WebhookHeaders:
+      type: object
+      required:
+        - X-Shopify-Topic
+        - X-Shopify-Shop-Domain
+        - X-Shopify-Hmac-Sha256
+        - X-Shopify-API-Version
+        - X-Shopify-Webhook-Id
+      properties:
+        X-Shopify-Topic:
+          type: string
+          description: |
+            The webhook topic. Identifies which event triggered the delivery
+            (for example, `orders/create`, `products/update`).
+          example: orders/create
+        X-Shopify-Shop-Domain:
+          type: string
+          format: hostname
+          description: The `*.myshopify.com` domain of the shop that triggered the event.
+          example: example.myshopify.com
+        X-Shopify-Hmac-Sha256:
+          type: string
+          description: |
+            Base64-encoded HMAC-SHA256 signature of the raw, unmodified request
+            body. The HMAC key is the app's client secret (for app-scoped
+            webhooks registered via `shopify.app.toml` or partners dashboard)
+            or the app's API secret key (for webhooks created via the REST or
+            GraphQL Admin API on a per-shop basis).
+
+            Receivers MUST verify this header before processing the payload by
+            recomputing the HMAC over the raw body and comparing in
+            constant time.
+          example: aGVsbG8td29ybGQtaG1hYy1zaWduYXR1cmU=
+        X-Shopify-API-Version:
+          type: string
+          description: The Admin API version used to format the payload.
+          example: '2024-10'
+        X-Shopify-Webhook-Id:
+          type: string
+          format: uuid
+          description: |
+            A unique identifier for the webhook delivery. Useful for
+            idempotency and deduplication: Shopify may retry the same event
+            up to 19 times over 48 hours, all sharing this identifier.
+          example: b54557e4-bcc6-4f9a-b4dc-2b6f8b1c9b8e
+        X-Shopify-Triggered-At:
+          type: string
+          format: date-time
+          description: |
+            ISO 8601 timestamp indicating when the event was triggered inside
+            Shopify (present on most topics).
+          example: '2024-10-29T10:15:30Z'
+    WebhookPayload:
+      type: object
+      description: |
+        Topic-specific JSON payload. The shape varies per topic and mirrors
+        the corresponding Admin API resource representation. Refer to the
+        Shopify webhook reference for the per-topic payload schema:
+        https://shopify.dev/docs/api/webhooks/2024-10.
+      additionalProperties: true
+  securitySchemes:
+    hmacSha256Signature:
+      type: symmetricEncryption
+      description: |
+        Shopify signs every webhook delivery with an HMAC-SHA256 signature
+        computed over the raw request body, using the app's client secret (or
+        per-shop API secret key) as the key. The base64-encoded signature is
+        transmitted in the `X-Shopify-Hmac-Sha256` header.
+
+        Receivers MUST:
+          1. Read the raw, unparsed request body.
+          2. Compute `base64(HMAC_SHA256(client_secret, raw_body))`.
+          3. Constant-time compare the result to the `X-Shopify-Hmac-Sha256`
+             header value.
+          4. Reject the request with HTTP 401 if the signatures do not match.
+
+        Reference: https://shopify.dev/docs/apps/build/webhooks/subscribe/https#step-3-verify-the-webhook
+tags:
+  - name: app
+    description: App lifecycle events.
+  - name: orders
+    description: Order lifecycle and payment events.
+  - name: products
+    description: Product, variant, listing, and publication events.
+  - name: customers
+    description: Customer lifecycle, consent, segmentation, and GDPR compliance events.
+  - name: fulfillments
+    description: Fulfillment, fulfillment order, hold, and fulfillment event topics.
+  - name: inventory
+    description: Inventory item and level events.
+  - name: checkouts
+    description: Cart, checkout, and draft order events.
+  - name: shop
+    description: Shop, domain, locale, market, and configuration events.
+  - name: themes
+    description: Theme lifecycle and publishing events.
+  - name: subscriptions
+    description: Subscription contract, billing attempt, and billing cycle events.
+  - name: b2b
+    description: Companies, contacts, and B2B-specific events.
+  - name: compliance
+    description: GDPR compliance and audit topics that are mandatory for App Store apps.
+externalDocs:
+  description: Shopify Admin Webhooks Reference (2024-10)
+  url: https://shopify.dev/docs/api/webhooks/2024-10
