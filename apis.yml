@@ -1,9 +1,10 @@
 aid: shopify-admin
 name: Shopify Admin API
-description: The Shopify Admin API provides programmatic access to manage Shopify store administration. It enables app developers
-  and merchants to manage products, customers, orders, inventory, shipping, fulfillment, collections, webhooks, and store
-  settings. The Admin API is available in both REST and GraphQL formats. Shopify is transitioning from REST to GraphQL as
-  the primary API, with GraphQL recommended for all new development.
+description: >-
+  The Shopify Admin API provides programmatic access to manage Shopify store administration. It enables app developers
+  and merchants to manage products, customers, orders, inventory, shipping, fulfillment, collections, webhooks, and
+  store settings. The Admin API is available in both REST and GraphQL formats. Shopify is transitioning from REST to
+  GraphQL as the primary API, with GraphQL recommended for all new development.
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
@@ -20,10 +21,11 @@ specificationVersion: '0.19'
 apis:
 - aid: shopify-admin:shopify-admin-rest-api
   name: Shopify Admin REST API
-  description: 'The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin.
-    It provides access to products, customers, orders, inventory, fulfillment, shipping, and store configuration. All requests
-    require a valid Shopify access token generated through OAuth. Note: Shopify is deprecating the REST Admin API in favor
-    of GraphQL; new development should use the GraphQL Admin API.'
+  description: >-
+    The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. It
+    provides access to products, customers, orders, inventory, fulfillment, shipping, and store configuration. All
+    requests require a valid Shopify access token generated through OAuth. Note: Shopify is deprecating the REST Admin
+    API in favor of GraphQL; new development should use the GraphQL Admin API.
   humanURL: https://shopify.dev/docs/api/admin-rest
   baseURL: https://{store_name}.myshopify.com/admin/api/2024-10
   tags:
@@ -63,32 +65,17 @@ apis:
     url: capabilities/store-management.yaml
   - type: Vocabulary
     url: vocabulary/shopify-admin-vocabulary.yml
-  - type: NaftikoCapability
-    url: capabilities/rest-collections.yaml
-  - type: NaftikoCapability
-    url: capabilities/rest-customers.yaml
-  - type: NaftikoCapability
-    url: capabilities/rest-inventory.yaml
-  - type: NaftikoCapability
-    url: capabilities/rest-locations.yaml
-  - type: NaftikoCapability
-    url: capabilities/rest-orders.yaml
-  - type: NaftikoCapability
-    url: capabilities/rest-products.yaml
-  - type: NaftikoCapability
-    url: capabilities/rest-shop.yaml
-  - type: NaftikoCapability
-    url: capabilities/rest-webhooks.yaml
   contact:
   - FN: Shopify Developer Support
     url: https://shopify.dev/
     email: api@shopify.com
 - aid: shopify-admin:shopify-admin-graphql-api
   name: Shopify Admin GraphQL API
-  description: The Shopify Admin GraphQL API is the recommended API for building Shopify apps and integrations. It provides
-    access to all Shopify admin resources including products, customers, orders, inventory, fulfillment, and analytics. GraphQL
-    enables efficient data fetching with precise field selection, real-time subscriptions, and access to advanced platform
-    features not available in REST.
+  description: >-
+    The Shopify Admin GraphQL API is the recommended API for building Shopify apps and integrations. It provides
+    access to all Shopify admin resources including products, customers, orders, inventory, fulfillment, and
+    analytics. GraphQL enables efficient data fetching with precise field selection, real-time subscriptions, and
+    access to advanced platform features not available in REST.
   humanURL: https://shopify.dev/docs/api/admin-graphql
   baseURL: https://{store_name}.myshopify.com/admin/api/2024-10/graphql.json
   tags:
@@ -112,14 +99,18 @@ apis:
     url: https://shopify.dev/docs/apps/auth/get-access-tokens
   - type: RateLimits
     url: https://shopify.dev/docs/api/usage/rate-limits
+  - url: graphql/shopify-admin-graphql.md
+    type: GraphQL
   contact:
   - FN: Shopify Developer Support
     url: https://shopify.dev/
 - aid: shopify-admin:shopify-webhooks
   name: Shopify Webhooks
-  description: Shopify webhooks allow apps to subscribe to specific events that occur in a store. When an event occurs, Shopify
-    sends an HTTP POST request with a JSON payload to the configured endpoint. Webhooks can be configured for events across
-    all major Shopify resources including orders, products, customers, inventory, fulfillment, and app-specific events.
+  description: >-
+    Shopify webhooks allow apps to subscribe to specific events that occur in a store. When an event occurs, Shopify
+    sends an HTTP POST request with a JSON payload to the configured endpoint. Webhooks can be configured for events
+    across all major Shopify resources including orders, products, customers, inventory, fulfillment, and app-specific
+    events.
   humanURL: https://shopify.dev/docs/api/webhooks
   tags:
   - Commerce
