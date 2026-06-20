@@ -6,7 +6,7 @@ description: >-
   store settings. The Admin API is available in both REST and GraphQL formats. Shopify is transitioning from REST to
   GraphQL as the primary API, with GraphQL recommended for all new development.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
 - Commerce
 - Ecommerce
