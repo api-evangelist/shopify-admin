@@ -168,7 +168,7 @@ common:
   url: capabilities/store-management.yaml
 - type: Integrations
   url: https://shopify.dev/docs/apps/build
-- type: LLMsTxt
+- type: LlmsText
   url: https://shopify.dev/llms.txt
 integrations:
 - name: Docs page

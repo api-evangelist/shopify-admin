@@ -2,13 +2,20 @@
   "repo": "shopify-admin",
   "feeds": [
     {
+      "source": "https://shopify.dev/changelog/feed/",
+      "feed_url": "https://shopify.dev/changelog/feed/",
+      "title": "",
+      "saved": 3,
+      "method": "feed"
+    },
+    {
       "source": "https://shopify.dev/changelog",
       "feed_url": "https://shopify.dev/changelog/feed/",
       "title": "",
-      "saved": 5,
+      "saved": 0,
       "method": "discovered"
     }
   ],
-  "post_count": 14,
-  "fetched": "2026-06-14T20:42:17Z"
+  "post_count": 17,
+  "fetched": "2026-06-27T12:03:07Z"
 }
