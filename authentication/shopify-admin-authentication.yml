@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/shopify-admin-rest-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: AccessToken
+  type: apiKey
+  in: header
+  parameter: X-Shopify-Access-Token
+  description: Shopify access token for authentication
+  sources:
+  - openapi/shopify-admin-rest-openapi.yml
