@@ -1,0 +1,40 @@
+# shopify-admin — AsyncAPI Spectral ruleset (strengthened)
+# Plain Spectral. Rules measured from this provider's own AsyncAPI event
+# conventions by strengthen_asyncapi.py, then self-validated against the spec.
+#
+# Provenance:
+#   - server-secure-protocol: 100% of servers already secure
+#   - security-schemes: ['hmacSha256Signature']
+#   - operation-id-casing: camel @ 100% (n=203, v2)
+extends:
+  - spectral:asyncapi
+rules:
+  server-secure-protocol:
+    description: Servers should use a secure protocol (this API's convention).
+    severity: error
+    given: $.servers[*].protocol
+    then:
+      function: pattern
+      functionOptions:
+        match: ^(amqps|https|ibmmq|jms|kafka-secure|mqtts|secure-mqtt|stomps|wss)$
+  security-schemes-defined:
+    description: Security schemes should be defined in components.
+    severity: warn
+    given: $.components
+    then:
+      field: securitySchemes
+      function: truthy
+  operation-id-casing:
+    description: Operation IDs should be camelCase (the dominant convention in this API).
+    severity: warn
+    given: $.channels[*][publish,subscribe].operationId
+    then:
+      function: casing
+      functionOptions:
+        type: camel
+  no-empty-descriptions:
+    description: Descriptions must not be empty strings.
+    severity: warn
+    given: $..description
+    then:
+      function: truthy
