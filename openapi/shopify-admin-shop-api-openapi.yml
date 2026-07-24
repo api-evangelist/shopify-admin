@@ -1,0 +1,79 @@
+openapi: 3.1.0
+info:
+  title: Shopify Admin REST Collections Shop API
+  description: 'The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. It provides access to products, customers, orders, inventory, fulfillment, shipping, and store configuration. All requests require a valid Shopify access token. Note: Shopify is deprecating the REST Admin API in favor of GraphQL. New development should use the GraphQL Admin API.'
+  version: 2024-10
+  termsOfService: https://www.shopify.com/legal/api-terms
+  contact:
+    name: Shopify Developer Support
+    url: https://shopify.dev/docs/api/admin-rest
+  license:
+    name: API Terms of Service
+    url: https://www.shopify.com/legal/api-terms
+servers:
+- url: https://{store_name}.myshopify.com/admin/api/2024-10
+  description: Shopify Admin REST API
+  variables:
+    store_name:
+      description: The name of the Shopify store
+      default: mystore
+security:
+- AccessToken: []
+tags:
+- name: Shop
+paths:
+  /shop.json:
+    get:
+      operationId: getShop
+      summary: Get Shop
+      description: Retrieves configuration and settings for the store.
+      tags:
+      - Shop
+      responses:
+        '200':
+          description: Shop details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  shop:
+                    $ref: '#/components/schemas/Shop'
+components:
+  schemas:
+    Shop:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        domain:
+          type: string
+        myshopify_domain:
+          type: string
+        plan_name:
+          type: string
+        currency:
+          type: string
+        timezone:
+          type: string
+        country_code:
+          type: string
+        country_name:
+          type: string
+        phone:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      in: header
+      name: X-Shopify-Access-Token
+      description: Shopify access token for authentication
