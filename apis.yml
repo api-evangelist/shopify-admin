@@ -6,7 +6,20 @@ description: >-
   store settings. The Admin API is available in both REST and GraphQL formats. Shopify is transitioning from REST to
   GraphQL as the primary API, with GraphQL recommended for all new development.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/shopify-admin.png
 tags:
 - Commerce
 - Ecommerce
@@ -19,63 +32,13 @@ created: '2026-05-02'
 modified: '2026-05-30'
 specificationVersion: '0.19'
 apis:
-- aid: shopify-admin:shopify-admin-rest-api
-  name: Shopify Admin REST API
-  description: >-
-    The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. It
-    provides access to products, customers, orders, inventory, fulfillment, shipping, and store configuration. All
-    requests require a valid Shopify access token generated through OAuth. Note: Shopify is deprecating the REST Admin
-    API in favor of GraphQL; new development should use the GraphQL Admin API.
-  humanURL: https://shopify.dev/docs/api/admin-rest
-  baseURL: https://{store_name}.myshopify.com/admin/api/2024-10
-  tags:
-  - Commerce
-  - Ecommerce
-  - Admin
-  - REST
-  - Products
-  - Orders
-  - Customers
-  properties:
-  - type: Documentation
-    url: https://shopify.dev/docs/api/admin-rest
-  - type: Reference
-    url: https://shopify.dev/docs/api/admin-rest/latest
-  - type: Authentication
-    url: https://shopify.dev/docs/apps/auth/get-access-tokens
-  - type: RateLimits
-    url: https://shopify.dev/docs/api/usage/rate-limits
-  - type: Versioning
-    url: https://shopify.dev/docs/api/usage/versioning
-  - type: OpenAPI
-    url: openapi/shopify-admin-rest-openapi.yml
-  - type: JSONSchema
-    url: json-schema/shopify-admin-product-schema.json
-  - type: JSONSchema
-    url: json-schema/shopify-admin-order-schema.json
-  - type: JSONSchema
-    url: json-schema/shopify-admin-customer-schema.json
-  - type: JSONStructure
-    url: json-structure/shopify-admin-product-structure.json
-  - type: JSONLDContext
-    url: json-ld/shopify-admin-context.jsonld
-  - type: SpectralRules
-    url: rules/shopify-admin-rules.yml
-  - type: Capabilities
-    url: capabilities/store-management.yaml
-  - type: Vocabulary
-    url: vocabulary/shopify-admin-vocabulary.yml
-  contact:
-  - FN: Shopify Developer Support
-    url: https://shopify.dev/
-    email: api@shopify.com
 - aid: shopify-admin:shopify-admin-graphql-api
   name: Shopify Admin GraphQL API
   description: >-
-    The Shopify Admin GraphQL API is the recommended API for building Shopify apps and integrations. It provides
-    access to all Shopify admin resources including products, customers, orders, inventory, fulfillment, and
-    analytics. GraphQL enables efficient data fetching with precise field selection, real-time subscriptions, and
-    access to advanced platform features not available in REST.
+    The Shopify Admin GraphQL API is the recommended API for building Shopify apps and integrations. It
+    provides access to all Shopify admin resources including products, customers, orders, inventory, fulfillment,
+    and analytics. GraphQL enables efficient data fetching with precise field selection, real-time subscriptions,
+    and access to advanced platform features not available in REST.
   humanURL: https://shopify.dev/docs/api/admin-graphql
   baseURL: https://{store_name}.myshopify.com/admin/api/2024-10/graphql.json
   tags:
@@ -107,10 +70,10 @@ apis:
 - aid: shopify-admin:shopify-webhooks
   name: Shopify Webhooks
   description: >-
-    Shopify webhooks allow apps to subscribe to specific events that occur in a store. When an event occurs, Shopify
-    sends an HTTP POST request with a JSON payload to the configured endpoint. Webhooks can be configured for events
-    across all major Shopify resources including orders, products, customers, inventory, fulfillment, and app-specific
-    events.
+    Shopify webhooks allow apps to subscribe to specific events that occur in a store. When an event occurs,
+    Shopify sends an HTTP POST request with a JSON payload to the configured endpoint. Webhooks can be
+    configured for events across all major Shopify resources including orders, products, customers, inventory,
+    fulfillment, and app-specific events.
   humanURL: https://shopify.dev/docs/api/webhooks
   tags:
   - Commerce
@@ -127,6 +90,294 @@ apis:
   contact:
   - FN: Shopify Developer Support
     url: https://shopify.dev/
+- aid: shopify-admin:shopify-admin-collections-api
+  name: Shopify Admin API Collections API
+  description: The Collections API from Shopify Admin API — 2 operation(s) for collections.
+  humanURL: https://shopify.dev/docs/api/admin-rest
+  baseURL: https://{store_name}.myshopify.com/admin/api/2024-10
+  tags:
+  - Collections
+  properties:
+  - type: OpenAPI
+    url: openapi/shopify-admin-collections-api-openapi.yml
+  - type: Documentation
+    url: https://shopify.dev/docs/api/admin-rest
+  - type: Reference
+    url: https://shopify.dev/docs/api/admin-rest/latest
+  - type: Authentication
+    url: https://shopify.dev/docs/apps/auth/get-access-tokens
+  - type: RateLimits
+    url: https://shopify.dev/docs/api/usage/rate-limits
+  - type: Versioning
+    url: https://shopify.dev/docs/api/usage/versioning
+  - type: JSONSchema
+    url: json-schema/shopify-admin-product-schema.json
+  - type: JSONSchema
+    url: json-schema/shopify-admin-order-schema.json
+  - type: JSONSchema
+    url: json-schema/shopify-admin-customer-schema.json
+  - type: JSONStructure
+    url: json-structure/shopify-admin-product-structure.json
+  - type: JSONLDContext
+    url: json-ld/shopify-admin-context.jsonld
+  - type: SpectralRules
+    url: rules/shopify-admin-rules.yml
+  - type: Capabilities
+    url: capabilities/store-management.yaml
+  - type: Vocabulary
+    url: vocabulary/shopify-admin-vocabulary.yml
+- aid: shopify-admin:shopify-admin-customers-api
+  name: Shopify Admin API Customers API
+  description: The Customers API from Shopify Admin API — 2 operation(s) for customers.
+  humanURL: https://shopify.dev/docs/api/admin-rest
+  baseURL: https://{store_name}.myshopify.com/admin/api/2024-10
+  tags:
+  - Customers
+  properties:
+  - type: OpenAPI
+    url: openapi/shopify-admin-customers-api-openapi.yml
+  - type: Documentation
+    url: https://shopify.dev/docs/api/admin-rest
+  - type: Reference
+    url: https://shopify.dev/docs/api/admin-rest/latest
+  - type: Authentication
+    url: https://shopify.dev/docs/apps/auth/get-access-tokens
+  - type: RateLimits
+    url: https://shopify.dev/docs/api/usage/rate-limits
+  - type: Versioning
+    url: https://shopify.dev/docs/api/usage/versioning
+  - type: JSONSchema
+    url: json-schema/shopify-admin-product-schema.json
+  - type: JSONSchema
+    url: json-schema/shopify-admin-order-schema.json
+  - type: JSONSchema
+    url: json-schema/shopify-admin-customer-schema.json
+  - type: JSONStructure
+    url: json-structure/shopify-admin-product-structure.json
+  - type: JSONLDContext
+    url: json-ld/shopify-admin-context.jsonld
+  - type: SpectralRules
+    url: rules/shopify-admin-rules.yml
+  - type: Capabilities
+    url: capabilities/store-management.yaml
+  - type: Vocabulary
+    url: vocabulary/shopify-admin-vocabulary.yml
+- aid: shopify-admin:shopify-admin-inventory-api
+  name: Shopify Admin API Inventory API
+  description: The Inventory API from Shopify Admin API — 2 operation(s) for inventory.
+  humanURL: https://shopify.dev/docs/api/admin-rest
+  baseURL: https://{store_name}.myshopify.com/admin/api/2024-10
+  tags:
+  - Inventory
+  properties:
+  - type: OpenAPI
+    url: openapi/shopify-admin-inventory-api-openapi.yml
+  - type: Documentation
+    url: https://shopify.dev/docs/api/admin-rest
+  - type: Reference
+    url: https://shopify.dev/docs/api/admin-rest/latest
+  - type: Authentication
+    url: https://shopify.dev/docs/apps/auth/get-access-tokens
+  - type: RateLimits
+    url: https://shopify.dev/docs/api/usage/rate-limits
+  - type: Versioning
+    url: https://shopify.dev/docs/api/usage/versioning
+  - type: JSONSchema
+    url: json-schema/shopify-admin-product-schema.json
+  - type: JSONSchema
+    url: json-schema/shopify-admin-order-schema.json
+  - type: JSONSchema
+    url: json-schema/shopify-admin-customer-schema.json
+  - type: JSONStructure
+    url: json-structure/shopify-admin-product-structure.json
+  - type: JSONLDContext
+    url: json-ld/shopify-admin-context.jsonld
+  - type: SpectralRules
+    url: rules/shopify-admin-rules.yml
+  - type: Capabilities
+    url: capabilities/store-management.yaml
+  - type: Vocabulary
+    url: vocabulary/shopify-admin-vocabulary.yml
+- aid: shopify-admin:shopify-admin-locations-api
+  name: Shopify Admin API Locations API
+  description: The Locations API from Shopify Admin API — 1 operation(s) for locations.
+  humanURL: https://shopify.dev/docs/api/admin-rest
+  baseURL: https://{store_name}.myshopify.com/admin/api/2024-10
+  tags:
+  - Locations
+  properties:
+  - type: OpenAPI
+    url: openapi/shopify-admin-locations-api-openapi.yml
+  - type: Documentation
+    url: https://shopify.dev/docs/api/admin-rest
+  - type: Reference
+    url: https://shopify.dev/docs/api/admin-rest/latest
+  - type: Authentication
+    url: https://shopify.dev/docs/apps/auth/get-access-tokens
+  - type: RateLimits
+    url: https://shopify.dev/docs/api/usage/rate-limits
+  - type: Versioning
+    url: https://shopify.dev/docs/api/usage/versioning
+  - type: JSONSchema
+    url: json-schema/shopify-admin-product-schema.json
+  - type: JSONSchema
+    url: json-schema/shopify-admin-order-schema.json
+  - type: JSONSchema
+    url: json-schema/shopify-admin-customer-schema.json
+  - type: JSONStructure
+    url: json-structure/shopify-admin-product-structure.json
+  - type: JSONLDContext
+    url: json-ld/shopify-admin-context.jsonld
+  - type: SpectralRules
+    url: rules/shopify-admin-rules.yml
+  - type: Capabilities
+    url: capabilities/store-management.yaml
+  - type: Vocabulary
+    url: vocabulary/shopify-admin-vocabulary.yml
+- aid: shopify-admin:shopify-admin-orders-api
+  name: Shopify Admin API Orders API
+  description: The Orders API from Shopify Admin API — 3 operation(s) for orders.
+  humanURL: https://shopify.dev/docs/api/admin-rest
+  baseURL: https://{store_name}.myshopify.com/admin/api/2024-10
+  tags:
+  - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/shopify-admin-orders-api-openapi.yml
+  - type: Documentation
+    url: https://shopify.dev/docs/api/admin-rest
+  - type: Reference
+    url: https://shopify.dev/docs/api/admin-rest/latest
+  - type: Authentication
+    url: https://shopify.dev/docs/apps/auth/get-access-tokens
+  - type: RateLimits
+    url: https://shopify.dev/docs/api/usage/rate-limits
+  - type: Versioning
+    url: https://shopify.dev/docs/api/usage/versioning
+  - type: JSONSchema
+    url: json-schema/shopify-admin-product-schema.json
+  - type: JSONSchema
+    url: json-schema/shopify-admin-order-schema.json
+  - type: JSONSchema
+    url: json-schema/shopify-admin-customer-schema.json
+  - type: JSONStructure
+    url: json-structure/shopify-admin-product-structure.json
+  - type: JSONLDContext
+    url: json-ld/shopify-admin-context.jsonld
+  - type: SpectralRules
+    url: rules/shopify-admin-rules.yml
+  - type: Capabilities
+    url: capabilities/store-management.yaml
+  - type: Vocabulary
+    url: vocabulary/shopify-admin-vocabulary.yml
+- aid: shopify-admin:shopify-admin-products-api
+  name: Shopify Admin API Products API
+  description: The Products API from Shopify Admin API — 2 operation(s) for products.
+  humanURL: https://shopify.dev/docs/api/admin-rest
+  baseURL: https://{store_name}.myshopify.com/admin/api/2024-10
+  tags:
+  - Products
+  properties:
+  - type: OpenAPI
+    url: openapi/shopify-admin-products-api-openapi.yml
+  - type: Documentation
+    url: https://shopify.dev/docs/api/admin-rest
+  - type: Reference
+    url: https://shopify.dev/docs/api/admin-rest/latest
+  - type: Authentication
+    url: https://shopify.dev/docs/apps/auth/get-access-tokens
+  - type: RateLimits
+    url: https://shopify.dev/docs/api/usage/rate-limits
+  - type: Versioning
+    url: https://shopify.dev/docs/api/usage/versioning
+  - type: JSONSchema
+    url: json-schema/shopify-admin-product-schema.json
+  - type: JSONSchema
+    url: json-schema/shopify-admin-order-schema.json
+  - type: JSONSchema
+    url: json-schema/shopify-admin-customer-schema.json
+  - type: JSONStructure
+    url: json-structure/shopify-admin-product-structure.json
+  - type: JSONLDContext
+    url: json-ld/shopify-admin-context.jsonld
+  - type: SpectralRules
+    url: rules/shopify-admin-rules.yml
+  - type: Capabilities
+    url: capabilities/store-management.yaml
+  - type: Vocabulary
+    url: vocabulary/shopify-admin-vocabulary.yml
+- aid: shopify-admin:shopify-admin-shop-api
+  name: Shopify Admin API Shop API
+  description: The Shop API from Shopify Admin API — 1 operation(s) for shop.
+  humanURL: https://shopify.dev/docs/api/admin-rest
+  baseURL: https://{store_name}.myshopify.com/admin/api/2024-10
+  tags:
+  - Shop
+  properties:
+  - type: OpenAPI
+    url: openapi/shopify-admin-shop-api-openapi.yml
+  - type: Documentation
+    url: https://shopify.dev/docs/api/admin-rest
+  - type: Reference
+    url: https://shopify.dev/docs/api/admin-rest/latest
+  - type: Authentication
+    url: https://shopify.dev/docs/apps/auth/get-access-tokens
+  - type: RateLimits
+    url: https://shopify.dev/docs/api/usage/rate-limits
+  - type: Versioning
+    url: https://shopify.dev/docs/api/usage/versioning
+  - type: JSONSchema
+    url: json-schema/shopify-admin-product-schema.json
+  - type: JSONSchema
+    url: json-schema/shopify-admin-order-schema.json
+  - type: JSONSchema
+    url: json-schema/shopify-admin-customer-schema.json
+  - type: JSONStructure
+    url: json-structure/shopify-admin-product-structure.json
+  - type: JSONLDContext
+    url: json-ld/shopify-admin-context.jsonld
+  - type: SpectralRules
+    url: rules/shopify-admin-rules.yml
+  - type: Capabilities
+    url: capabilities/store-management.yaml
+  - type: Vocabulary
+    url: vocabulary/shopify-admin-vocabulary.yml
+- aid: shopify-admin:shopify-admin-webhooks-api
+  name: Shopify Admin API Webhooks API
+  description: The Webhooks API from Shopify Admin API — 2 operation(s) for webhooks.
+  humanURL: https://shopify.dev/docs/api/admin-rest
+  baseURL: https://{store_name}.myshopify.com/admin/api/2024-10
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/shopify-admin-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://shopify.dev/docs/api/admin-rest
+  - type: Reference
+    url: https://shopify.dev/docs/api/admin-rest/latest
+  - type: Authentication
+    url: https://shopify.dev/docs/apps/auth/get-access-tokens
+  - type: RateLimits
+    url: https://shopify.dev/docs/api/usage/rate-limits
+  - type: Versioning
+    url: https://shopify.dev/docs/api/usage/versioning
+  - type: JSONSchema
+    url: json-schema/shopify-admin-product-schema.json
+  - type: JSONSchema
+    url: json-schema/shopify-admin-order-schema.json
+  - type: JSONSchema
+    url: json-schema/shopify-admin-customer-schema.json
+  - type: JSONStructure
+    url: json-structure/shopify-admin-product-structure.json
+  - type: JSONLDContext
+    url: json-ld/shopify-admin-context.jsonld
+  - type: SpectralRules
+    url: rules/shopify-admin-rules.yml
+  - type: Capabilities
+    url: capabilities/store-management.yaml
+  - type: Vocabulary
+    url: vocabulary/shopify-admin-vocabulary.yml
 common:
 - type: AgenticAccess
   url: agentic-access/shopify-admin-agentic-access.yml
