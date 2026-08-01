@@ -1,0 +1,28 @@
+{
+  "provider": "shopify-admin",
+  "sources": [
+    "shopify-admin-collections-api-openapi.yml",
+    "shopify-admin-customers-api-openapi.yml",
+    "shopify-admin-inventory-api-openapi.yml",
+    "shopify-admin-locations-api-openapi.yml",
+    "shopify-admin-orders-api-openapi.yml",
+    "shopify-admin-products-api-openapi.yml",
+    "shopify-admin-shop-api-openapi.yml",
+    "shopify-admin-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "shopify-admin-collections-api-openapi.yml",
+    "shopify-admin-customers-api-openapi.yml",
+    "shopify-admin-inventory-api-openapi.yml",
+    "shopify-admin-locations-api-openapi.yml",
+    "shopify-admin-orders-api-openapi.yml",
+    "shopify-admin-products-api-openapi.yml",
+    "shopify-admin-shop-api-openapi.yml",
+    "shopify-admin-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
