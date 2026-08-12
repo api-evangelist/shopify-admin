@@ -122,8 +122,6 @@ apis:
     url: json-ld/shopify-admin-context.jsonld
   - type: SpectralRules
     url: rules/shopify-admin-rules.yml
-  - type: Capabilities
-    url: capabilities/store-management.yaml
   - type: Vocabulary
     url: vocabulary/shopify-admin-vocabulary.yml
 - aid: shopify-admin:shopify-admin-customers-api
@@ -158,8 +156,6 @@ apis:
     url: json-ld/shopify-admin-context.jsonld
   - type: SpectralRules
     url: rules/shopify-admin-rules.yml
-  - type: Capabilities
-    url: capabilities/store-management.yaml
   - type: Vocabulary
     url: vocabulary/shopify-admin-vocabulary.yml
 - aid: shopify-admin:shopify-admin-inventory-api
@@ -194,8 +190,6 @@ apis:
     url: json-ld/shopify-admin-context.jsonld
   - type: SpectralRules
     url: rules/shopify-admin-rules.yml
-  - type: Capabilities
-    url: capabilities/store-management.yaml
   - type: Vocabulary
     url: vocabulary/shopify-admin-vocabulary.yml
 - aid: shopify-admin:shopify-admin-locations-api
@@ -230,8 +224,6 @@ apis:
     url: json-ld/shopify-admin-context.jsonld
   - type: SpectralRules
     url: rules/shopify-admin-rules.yml
-  - type: Capabilities
-    url: capabilities/store-management.yaml
   - type: Vocabulary
     url: vocabulary/shopify-admin-vocabulary.yml
 - aid: shopify-admin:shopify-admin-orders-api
@@ -266,8 +258,6 @@ apis:
     url: json-ld/shopify-admin-context.jsonld
   - type: SpectralRules
     url: rules/shopify-admin-rules.yml
-  - type: Capabilities
-    url: capabilities/store-management.yaml
   - type: Vocabulary
     url: vocabulary/shopify-admin-vocabulary.yml
 - aid: shopify-admin:shopify-admin-products-api
@@ -302,8 +292,6 @@ apis:
     url: json-ld/shopify-admin-context.jsonld
   - type: SpectralRules
     url: rules/shopify-admin-rules.yml
-  - type: Capabilities
-    url: capabilities/store-management.yaml
   - type: Vocabulary
     url: vocabulary/shopify-admin-vocabulary.yml
 - aid: shopify-admin:shopify-admin-shop-api
@@ -338,8 +326,6 @@ apis:
     url: json-ld/shopify-admin-context.jsonld
   - type: SpectralRules
     url: rules/shopify-admin-rules.yml
-  - type: Capabilities
-    url: capabilities/store-management.yaml
   - type: Vocabulary
     url: vocabulary/shopify-admin-vocabulary.yml
 - aid: shopify-admin:shopify-admin-webhooks-api
@@ -374,8 +360,6 @@ apis:
     url: json-ld/shopify-admin-context.jsonld
   - type: SpectralRules
     url: rules/shopify-admin-rules.yml
-  - type: Capabilities
-    url: capabilities/store-management.yaml
   - type: Vocabulary
     url: vocabulary/shopify-admin-vocabulary.yml
 common:
@@ -421,8 +405,6 @@ common:
   url: vocabulary/shopify-admin-vocabulary.yml
 - type: SpectralRules
   url: rules/shopify-admin-rules.yml
-- type: Capabilities
-  url: capabilities/store-management.yaml
 - type: Integrations
   url: https://shopify.dev/docs/apps/build
 - type: LlmsText
