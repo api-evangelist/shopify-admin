@@ -30,7 +30,7 @@ tags:
 url: https://raw.githubusercontent.com/api-evangelist/shopify-admin/refs/heads/main/apis.yml
 created: '2026-05-02'
 modified: '2026-05-30'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: shopify-admin:shopify-admin-graphql-api
   name: Shopify Admin GraphQL API
