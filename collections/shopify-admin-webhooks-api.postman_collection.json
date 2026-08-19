@@ -1,0 +1,357 @@
+{
+  "item": [
+    {
+      "id": "a4bcbde7-4236-4a55-a8ee-1338f1e80961",
+      "name": "Webhooks",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cfe05374-0ed2-4baf-bd21-513e333cbd3b",
+          "name": "List Webhooks",
+          "request": {
+            "name": "List Webhooks",
+            "description": {
+              "content": "Retrieves a list of webhook subscriptions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "webhooks.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The name of the Shopify store",
+                  "type": "any",
+                  "value": "{{store_name}}",
+                  "key": "store_name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3721f562-f5f9-4012-8ce4-3ddf28524271",
+              "name": "Successful response with list of webhooks",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The name of the Shopify store",
+                      "type": "any",
+                      "value": "{{store_name}}",
+                      "key": "store_name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"webhooks\": [\n    {\n      \"id\": 1250,\n      \"address\": \"http://sHHzHAAjRCWgLafFTVssIZhfAPK.ovrsDQhiH4uaAbePrtg09gSZF7BQUl9NMAXJStykmFEOLGIsOX\",\n      \"topic\": \"string\",\n      \"created_at\": \"1990-02-16T23:13:23.089Z\",\n      \"updated_at\": \"1951-05-08T15:16:12.178Z\",\n      \"format\": \"json\",\n      \"api_version\": \"string\"\n    },\n    {\n      \"id\": 9089,\n      \"address\": \"http://nLWrzmYtFQacgJhyAsabD.hiueJjDJ-mWiw.9qiX25NKMp9w,ELDUw-kmTnoDBaP+q2Yyypcu9VOlPHK3\",\n      \"topic\": \"string\",\n      \"created_at\": \"1990-03-01T18:54:08.287Z\",\n      \"updated_at\": \"2008-08-23T14:12:41.131Z\",\n      \"format\": \"json\",\n      \"api_version\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c9827827-6fa6-4930-9267-75a310296315",
+          "name": "Create Webhook",
+          "request": {
+            "name": "Create Webhook",
+            "description": {
+              "content": "Creates a new webhook subscription.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "webhooks.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The name of the Shopify store",
+                  "type": "any",
+                  "value": "{{store_name}}",
+                  "key": "store_name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"webhook\": {\n    \"topic\": \"<string>\",\n    \"address\": \"<uri>\",\n    \"format\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0907f1b3-69a1-42e1-98f7-dc345fb9a642",
+              "name": "Webhook created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The name of the Shopify store",
+                      "type": "any",
+                      "value": "{{store_name}}",
+                      "key": "store_name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"webhook\": {\n    \"topic\": \"string\",\n    \"address\": \"https://YYNHEInY.pqikaAWUGBxxDKvfN-AF5yBTb\",\n    \"format\": \"json\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"webhook\": {\n    \"id\": 1033,\n    \"address\": \"http://gdpHAEF.mfmiTsUYVnorYqtzwkau7l643ente1k,XmhJwySH.wpLtb0tMfAmS\",\n    \"topic\": \"string\",\n    \"created_at\": \"2023-09-05T07:57:49.624Z\",\n    \"updated_at\": \"2002-04-11T17:45:05.104Z\",\n    \"format\": \"xml\",\n    \"api_version\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2d24e488-603a-44d4-a506-7388761b5525",
+          "name": "Delete Webhook",
+          "request": {
+            "name": "Delete Webhook",
+            "description": {
+              "content": "Deletes a webhook subscription.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "webhooks",
+                "{{webhook_id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The name of the Shopify store",
+                  "type": "any",
+                  "value": "{{store_name}}",
+                  "key": "store_name"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1edce98f-a74d-4dfa-b780-bfeac355e5d1",
+              "name": "Webhook deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks",
+                    "{{webhook_id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The name of the Shopify store",
+                      "type": "any",
+                      "value": "{{store_name}}",
+                      "key": "store_name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The name of the Shopify store",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "mystore",
+      "key": "store_name"
+    },
+    {
+      "type": "string",
+      "value": "https://{{store_name}}.myshopify.com/admin/api/2024-10",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The ID of the webhook",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<long>",
+      "key": "webhook_id"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Shopify-Access-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "57b36dc9-a520-4493-aca4-81b7bbfba71b",
+    "name": "Shopify Admin REST Collections Webhooks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. It provides access to products, customers, orders, inventory, fulfillment, shipping, and store configuration. All requests require a valid Shopify access token. Note: Shopify is deprecating the REST Admin API in favor of GraphQL. New development should use the GraphQL Admin API.\n\nContact Support:\n Name: Shopify Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

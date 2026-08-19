@@ -1,0 +1,139 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shopify Admin REST Collections Products API",
+    "version": "2024-10"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Shopify-Access-Token",
+      "value": "{{X-Shopify-Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Products",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store_name}.myshopify.com/admin/api/2024-10/products.json",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to show (maximum 250, default 50)"
+              },
+              {
+                "name": "page_info",
+                "value": "",
+                "type": "query",
+                "description": "A unique ID used to access a specific page in results"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Show only products specified by a comma-separated list of IDs"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by product status"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of products from the store."
+        },
+        {
+          "info": {
+            "name": "Create Product",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store_name}.myshopify.com/admin/api/2024-10/products.json",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new product in the store."
+        },
+        {
+          "info": {
+            "name": "Get Product",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store_name}.myshopify.com/admin/api/2024-10/products/:product_id.json",
+            "params": [
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the product"
+              }
+            ]
+          },
+          "docs": "Retrieves a single product by ID."
+        },
+        {
+          "info": {
+            "name": "Update Product",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store_name}.myshopify.com/admin/api/2024-10/products/:product_id.json",
+            "params": [
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the product"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing product."
+        },
+        {
+          "info": {
+            "name": "Delete Product",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store_name}.myshopify.com/admin/api/2024-10/products/:product_id.json",
+            "params": [
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the product"
+              }
+            ]
+          },
+          "docs": "Deletes a product from the store."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

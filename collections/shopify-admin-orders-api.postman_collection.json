@@ -1,0 +1,542 @@
+{
+  "item": [
+    {
+      "id": "e7ff3f86-0d0c-425e-86d9-83a0c23bea9a",
+      "name": "Orders",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7913ac85-0ddc-45c8-a557-029820931aa1",
+          "name": "List Orders",
+          "request": {
+            "name": "List Orders",
+            "description": {
+              "content": "Retrieves a list of orders from the store.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "The maximum number of results to show"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter orders by status"
+                },
+                {
+                  "disabled": false,
+                  "key": "financial_status",
+                  "value": "<string>",
+                  "description": "Filter orders by financial status"
+                },
+                {
+                  "disabled": false,
+                  "key": "fulfillment_status",
+                  "value": "<string>",
+                  "description": "Filter orders by fulfillment status"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The name of the Shopify store",
+                  "type": "any",
+                  "value": "{{store_name}}",
+                  "key": "store_name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "29644aca-6e2b-4485-9556-a17f2052d09f",
+              "name": "Successful response with list of orders",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "financial_status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fulfillment_status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The name of the Shopify store",
+                      "type": "any",
+                      "value": "{{store_name}}",
+                      "key": "store_name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"orders\": [\n    {\n      \"id\": 5993,\n      \"order_number\": 5192,\n      \"email\": \"poJcR1f6JW6q@XCSV.lh\",\n      \"created_at\": \"1948-03-26T01:50:28.890Z\",\n      \"updated_at\": \"1971-07-17T12:00:42.602Z\",\n      \"total_price\": \"string\",\n      \"subtotal_price\": \"string\",\n      \"total_tax\": \"string\",\n      \"currency\": \"string\",\n      \"financial_status\": \"voided\",\n      \"fulfillment_status\": null,\n      \"status\": \"cancelled\",\n      \"note\": \"string\",\n      \"tags\": \"string\",\n      \"customer\": {\n        \"id\": 6909,\n        \"email\": \"1Ut@eGBjtjfwofIQmcvcIAhv.bj\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"phone\": \"string\",\n        \"verified_email\": false,\n        \"accepts_marketing\": true,\n        \"created_at\": \"1980-08-05T03:43:28.060Z\",\n        \"updated_at\": \"1951-08-05T14:12:56.336Z\",\n        \"orders_count\": 7755,\n        \"total_spent\": \"string\",\n        \"note\": \"string\",\n        \"tags\": \"string\",\n        \"addresses\": [\n          {\n            \"id\": 1033,\n            \"customer_id\": 1690,\n            \"first_name\": \"string\",\n            \"last_name\": \"string\",\n            \"company\": \"string\",\n            \"address1\": \"string\",\n            \"address2\": \"string\",\n            \"city\": \"string\",\n            \"province\": \"string\",\n            \"country\": \"string\",\n            \"zip\": \"string\",\n            \"phone\": \"string\",\n            \"default\": true\n          },\n          {\n            \"id\": 7583,\n            \"customer_id\": 32,\n            \"first_name\": \"string\",\n            \"last_name\": \"string\",\n            \"company\": \"string\",\n            \"address1\": \"string\",\n            \"address2\": \"string\",\n            \"city\": \"string\",\n            \"province\": \"string\",\n            \"country\": \"string\",\n            \"zip\": \"string\",\n            \"phone\": \"string\",\n            \"default\": true\n          }\n        ],\n        \"default_address\": {\n          \"id\": 2185,\n          \"customer_id\": 1210,\n          \"first_name\": \"string\",\n          \"last_name\": \"string\",\n          \"company\": \"string\",\n          \"address1\": \"string\",\n          \"address2\": \"string\",\n          \"city\": \"string\",\n          \"province\": \"string\",\n          \"country\": \"string\",\n          \"zip\": \"string\",\n          \"phone\": \"string\",\n          \"default\": false\n        }\n      },\n      \"line_items\": [\n        {\n          \"id\": 7974,\n          \"product_id\": 2498,\n          \"variant_id\": 9469,\n          \"title\": \"string\",\n          \"quantity\": 4148,\n          \"price\": \"string\",\n          \"sku\": \"string\",\n          \"vendor\": \"string\",\n          \"requires_shipping\": false,\n          \"taxable\": true\n        },\n        {\n          \"id\": 4038,\n          \"product_id\": 6461,\n          \"variant_id\": 5576,\n          \"title\": \"string\",\n          \"quantity\": 1097,\n          \"price\": \"string\",\n          \"sku\": \"string\",\n          \"vendor\": \"string\",\n          \"requires_shipping\": true,\n          \"taxable\": true\n        }\n      ],\n      \"shipping_address\": {\n        \"id\": 2915,\n        \"customer_id\": 1206,\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"company\": \"string\",\n        \"address1\": \"string\",\n        \"address2\": \"string\",\n        \"city\": \"string\",\n        \"province\": \"string\",\n        \"country\": \"string\",\n        \"zip\": \"string\",\n        \"phone\": \"string\",\n        \"default\": true\n      },\n      \"billing_address\": {\n        \"id\": 1065,\n        \"customer_id\": 8480,\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"company\": \"string\",\n        \"address1\": \"string\",\n        \"address2\": \"string\",\n        \"city\": \"string\",\n        \"province\": \"string\",\n        \"country\": \"string\",\n        \"zip\": \"string\",\n        \"phone\": \"string\",\n        \"default\": false\n      }\n    },\n    {\n      \"id\": 344,\n      \"order_number\": 6873,\n      \"email\": \"GmdFCA@dbDBr.am\",\n      \"created_at\": \"1993-01-30T06:42:17.221Z\",\n      \"updated_at\": \"2013-06-15T13:34:17.108Z\",\n      \"total_price\": \"string\",\n      \"subtotal_price\": \"string\",\n      \"total_tax\": \"string\",\n      \"currency\": \"string\",\n      \"financial_status\": \"authorized\",\n      \"fulfillment_status\": null,\n      \"status\": \"cancelled\",\n      \"note\": \"string\",\n      \"tags\": \"string\",\n      \"customer\": {\n        \"id\": 1548,\n        \"email\": \"3-n8u9Y2LA@GpvqmPGqcVRiPISsjRWTnfHzgOaE.fmkz\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"phone\": \"string\",\n        \"verified_email\": true,\n        \"accepts_marketing\": false,\n        \"created_at\": \"1960-02-16T15:16:56.066Z\",\n        \"updated_at\": \"1973-11-21T14:58:46.706Z\",\n        \"orders_count\": 4258,\n        \"total_spent\": \"string\",\n        \"note\": \"string\",\n        \"tags\": \"string\",\n        \"addresses\": [\n          {\n            \"id\": 4569,\n            \"customer_id\": 3213,\n            \"first_name\": \"string\",\n            \"last_name\": \"string\",\n            \"company\": \"string\",\n            \"address1\": \"string\",\n            \"address2\": \"string\",\n            \"city\": \"string\",\n            \"province\": \"string\",\n            \"country\": \"string\",\n            \"zip\": \"string\",\n            \"phone\": \"string\",\n            \"default\": false\n          },\n          {\n            \"id\": 1195,\n            \"customer_id\": 4927,\n            \"first_name\": \"string\",\n            \"last_name\": \"string\",\n            \"company\": \"string\",\n            \"address1\": \"string\",\n            \"address2\": \"string\",\n            \"city\": \"string\",\n            \"province\": \"string\",\n            \"country\": \"string\",\n            \"zip\": \"string\",\n            \"phone\": \"string\",\n            \"default\": true\n          }\n        ],\n        \"default_address\": {\n          \"id\": 7209,\n          \"customer_id\": 8446,\n          \"first_name\": \"string\",\n          \"last_name\": \"string\",\n          \"company\": \"string\",\n          \"address1\": \"string\",\n          \"address2\": \"string\",\n          \"city\": \"string\",\n          \"province\": \"string\",\n          \"country\": \"string\",\n          \"zip\": \"string\",\n          \"phone\": \"string\",\n          \"default\": true\n        }\n      },\n      \"line_items\": [\n        {\n          \"id\": 3611,\n          \"product_id\": 1631,\n          \"variant_id\": 3233,\n          \"title\": \"string\",\n          \"quantity\": 2018,\n          \"price\": \"string\",\n          \"sku\": \"string\",\n          \"vendor\": \"string\",\n          \"requires_shipping\": false,\n          \"taxable\": false\n        },\n        {\n          \"id\": 5655,\n          \"product_id\": 4498,\n          \"variant_id\": 5291,\n          \"title\": \"string\",\n          \"quantity\": 65,\n          \"price\": \"string\",\n          \"sku\": \"string\",\n          \"vendor\": \"string\",\n          \"requires_shipping\": false,\n          \"taxable\": false\n        }\n      ],\n      \"shipping_address\": {\n        \"id\": 9048,\n        \"customer_id\": 3606,\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"company\": \"string\",\n        \"address1\": \"string\",\n        \"address2\": \"string\",\n        \"city\": \"string\",\n        \"province\": \"string\",\n        \"country\": \"string\",\n        \"zip\": \"string\",\n        \"phone\": \"string\",\n        \"default\": true\n      },\n      \"billing_address\": {\n        \"id\": 1132,\n        \"customer_id\": 8068,\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"company\": \"string\",\n        \"address1\": \"string\",\n        \"address2\": \"string\",\n        \"city\": \"string\",\n        \"province\": \"string\",\n        \"country\": \"string\",\n        \"zip\": \"string\",\n        \"phone\": \"string\",\n        \"default\": false\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b1c5a3cf-3a05-4089-8e15-9e61a9f3fa84",
+          "name": "Get Order",
+          "request": {
+            "name": "Get Order",
+            "description": {
+              "content": "Retrieves a single order by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                "{{order_id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The name of the Shopify store",
+                  "type": "any",
+                  "value": "{{store_name}}",
+                  "key": "store_name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "38698863-abd8-40fa-9d2f-9b4b30af4b95",
+              "name": "Order details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "{{order_id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The name of the Shopify store",
+                      "type": "any",
+                      "value": "{{store_name}}",
+                      "key": "store_name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"order\": {\n    \"id\": 5289,\n    \"order_number\": 7712,\n    \"email\": \"IAMlvmLD0H@LEsvzrKhRt.zjvw\",\n    \"created_at\": \"1982-01-22T20:50:38.289Z\",\n    \"updated_at\": \"1992-03-18T04:05:05.840Z\",\n    \"total_price\": \"string\",\n    \"subtotal_price\": \"string\",\n    \"total_tax\": \"string\",\n    \"currency\": \"string\",\n    \"financial_status\": \"partially_refunded\",\n    \"fulfillment_status\": null,\n    \"status\": \"cancelled\",\n    \"note\": \"string\",\n    \"tags\": \"string\",\n    \"customer\": {\n      \"id\": 7130,\n      \"email\": \"w9cdqrAsk@BEjcwfnwut.uuq\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"phone\": \"string\",\n      \"verified_email\": true,\n      \"accepts_marketing\": false,\n      \"created_at\": \"2011-09-27T16:48:10.600Z\",\n      \"updated_at\": \"1972-12-01T03:10:52.725Z\",\n      \"orders_count\": 7195,\n      \"total_spent\": \"string\",\n      \"note\": \"string\",\n      \"tags\": \"string\",\n      \"addresses\": [\n        {\n          \"id\": 9682,\n          \"customer_id\": 5025,\n          \"first_name\": \"string\",\n          \"last_name\": \"string\",\n          \"company\": \"string\",\n          \"address1\": \"string\",\n          \"address2\": \"string\",\n          \"city\": \"string\",\n          \"province\": \"string\",\n          \"country\": \"string\",\n          \"zip\": \"string\",\n          \"phone\": \"string\",\n          \"default\": true\n        },\n        {\n          \"id\": 2954,\n          \"customer_id\": 7824,\n          \"first_name\": \"string\",\n          \"last_name\": \"string\",\n          \"company\": \"string\",\n          \"address1\": \"string\",\n          \"address2\": \"string\",\n          \"city\": \"string\",\n          \"province\": \"string\",\n          \"country\": \"string\",\n          \"zip\": \"string\",\n          \"phone\": \"string\",\n          \"default\": true\n        }\n      ],\n      \"default_address\": {\n        \"id\": 3960,\n        \"customer_id\": 7222,\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"company\": \"string\",\n        \"address1\": \"string\",\n        \"address2\": \"string\",\n        \"city\": \"string\",\n        \"province\": \"string\",\n        \"country\": \"string\",\n        \"zip\": \"string\",\n        \"phone\": \"string\",\n        \"default\": false\n      }\n    },\n    \"line_items\": [\n      {\n        \"id\": 6169,\n        \"product_id\": 412,\n        \"variant_id\": 667,\n        \"title\": \"string\",\n        \"quantity\": 7187,\n        \"price\": \"string\",\n        \"sku\": \"string\",\n        \"vendor\": \"string\",\n        \"requires_shipping\": true,\n        \"taxable\": false\n      },\n      {\n        \"id\": 9669,\n        \"product_id\": 1430,\n        \"variant_id\": 2375,\n        \"title\": \"string\",\n        \"quantity\": 8776,\n        \"price\": \"string\",\n        \"sku\": \"string\",\n        \"vendor\": \"string\",\n        \"requires_shipping\": false,\n        \"taxable\": true\n      }\n    ],\n    \"shipping_address\": {\n      \"id\": 7323,\n      \"customer_id\": 7454,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"company\": \"string\",\n      \"address1\": \"string\",\n      \"address2\": \"string\",\n      \"city\": \"string\",\n      \"province\": \"string\",\n      \"country\": \"string\",\n      \"zip\": \"string\",\n      \"phone\": \"string\",\n      \"default\": false\n    },\n    \"billing_address\": {\n      \"id\": 7113,\n      \"customer_id\": 8076,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"company\": \"string\",\n      \"address1\": \"string\",\n      \"address2\": \"string\",\n      \"city\": \"string\",\n      \"province\": \"string\",\n      \"country\": \"string\",\n      \"zip\": \"string\",\n      \"phone\": \"string\",\n      \"default\": true\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4292303d-9d9c-4256-ad99-e4c5f679581f",
+          "name": "Update Order",
+          "request": {
+            "name": "Update Order",
+            "description": {
+              "content": "Updates an existing order.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                "{{order_id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The name of the Shopify store",
+                  "type": "any",
+                  "value": "{{store_name}}",
+                  "key": "store_name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order\": {\n    \"note\": \"<string>\",\n    \"tags\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b2c3a7e6-b06b-48b2-b048-0de2116d0251",
+              "name": "Order updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "{{order_id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The name of the Shopify store",
+                      "type": "any",
+                      "value": "{{store_name}}",
+                      "key": "store_name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"order\": {\n    \"note\": \"<string>\",\n    \"tags\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"order\": {\n    \"id\": 5289,\n    \"order_number\": 7712,\n    \"email\": \"IAMlvmLD0H@LEsvzrKhRt.zjvw\",\n    \"created_at\": \"1982-01-22T20:50:38.289Z\",\n    \"updated_at\": \"1992-03-18T04:05:05.840Z\",\n    \"total_price\": \"string\",\n    \"subtotal_price\": \"string\",\n    \"total_tax\": \"string\",\n    \"currency\": \"string\",\n    \"financial_status\": \"partially_refunded\",\n    \"fulfillment_status\": null,\n    \"status\": \"cancelled\",\n    \"note\": \"string\",\n    \"tags\": \"string\",\n    \"customer\": {\n      \"id\": 7130,\n      \"email\": \"w9cdqrAsk@BEjcwfnwut.uuq\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"phone\": \"string\",\n      \"verified_email\": true,\n      \"accepts_marketing\": false,\n      \"created_at\": \"2011-09-27T16:48:10.600Z\",\n      \"updated_at\": \"1972-12-01T03:10:52.725Z\",\n      \"orders_count\": 7195,\n      \"total_spent\": \"string\",\n      \"note\": \"string\",\n      \"tags\": \"string\",\n      \"addresses\": [\n        {\n          \"id\": 9682,\n          \"customer_id\": 5025,\n          \"first_name\": \"string\",\n          \"last_name\": \"string\",\n          \"company\": \"string\",\n          \"address1\": \"string\",\n          \"address2\": \"string\",\n          \"city\": \"string\",\n          \"province\": \"string\",\n          \"country\": \"string\",\n          \"zip\": \"string\",\n          \"phone\": \"string\",\n          \"default\": true\n        },\n        {\n          \"id\": 2954,\n          \"customer_id\": 7824,\n          \"first_name\": \"string\",\n          \"last_name\": \"string\",\n          \"company\": \"string\",\n          \"address1\": \"string\",\n          \"address2\": \"string\",\n          \"city\": \"string\",\n          \"province\": \"string\",\n          \"country\": \"string\",\n          \"zip\": \"string\",\n          \"phone\": \"string\",\n          \"default\": true\n        }\n      ],\n      \"default_address\": {\n        \"id\": 3960,\n        \"customer_id\": 7222,\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"company\": \"string\",\n        \"address1\": \"string\",\n        \"address2\": \"string\",\n        \"city\": \"string\",\n        \"province\": \"string\",\n        \"country\": \"string\",\n        \"zip\": \"string\",\n        \"phone\": \"string\",\n        \"default\": false\n      }\n    },\n    \"line_items\": [\n      {\n        \"id\": 6169,\n        \"product_id\": 412,\n        \"variant_id\": 667,\n        \"title\": \"string\",\n        \"quantity\": 7187,\n        \"price\": \"string\",\n        \"sku\": \"string\",\n        \"vendor\": \"string\",\n        \"requires_shipping\": true,\n        \"taxable\": false\n      },\n      {\n        \"id\": 9669,\n        \"product_id\": 1430,\n        \"variant_id\": 2375,\n        \"title\": \"string\",\n        \"quantity\": 8776,\n        \"price\": \"string\",\n        \"sku\": \"string\",\n        \"vendor\": \"string\",\n        \"requires_shipping\": false,\n        \"taxable\": true\n      }\n    ],\n    \"shipping_address\": {\n      \"id\": 7323,\n      \"customer_id\": 7454,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"company\": \"string\",\n      \"address1\": \"string\",\n      \"address2\": \"string\",\n      \"city\": \"string\",\n      \"province\": \"string\",\n      \"country\": \"string\",\n      \"zip\": \"string\",\n      \"phone\": \"string\",\n      \"default\": false\n    },\n    \"billing_address\": {\n      \"id\": 7113,\n      \"customer_id\": 8076,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"company\": \"string\",\n      \"address1\": \"string\",\n      \"address2\": \"string\",\n      \"city\": \"string\",\n      \"province\": \"string\",\n      \"country\": \"string\",\n      \"zip\": \"string\",\n      \"phone\": \"string\",\n      \"default\": true\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "009171d2-9009-4ec5-8c0c-27d01d8a9ea2",
+          "name": "Cancel Order",
+          "request": {
+            "name": "Cancel Order",
+            "description": {
+              "content": "Cancels an order.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                ":order_id",
+                "cancel.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "order_id",
+                  "description": "(Required) The ID of the order to cancel"
+                },
+                {
+                  "description": "The name of the Shopify store",
+                  "type": "any",
+                  "value": "{{store_name}}",
+                  "key": "store_name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"<string>\",\n  \"email\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4b976673-3240-49e6-83f0-41df889c600f",
+              "name": "Order cancelled successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":order_id",
+                    "cancel.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "order_id",
+                      "description": "(Required) The ID of the order to cancel"
+                    },
+                    {
+                      "description": "The name of the Shopify store",
+                      "type": "any",
+                      "value": "{{store_name}}",
+                      "key": "store_name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"<string>\",\n  \"email\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"order\": {\n    \"id\": 5289,\n    \"order_number\": 7712,\n    \"email\": \"IAMlvmLD0H@LEsvzrKhRt.zjvw\",\n    \"created_at\": \"1982-01-22T20:50:38.289Z\",\n    \"updated_at\": \"1992-03-18T04:05:05.840Z\",\n    \"total_price\": \"string\",\n    \"subtotal_price\": \"string\",\n    \"total_tax\": \"string\",\n    \"currency\": \"string\",\n    \"financial_status\": \"partially_refunded\",\n    \"fulfillment_status\": null,\n    \"status\": \"cancelled\",\n    \"note\": \"string\",\n    \"tags\": \"string\",\n    \"customer\": {\n      \"id\": 7130,\n      \"email\": \"w9cdqrAsk@BEjcwfnwut.uuq\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"phone\": \"string\",\n      \"verified_email\": true,\n      \"accepts_marketing\": false,\n      \"created_at\": \"2011-09-27T16:48:10.600Z\",\n      \"updated_at\": \"1972-12-01T03:10:52.725Z\",\n      \"orders_count\": 7195,\n      \"total_spent\": \"string\",\n      \"note\": \"string\",\n      \"tags\": \"string\",\n      \"addresses\": [\n        {\n          \"id\": 9682,\n          \"customer_id\": 5025,\n          \"first_name\": \"string\",\n          \"last_name\": \"string\",\n          \"company\": \"string\",\n          \"address1\": \"string\",\n          \"address2\": \"string\",\n          \"city\": \"string\",\n          \"province\": \"string\",\n          \"country\": \"string\",\n          \"zip\": \"string\",\n          \"phone\": \"string\",\n          \"default\": true\n        },\n        {\n          \"id\": 2954,\n          \"customer_id\": 7824,\n          \"first_name\": \"string\",\n          \"last_name\": \"string\",\n          \"company\": \"string\",\n          \"address1\": \"string\",\n          \"address2\": \"string\",\n          \"city\": \"string\",\n          \"province\": \"string\",\n          \"country\": \"string\",\n          \"zip\": \"string\",\n          \"phone\": \"string\",\n          \"default\": true\n        }\n      ],\n      \"default_address\": {\n        \"id\": 3960,\n        \"customer_id\": 7222,\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"company\": \"string\",\n        \"address1\": \"string\",\n        \"address2\": \"string\",\n        \"city\": \"string\",\n        \"province\": \"string\",\n        \"country\": \"string\",\n        \"zip\": \"string\",\n        \"phone\": \"string\",\n        \"default\": false\n      }\n    },\n    \"line_items\": [\n      {\n        \"id\": 6169,\n        \"product_id\": 412,\n        \"variant_id\": 667,\n        \"title\": \"string\",\n        \"quantity\": 7187,\n        \"price\": \"string\",\n        \"sku\": \"string\",\n        \"vendor\": \"string\",\n        \"requires_shipping\": true,\n        \"taxable\": false\n      },\n      {\n        \"id\": 9669,\n        \"product_id\": 1430,\n        \"variant_id\": 2375,\n        \"title\": \"string\",\n        \"quantity\": 8776,\n        \"price\": \"string\",\n        \"sku\": \"string\",\n        \"vendor\": \"string\",\n        \"requires_shipping\": false,\n        \"taxable\": true\n      }\n    ],\n    \"shipping_address\": {\n      \"id\": 7323,\n      \"customer_id\": 7454,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"company\": \"string\",\n      \"address1\": \"string\",\n      \"address2\": \"string\",\n      \"city\": \"string\",\n      \"province\": \"string\",\n      \"country\": \"string\",\n      \"zip\": \"string\",\n      \"phone\": \"string\",\n      \"default\": false\n    },\n    \"billing_address\": {\n      \"id\": 7113,\n      \"customer_id\": 8076,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"company\": \"string\",\n      \"address1\": \"string\",\n      \"address2\": \"string\",\n      \"city\": \"string\",\n      \"province\": \"string\",\n      \"country\": \"string\",\n      \"zip\": \"string\",\n      \"phone\": \"string\",\n      \"default\": true\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The name of the Shopify store",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "mystore",
+      "key": "store_name"
+    },
+    {
+      "type": "string",
+      "value": "https://{{store_name}}.myshopify.com/admin/api/2024-10",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The ID of the order",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<long>",
+      "key": "order_id"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Shopify-Access-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0320df4f-6735-47c0-a2f3-9768bae1bed7",
+    "name": "Shopify Admin REST Collections Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. It provides access to products, customers, orders, inventory, fulfillment, shipping, and store configuration. All requests require a valid Shopify access token. Note: Shopify is deprecating the REST Admin API in favor of GraphQL. New development should use the GraphQL Admin API.\n\nContact Support:\n Name: Shopify Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shopify Admin REST Collections Orders API",
+    "version": "2024-10"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Shopify-Access-Token",
+      "value": "{{X-Shopify-Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store_name}.myshopify.com/admin/api/2024-10/orders.json",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to show"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter orders by status"
+              },
+              {
+                "name": "financial_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter orders by financial status"
+              },
+              {
+                "name": "fulfillment_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter orders by fulfillment status"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of orders from the store."
+        },
+        {
+          "info": {
+            "name": "Get Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store_name}.myshopify.com/admin/api/2024-10/orders/:order_id.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order"
+              }
+            ]
+          },
+          "docs": "Retrieves a single order by ID."
+        },
+        {
+          "info": {
+            "name": "Update Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store_name}.myshopify.com/admin/api/2024-10/orders/:order_id.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing order."
+        },
+        {
+          "info": {
+            "name": "Cancel Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store_name}.myshopify.com/admin/api/2024-10/orders/:order_id/cancel.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order to cancel"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancels an order."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

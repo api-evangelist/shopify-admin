@@ -1,0 +1,276 @@
+{
+  "item": [
+    {
+      "id": "6cf147ae-9025-4ca5-a2f3-d5d9e0a7700a",
+      "name": "Collections",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cc35d644-7cd6-4ff6-9bc2-5e976052dfce",
+          "name": "List Collects",
+          "request": {
+            "name": "List Collects",
+            "description": {
+              "content": "Retrieves a list of collects (product-collection relationships).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "collects.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "collection_id",
+                  "value": "<long>",
+                  "description": "Filter by collection ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "product_id",
+                  "value": "<long>",
+                  "description": "Filter by product ID"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The name of the Shopify store",
+                  "type": "any",
+                  "value": "{{store_name}}",
+                  "key": "store_name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "555d757d-73f2-44c8-8aec-7a93ab82f8f1",
+              "name": "Successful response with list of collects",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collects.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "collection_id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "product_id",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The name of the Shopify store",
+                      "type": "any",
+                      "value": "{{store_name}}",
+                      "key": "store_name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"collects\": [\n    {\n      \"id\": 9560,\n      \"collection_id\": 6478,\n      \"product_id\": 530,\n      \"created_at\": \"2026-06-30T17:49:01.826Z\",\n      \"updated_at\": \"1998-07-19T09:44:26.140Z\",\n      \"position\": 4015,\n      \"sort_value\": \"string\"\n    },\n    {\n      \"id\": 8053,\n      \"collection_id\": 5025,\n      \"product_id\": 4815,\n      \"created_at\": \"1982-09-09T21:12:23.820Z\",\n      \"updated_at\": \"2002-03-13T18:14:52.573Z\",\n      \"position\": 9017,\n      \"sort_value\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4beed6e5-0edf-404d-9417-9b5b1148e917",
+          "name": "List Custom Collections",
+          "request": {
+            "name": "List Custom Collections",
+            "description": {
+              "content": "Retrieves a list of custom collections.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom_collections.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "The maximum number of results to show"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The name of the Shopify store",
+                  "type": "any",
+                  "value": "{{store_name}}",
+                  "key": "store_name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b552179a-6265-4ec1-adad-a3641f0bc6e3",
+              "name": "Successful response with list of custom collections",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom_collections.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The name of the Shopify store",
+                      "type": "any",
+                      "value": "{{store_name}}",
+                      "key": "store_name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"custom_collections\": [\n    {\n      \"id\": 964,\n      \"handle\": \"string\",\n      \"title\": \"string\",\n      \"updated_at\": \"2024-10-26T18:30:13.897Z\",\n      \"body_html\": \"string\",\n      \"published_at\": \"1954-06-17T12:51:55.353Z\",\n      \"sort_order\": \"string\",\n      \"published_scope\": \"string\",\n      \"image\": {}\n    },\n    {\n      \"id\": 4446,\n      \"handle\": \"string\",\n      \"title\": \"string\",\n      \"updated_at\": \"1965-06-30T10:15:02.292Z\",\n      \"body_html\": \"string\",\n      \"published_at\": \"2007-04-07T18:46:05.469Z\",\n      \"sort_order\": \"string\",\n      \"published_scope\": \"string\",\n      \"image\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The name of the Shopify store",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "mystore",
+      "key": "store_name"
+    },
+    {
+      "type": "string",
+      "value": "https://{{store_name}}.myshopify.com/admin/api/2024-10",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Shopify-Access-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "aae00445-7b8e-4ba8-86b2-65cb9aa66b19",
+    "name": "Shopify Admin REST Collections API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. It provides access to products, customers, orders, inventory, fulfillment, shipping, and store configuration. All requests require a valid Shopify access token. Note: Shopify is deprecating the REST Admin API in favor of GraphQL. New development should use the GraphQL Admin API.\n\nContact Support:\n Name: Shopify Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

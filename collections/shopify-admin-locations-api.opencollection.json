@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shopify Admin REST Collections Locations API",
+    "version": "2024-10"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Shopify-Access-Token",
+      "value": "{{X-Shopify-Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Locations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store_name}.myshopify.com/admin/api/2024-10/locations.json"
+          },
+          "docs": "Retrieves a list of locations for the store."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

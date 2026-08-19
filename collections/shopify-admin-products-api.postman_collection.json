@@ -1,0 +1,608 @@
+{
+  "item": [
+    {
+      "id": "677f5964-0628-43f0-9c06-71ac5dd7d64c",
+      "name": "Products",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "675cce0b-cc12-4fd7-9625-9b55c395b12c",
+          "name": "List Products",
+          "request": {
+            "name": "List Products",
+            "description": {
+              "content": "Retrieves a list of products from the store.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "products.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "The maximum number of results to show (maximum 250, default 50)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_info",
+                  "value": "<string>",
+                  "description": "A unique ID used to access a specific page in results"
+                },
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "Show only products specified by a comma-separated list of IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by product status"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The name of the Shopify store",
+                  "type": "any",
+                  "value": "{{store_name}}",
+                  "key": "store_name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4055434f-6e8e-407f-8ea7-e6e94f8d17f4",
+              "name": "Successful response with list of products",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "page_info",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The name of the Shopify store",
+                      "type": "any",
+                      "value": "{{store_name}}",
+                      "key": "store_name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"products\": [\n    {\n      \"id\": 8499,\n      \"title\": \"string\",\n      \"body_html\": \"string\",\n      \"vendor\": \"string\",\n      \"product_type\": \"string\",\n      \"created_at\": \"1989-07-12T21:44:42.175Z\",\n      \"updated_at\": \"1951-12-25T12:04:23.099Z\",\n      \"published_at\": \"1962-02-03T12:35:38.424Z\",\n      \"status\": \"draft\",\n      \"tags\": \"string\",\n      \"variants\": [\n        {\n          \"id\": 8658,\n          \"product_id\": 8414,\n          \"title\": \"string\",\n          \"price\": \"string\",\n          \"sku\": \"string\",\n          \"inventory_quantity\": 6177,\n          \"inventory_management\": \"string\",\n          \"requires_shipping\": false,\n          \"weight\": 9319.93965952857,\n          \"weight_unit\": \"string\"\n        },\n        {\n          \"id\": 2942,\n          \"product_id\": 8012,\n          \"title\": \"string\",\n          \"price\": \"string\",\n          \"sku\": \"string\",\n          \"inventory_quantity\": 75,\n          \"inventory_management\": \"string\",\n          \"requires_shipping\": false,\n          \"weight\": 5718.044071118985,\n          \"weight_unit\": \"string\"\n        }\n      ],\n      \"images\": [\n        {\n          \"id\": 4563,\n          \"product_id\": 6443,\n          \"position\": 7353,\n          \"src\": \"http://WmDlaTQIoJlaAb.xdbn+Moe5GLx5BX12Qrz-NvbZQBWL-\",\n          \"alt\": \"string\",\n          \"width\": 5900,\n          \"height\": 4923\n        },\n        {\n          \"id\": 2819,\n          \"product_id\": 2790,\n          \"position\": 4353,\n          \"src\": \"http://NxioOtDkS.muyp8sgUh96egSvWH4O\",\n          \"alt\": \"string\",\n          \"width\": 4282,\n          \"height\": 2712\n        }\n      ],\n      \"options\": [\n        {\n          \"id\": 655,\n          \"product_id\": 8789,\n          \"name\": \"string\",\n          \"position\": 8414,\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"id\": 2705,\n          \"product_id\": 738,\n          \"name\": \"string\",\n          \"position\": 1395,\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ]\n    },\n    {\n      \"id\": 399,\n      \"title\": \"string\",\n      \"body_html\": \"string\",\n      \"vendor\": \"string\",\n      \"product_type\": \"string\",\n      \"created_at\": \"1973-04-05T20:02:25.547Z\",\n      \"updated_at\": \"1981-06-29T01:14:00.853Z\",\n      \"published_at\": \"1979-09-07T08:07:54.127Z\",\n      \"status\": \"active\",\n      \"tags\": \"string\",\n      \"variants\": [\n        {\n          \"id\": 4950,\n          \"product_id\": 1479,\n          \"title\": \"string\",\n          \"price\": \"string\",\n          \"sku\": \"string\",\n          \"inventory_quantity\": 4627,\n          \"inventory_management\": \"string\",\n          \"requires_shipping\": false,\n          \"weight\": 9968.933025947927,\n          \"weight_unit\": \"string\"\n        },\n        {\n          \"id\": 2473,\n          \"product_id\": 2961,\n          \"title\": \"string\",\n          \"price\": \"string\",\n          \"sku\": \"string\",\n          \"inventory_quantity\": 8253,\n          \"inventory_management\": \"string\",\n          \"requires_shipping\": false,\n          \"weight\": 3267.6703870981783,\n          \"weight_unit\": \"string\"\n        }\n      ],\n      \"images\": [\n        {\n          \"id\": 7397,\n          \"product_id\": 8801,\n          \"position\": 8058,\n          \"src\": \"http://wSVMKmExPOoTUmyId.qyxzk4\",\n          \"alt\": \"string\",\n          \"width\": 393,\n          \"height\": 217\n        },\n        {\n          \"id\": 2071,\n          \"product_id\": 5997,\n          \"position\": 2253,\n          \"src\": \"http://vnFEIVsoLSLJrtNUoGrhwTasQsYjN.nzmlV0zbwoULc6gc6CuSAdKVUOzXzsbH6n,JuJA5C1gkz\",\n          \"alt\": \"string\",\n          \"width\": 6508,\n          \"height\": 3385\n        }\n      ],\n      \"options\": [\n        {\n          \"id\": 1418,\n          \"product_id\": 3349,\n          \"name\": \"string\",\n          \"position\": 2181,\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"id\": 8520,\n          \"product_id\": 7269,\n          \"name\": \"string\",\n          \"position\": 1951,\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "13471550-a1c3-4f4b-9b4b-a2bc74d2b03f",
+          "name": "Create Product",
+          "request": {
+            "name": "Create Product",
+            "description": {
+              "content": "Creates a new product in the store.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "products.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The name of the Shopify store",
+                  "type": "any",
+                  "value": "{{store_name}}",
+                  "key": "store_name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"product\": {\n    \"title\": \"<string>\",\n    \"body_html\": \"<string>\",\n    \"vendor\": \"<string>\",\n    \"product_type\": \"<string>\",\n    \"status\": \"<string>\",\n    \"tags\": \"<string>\",\n    \"variants\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"images\": [\n      \"<object>\",\n      \"<object>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cdfc38ba-5434-453f-8097-5882365e7f53",
+              "name": "Product created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The name of the Shopify store",
+                      "type": "any",
+                      "value": "{{store_name}}",
+                      "key": "store_name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"product\": {\n    \"title\": \"string\",\n    \"body_html\": \"string\",\n    \"vendor\": \"string\",\n    \"product_type\": \"string\",\n    \"status\": \"active\",\n    \"tags\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"product\": {\n    \"id\": 2452,\n    \"title\": \"string\",\n    \"body_html\": \"string\",\n    \"vendor\": \"string\",\n    \"product_type\": \"string\",\n    \"created_at\": \"2015-07-20T19:27:13.604Z\",\n    \"updated_at\": \"1983-02-07T05:37:04.112Z\",\n    \"published_at\": \"1978-07-12T09:11:33.324Z\",\n    \"status\": \"active\",\n    \"tags\": \"string\",\n    \"variants\": [\n      {\n        \"id\": 8400,\n        \"product_id\": 535,\n        \"title\": \"string\",\n        \"price\": \"string\",\n        \"sku\": \"string\",\n        \"inventory_quantity\": 9764,\n        \"inventory_management\": \"string\",\n        \"requires_shipping\": false,\n        \"weight\": 3880.8859562594544,\n        \"weight_unit\": \"string\"\n      },\n      {\n        \"id\": 3016,\n        \"product_id\": 1852,\n        \"title\": \"string\",\n        \"price\": \"string\",\n        \"sku\": \"string\",\n        \"inventory_quantity\": 8059,\n        \"inventory_management\": \"string\",\n        \"requires_shipping\": false,\n        \"weight\": 7092.638812680765,\n        \"weight_unit\": \"string\"\n      }\n    ],\n    \"images\": [\n      {\n        \"id\": 2415,\n        \"product_id\": 8192,\n        \"position\": 4706,\n        \"src\": \"https://zCkHhccpcSubvzKXrZKXnJlaARk.xsWflvS\",\n        \"alt\": \"string\",\n        \"width\": 9877,\n        \"height\": 2873\n      },\n      {\n        \"id\": 753,\n        \"product_id\": 6268,\n        \"position\": 2058,\n        \"src\": \"https://yHJULVnzElNDsXiztLKRZ.tyzjc,vWeDHaGAjiTkxGrG6bylfFaybyQUdnhB3m3WlsSgCD99StcFvNucdeIJQk-nY\",\n        \"alt\": \"string\",\n        \"width\": 2208,\n        \"height\": 2060\n      }\n    ],\n    \"options\": [\n      {\n        \"id\": 1735,\n        \"product_id\": 7775,\n        \"name\": \"string\",\n        \"position\": 8564,\n        \"values\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"id\": 2157,\n        \"product_id\": 5526,\n        \"name\": \"string\",\n        \"position\": 6807,\n        \"values\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "91afd261-2bf9-495a-b0f5-de2b98892423",
+          "name": "Get Product",
+          "request": {
+            "name": "Get Product",
+            "description": {
+              "content": "Retrieves a single product by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "products",
+                "{{product_id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The name of the Shopify store",
+                  "type": "any",
+                  "value": "{{store_name}}",
+                  "key": "store_name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9e229a31-cfed-41c8-bb49-3003b1f5f36a",
+              "name": "Product details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    "{{product_id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The name of the Shopify store",
+                      "type": "any",
+                      "value": "{{store_name}}",
+                      "key": "store_name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"product\": {\n    \"id\": 2452,\n    \"title\": \"string\",\n    \"body_html\": \"string\",\n    \"vendor\": \"string\",\n    \"product_type\": \"string\",\n    \"created_at\": \"2015-07-20T19:27:13.604Z\",\n    \"updated_at\": \"1983-02-07T05:37:04.112Z\",\n    \"published_at\": \"1978-07-12T09:11:33.324Z\",\n    \"status\": \"active\",\n    \"tags\": \"string\",\n    \"variants\": [\n      {\n        \"id\": 8400,\n        \"product_id\": 535,\n        \"title\": \"string\",\n        \"price\": \"string\",\n        \"sku\": \"string\",\n        \"inventory_quantity\": 9764,\n        \"inventory_management\": \"string\",\n        \"requires_shipping\": false,\n        \"weight\": 3880.8859562594544,\n        \"weight_unit\": \"string\"\n      },\n      {\n        \"id\": 3016,\n        \"product_id\": 1852,\n        \"title\": \"string\",\n        \"price\": \"string\",\n        \"sku\": \"string\",\n        \"inventory_quantity\": 8059,\n        \"inventory_management\": \"string\",\n        \"requires_shipping\": false,\n        \"weight\": 7092.638812680765,\n        \"weight_unit\": \"string\"\n      }\n    ],\n    \"images\": [\n      {\n        \"id\": 2415,\n        \"product_id\": 8192,\n        \"position\": 4706,\n        \"src\": \"https://zCkHhccpcSubvzKXrZKXnJlaARk.xsWflvS\",\n        \"alt\": \"string\",\n        \"width\": 9877,\n        \"height\": 2873\n      },\n      {\n        \"id\": 753,\n        \"product_id\": 6268,\n        \"position\": 2058,\n        \"src\": \"https://yHJULVnzElNDsXiztLKRZ.tyzjc,vWeDHaGAjiTkxGrG6bylfFaybyQUdnhB3m3WlsSgCD99StcFvNucdeIJQk-nY\",\n        \"alt\": \"string\",\n        \"width\": 2208,\n        \"height\": 2060\n      }\n    ],\n    \"options\": [\n      {\n        \"id\": 1735,\n        \"product_id\": 7775,\n        \"name\": \"string\",\n        \"position\": 8564,\n        \"values\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"id\": 2157,\n        \"product_id\": 5526,\n        \"name\": \"string\",\n        \"position\": 6807,\n        \"values\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a42a9114-36e2-493b-ac2b-9cfb4fd8e98a",
+          "name": "Update Product",
+          "request": {
+            "name": "Update Product",
+            "description": {
+              "content": "Updates an existing product.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "products",
+                "{{product_id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The name of the Shopify store",
+                  "type": "any",
+                  "value": "{{store_name}}",
+                  "key": "store_name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"product\": {\n    \"title\": \"<string>\",\n    \"body_html\": \"<string>\",\n    \"vendor\": \"<string>\",\n    \"product_type\": \"<string>\",\n    \"status\": \"<string>\",\n    \"tags\": \"<string>\",\n    \"variants\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"images\": [\n      \"<object>\",\n      \"<object>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d4f7543d-3f51-49cd-a411-36ee818c1a24",
+              "name": "Product updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    "{{product_id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The name of the Shopify store",
+                      "type": "any",
+                      "value": "{{store_name}}",
+                      "key": "store_name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"product\": {\n    \"title\": \"string\",\n    \"body_html\": \"string\",\n    \"vendor\": \"string\",\n    \"product_type\": \"string\",\n    \"status\": \"active\",\n    \"tags\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"product\": {\n    \"id\": 2452,\n    \"title\": \"string\",\n    \"body_html\": \"string\",\n    \"vendor\": \"string\",\n    \"product_type\": \"string\",\n    \"created_at\": \"2015-07-20T19:27:13.604Z\",\n    \"updated_at\": \"1983-02-07T05:37:04.112Z\",\n    \"published_at\": \"1978-07-12T09:11:33.324Z\",\n    \"status\": \"active\",\n    \"tags\": \"string\",\n    \"variants\": [\n      {\n        \"id\": 8400,\n        \"product_id\": 535,\n        \"title\": \"string\",\n        \"price\": \"string\",\n        \"sku\": \"string\",\n        \"inventory_quantity\": 9764,\n        \"inventory_management\": \"string\",\n        \"requires_shipping\": false,\n        \"weight\": 3880.8859562594544,\n        \"weight_unit\": \"string\"\n      },\n      {\n        \"id\": 3016,\n        \"product_id\": 1852,\n        \"title\": \"string\",\n        \"price\": \"string\",\n        \"sku\": \"string\",\n        \"inventory_quantity\": 8059,\n        \"inventory_management\": \"string\",\n        \"requires_shipping\": false,\n        \"weight\": 7092.638812680765,\n        \"weight_unit\": \"string\"\n      }\n    ],\n    \"images\": [\n      {\n        \"id\": 2415,\n        \"product_id\": 8192,\n        \"position\": 4706,\n        \"src\": \"https://zCkHhccpcSubvzKXrZKXnJlaARk.xsWflvS\",\n        \"alt\": \"string\",\n        \"width\": 9877,\n        \"height\": 2873\n      },\n      {\n        \"id\": 753,\n        \"product_id\": 6268,\n        \"position\": 2058,\n        \"src\": \"https://yHJULVnzElNDsXiztLKRZ.tyzjc,vWeDHaGAjiTkxGrG6bylfFaybyQUdnhB3m3WlsSgCD99StcFvNucdeIJQk-nY\",\n        \"alt\": \"string\",\n        \"width\": 2208,\n        \"height\": 2060\n      }\n    ],\n    \"options\": [\n      {\n        \"id\": 1735,\n        \"product_id\": 7775,\n        \"name\": \"string\",\n        \"position\": 8564,\n        \"values\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"id\": 2157,\n        \"product_id\": 5526,\n        \"name\": \"string\",\n        \"position\": 6807,\n        \"values\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7de88b94-c2c0-4ad0-8849-7354b5843a33",
+          "name": "Delete Product",
+          "request": {
+            "name": "Delete Product",
+            "description": {
+              "content": "Deletes a product from the store.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "products",
+                "{{product_id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The name of the Shopify store",
+                  "type": "any",
+                  "value": "{{store_name}}",
+                  "key": "store_name"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "988e9312-2633-47fa-83d4-8e29a7a66289",
+              "name": "Product deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    "{{product_id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The name of the Shopify store",
+                      "type": "any",
+                      "value": "{{store_name}}",
+                      "key": "store_name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The name of the Shopify store",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "mystore",
+      "key": "store_name"
+    },
+    {
+      "type": "string",
+      "value": "https://{{store_name}}.myshopify.com/admin/api/2024-10",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The ID of the product",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<long>",
+      "key": "product_id"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Shopify-Access-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c17c9981-f015-4bbe-9408-896293169714",
+    "name": "Shopify Admin REST Collections Products API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. It provides access to products, customers, orders, inventory, fulfillment, shipping, and store configuration. All requests require a valid Shopify access token. Note: Shopify is deprecating the REST Admin API in favor of GraphQL. New development should use the GraphQL Admin API.\n\nContact Support:\n Name: Shopify Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

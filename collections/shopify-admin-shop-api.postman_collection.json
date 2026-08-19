@@ -1,0 +1,150 @@
+{
+  "item": [
+    {
+      "id": "da4a063a-9c22-4906-baf1-fd1738a4fb43",
+      "name": "Shop",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4f7ede52-19a4-4e86-a915-6ea8ab3fc1aa",
+          "name": "Get Shop",
+          "request": {
+            "name": "Get Shop",
+            "description": {
+              "content": "Retrieves configuration and settings for the store.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shop.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The name of the Shopify store",
+                  "type": "any",
+                  "value": "{{store_name}}",
+                  "key": "store_name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c0b41f7e-0b7d-466f-8aef-5f06e8548f23",
+              "name": "Shop details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shop.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The name of the Shopify store",
+                      "type": "any",
+                      "value": "{{store_name}}",
+                      "key": "store_name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"shop\": {\n    \"id\": 6644,\n    \"name\": \"string\",\n    \"email\": \"o7-AdfNVF2bv@tkIaQSZolCgVKlWoHkTkrUhBGl.tzm\",\n    \"domain\": \"string\",\n    \"myshopify_domain\": \"string\",\n    \"plan_name\": \"string\",\n    \"currency\": \"string\",\n    \"timezone\": \"string\",\n    \"country_code\": \"string\",\n    \"country_name\": \"string\",\n    \"phone\": \"string\",\n    \"created_at\": \"2001-11-15T06:58:53.233Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The name of the Shopify store",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "mystore",
+      "key": "store_name"
+    },
+    {
+      "type": "string",
+      "value": "https://{{store_name}}.myshopify.com/admin/api/2024-10",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Shopify-Access-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "21324a14-06d2-4021-bf8f-7133ea454d75",
+    "name": "Shopify Admin REST Collections Shop API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. It provides access to products, customers, orders, inventory, fulfillment, shipping, and store configuration. All requests require a valid Shopify access token. Note: Shopify is deprecating the REST Admin API in favor of GraphQL. New development should use the GraphQL Admin API.\n\nContact Support:\n Name: Shopify Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

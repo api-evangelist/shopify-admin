@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shopify Admin REST Collections Shop API",
+    "version": "2024-10"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Shopify-Access-Token",
+      "value": "{{X-Shopify-Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Shop",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Shop",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store_name}.myshopify.com/admin/api/2024-10/shop.json"
+          },
+          "docs": "Retrieves configuration and settings for the store."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

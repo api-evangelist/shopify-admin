@@ -1,0 +1,286 @@
+{
+  "item": [
+    {
+      "id": "10b34f37-ee0c-49e9-89b1-cd3f37d23b62",
+      "name": "Inventory",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c81659ba-c2cd-49e3-8079-194d12601eb0",
+          "name": "List Inventory Items",
+          "request": {
+            "name": "List Inventory Items",
+            "description": {
+              "content": "Retrieves a list of inventory items.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "inventory_items.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "(Required) Show only inventory items specified by a comma-separated list of IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "The maximum number of results to show"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The name of the Shopify store",
+                  "type": "any",
+                  "value": "{{store_name}}",
+                  "key": "store_name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "57542602-f0b7-48e5-a5d4-213805ce7751",
+              "name": "Successful response with list of inventory items",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inventory_items.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The name of the Shopify store",
+                      "type": "any",
+                      "value": "{{store_name}}",
+                      "key": "store_name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"inventory_items\": [\n    {\n      \"id\": 2173,\n      \"sku\": \"string\",\n      \"created_at\": \"1967-08-29T00:16:31.903Z\",\n      \"updated_at\": \"1999-02-18T23:19:58.795Z\",\n      \"requires_shipping\": false,\n      \"tracked\": true,\n      \"cost\": \"string\"\n    },\n    {\n      \"id\": 6798,\n      \"sku\": \"string\",\n      \"created_at\": \"2004-11-10T08:06:18.937Z\",\n      \"updated_at\": \"1988-07-06T12:05:22.562Z\",\n      \"requires_shipping\": true,\n      \"tracked\": false,\n      \"cost\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3926dbf9-b8a7-4f99-8948-87841e5f810d",
+          "name": "List Inventory Levels",
+          "request": {
+            "name": "List Inventory Levels",
+            "description": {
+              "content": "Retrieves a list of inventory levels for specified inventory items or locations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "inventory_levels.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "inventory_item_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of inventory item IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "location_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of location IDs"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The name of the Shopify store",
+                  "type": "any",
+                  "value": "{{store_name}}",
+                  "key": "store_name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2d460ad7-7c2b-48ad-a660-1d0d41871b46",
+              "name": "Successful response with inventory levels",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inventory_levels.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "inventory_item_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location_ids",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The name of the Shopify store",
+                      "type": "any",
+                      "value": "{{store_name}}",
+                      "key": "store_name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"inventory_levels\": [\n    {\n      \"inventory_item_id\": 4416,\n      \"location_id\": 3766,\n      \"available\": 6166,\n      \"updated_at\": \"2005-05-28T23:50:04.777Z\"\n    },\n    {\n      \"inventory_item_id\": 2576,\n      \"location_id\": 9081,\n      \"available\": 7217,\n      \"updated_at\": \"2008-11-11T06:17:04.939Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The name of the Shopify store",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "mystore",
+      "key": "store_name"
+    },
+    {
+      "type": "string",
+      "value": "https://{{store_name}}.myshopify.com/admin/api/2024-10",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Shopify-Access-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e65e183f-df44-478f-9e4f-14b73e4baf91",
+    "name": "Shopify Admin REST Collections Inventory API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. It provides access to products, customers, orders, inventory, fulfillment, shipping, and store configuration. All requests require a valid Shopify access token. Note: Shopify is deprecating the REST Admin API in favor of GraphQL. New development should use the GraphQL Admin API.\n\nContact Support:\n Name: Shopify Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

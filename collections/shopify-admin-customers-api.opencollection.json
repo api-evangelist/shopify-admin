@@ -1,0 +1,108 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shopify Admin REST Collections Customers API",
+    "version": "2024-10"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Shopify-Access-Token",
+      "value": "{{X-Shopify-Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Customers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store_name}.myshopify.com/admin/api/2024-10/customers.json",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to show"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Filter customers by email address"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of customers from the store."
+        },
+        {
+          "info": {
+            "name": "Create Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store_name}.myshopify.com/admin/api/2024-10/customers.json",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new customer account."
+        },
+        {
+          "info": {
+            "name": "Get Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store_name}.myshopify.com/admin/api/2024-10/customers/:customer_id.json",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the customer"
+              }
+            ]
+          },
+          "docs": "Retrieves a single customer by ID."
+        },
+        {
+          "info": {
+            "name": "Update Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store_name}.myshopify.com/admin/api/2024-10/customers/:customer_id.json",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the customer"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing customer."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

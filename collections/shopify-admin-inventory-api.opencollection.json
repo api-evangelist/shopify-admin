@@ -1,0 +1,76 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shopify Admin REST Collections Inventory API",
+    "version": "2024-10"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Shopify-Access-Token",
+      "value": "{{X-Shopify-Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Inventory",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Inventory Items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store_name}.myshopify.com/admin/api/2024-10/inventory_items.json",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Show only inventory items specified by a comma-separated list of IDs"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to show"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of inventory items."
+        },
+        {
+          "info": {
+            "name": "List Inventory Levels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store_name}.myshopify.com/admin/api/2024-10/inventory_levels.json",
+            "params": [
+              {
+                "name": "inventory_item_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of inventory item IDs"
+              },
+              {
+                "name": "location_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of location IDs"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of inventory levels for specified inventory items or locations."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
