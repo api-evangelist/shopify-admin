@@ -22,6 +22,13 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/shopify-admin.png
 tags:
 - Commerce
+- E-Commerce
+- Admin
+- Product
+- Order
+- Customers
+tags_raw:
+- Commerce
 - Ecommerce
 - Admin
 - Products
@@ -42,6 +49,14 @@ apis:
   humanURL: https://shopify.dev/docs/api/admin-graphql
   baseURL: https://{store_name}.myshopify.com/admin/api/2024-10/graphql.json
   tags:
+  - Commerce
+  - E-Commerce
+  - Admin
+  - GraphQL
+  - Product
+  - Order
+  - Customers
+  tags_raw:
   - Commerce
   - Ecommerce
   - Admin
@@ -77,6 +92,11 @@ apis:
   humanURL: https://shopify.dev/docs/api/webhooks
   tags:
   - Commerce
+  - E-Commerce
+  - Webhook
+  - Event
+  tags_raw:
+  - Commerce
   - Ecommerce
   - Webhooks
   - Events
@@ -96,6 +116,8 @@ apis:
   humanURL: https://shopify.dev/docs/api/admin-rest
   baseURL: https://{store_name}.myshopify.com/admin/api/2024-10
   tags:
+  - Collection
+  tags_raw:
   - Collections
   properties:
   - type: OpenAPI
@@ -232,6 +254,8 @@ apis:
   humanURL: https://shopify.dev/docs/api/admin-rest
   baseURL: https://{store_name}.myshopify.com/admin/api/2024-10
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
@@ -266,6 +290,8 @@ apis:
   humanURL: https://shopify.dev/docs/api/admin-rest
   baseURL: https://{store_name}.myshopify.com/admin/api/2024-10
   tags:
+  - Product
+  tags_raw:
   - Products
   properties:
   - type: OpenAPI
@@ -334,6 +360,8 @@ apis:
   humanURL: https://shopify.dev/docs/api/admin-rest
   baseURL: https://{store_name}.myshopify.com/admin/api/2024-10
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
