@@ -5,7 +5,7 @@
       "source": "https://shopify.dev/changelog/feed/",
       "feed_url": "https://shopify.dev/changelog/feed/",
       "title": "",
-      "saved": 4,
+      "saved": 0,
       "method": "feed"
     },
     {
@@ -16,6 +16,6 @@
       "method": "discovered"
     }
   ],
-  "post_count": 101,
-  "fetched": "2026-08-15T12:11:08Z"
+  "post_count": 104,
+  "fetched": "2026-08-22T20:20:02Z"
 }
