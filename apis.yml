@@ -6,6 +6,17 @@ description: >-
   store settings. The Admin API is available in both REST and GraphQL formats. Shopify is transitioning from REST to
   GraphQL as the primary API, with GraphQL recommended for all new development.
 type: Index
+deliveryModel:
+  model: unknown
+  open_source: false
+  commercial: false
+  callable_host: true
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
