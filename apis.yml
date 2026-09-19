@@ -232,6 +232,8 @@ apis:
   humanURL: https://shopify.dev/docs/api/admin-rest
   baseURL: https://{store_name}.myshopify.com/admin/api/2024-10
   tags:
+  - Location
+  tags_raw:
   - Locations
   properties:
   - type: OpenAPI
