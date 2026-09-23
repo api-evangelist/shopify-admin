@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Shopify Admin REST Collections API
   description: 'The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. It provides access to products, customers, orders, inventory, fulfillment, shipping, and store configuration. All requests require a valid Shopify access token. Note: Shopify is deprecating the REST Admin API in favor of GraphQL. New development should use the GraphQL Admin API.'
@@ -84,6 +84,28 @@ paths:
                       $ref: '#/components/schemas/CustomCollection'
 components:
   schemas:
+    Collect:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        collection_id:
+          type: integer
+          format: int64
+        product_id:
+          type: integer
+          format: int64
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        position:
+          type: integer
+        sort_value:
+          type: string
     CustomCollection:
       type: object
       properties:
@@ -110,28 +132,6 @@ components:
         image:
           type: object
           nullable: true
-    Collect:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        collection_id:
-          type: integer
-          format: int64
-        product_id:
-          type: integer
-          format: int64
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-        position:
-          type: integer
-        sort_value:
-          type: string
   securitySchemes:
     AccessToken:
       type: apiKey
