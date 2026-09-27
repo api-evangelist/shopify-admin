@@ -86,6 +86,26 @@ paths:
           description: Webhook deleted successfully
 components:
   schemas:
+    WebhookInput:
+      type: object
+      required:
+      - topic
+      - address
+      - format
+      properties:
+        topic:
+          type: string
+          description: The event that triggers the webhook (e.g., orders/create, products/update)
+        address:
+          type: string
+          format: uri
+          description: The URL where the webhook will POST data
+        format:
+          type: string
+          enum:
+          - json
+          - xml
+          description: The format of the data sent to the webhook address
     Webhook:
       type: object
       properties:
@@ -110,26 +130,6 @@ components:
           - xml
         api_version:
           type: string
-    WebhookInput:
-      type: object
-      required:
-      - topic
-      - address
-      - format
-      properties:
-        topic:
-          type: string
-          description: The event that triggers the webhook (e.g., orders/create, products/update)
-        address:
-          type: string
-          format: uri
-          description: The URL where the webhook will POST data
-        format:
-          type: string
-          enum:
-          - json
-          - xml
-          description: The format of the data sent to the webhook address
   securitySchemes:
     AccessToken:
       type: apiKey

@@ -88,6 +88,21 @@ paths:
                       $ref: '#/components/schemas/InventoryLevel'
 components:
   schemas:
+    InventoryLevel:
+      type: object
+      properties:
+        inventory_item_id:
+          type: integer
+          format: int64
+        location_id:
+          type: integer
+          format: int64
+        available:
+          type: integer
+          nullable: true
+        updated_at:
+          type: string
+          format: date-time
     InventoryItem:
       type: object
       properties:
@@ -109,21 +124,6 @@ components:
         cost:
           type: string
           nullable: true
-    InventoryLevel:
-      type: object
-      properties:
-        inventory_item_id:
-          type: integer
-          format: int64
-        location_id:
-          type: integer
-          format: int64
-        available:
-          type: integer
-          nullable: true
-        updated_at:
-          type: string
-          format: date-time
   securitySchemes:
     AccessToken:
       type: apiKey
