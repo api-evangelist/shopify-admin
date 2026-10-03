@@ -193,6 +193,32 @@ paths:
                     $ref: '#/components/schemas/Order'
 components:
   schemas:
+    LineItem:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        product_id:
+          type: integer
+          format: int64
+        variant_id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        quantity:
+          type: integer
+        price:
+          type: string
+        sku:
+          type: string
+        vendor:
+          type: string
+        requires_shipping:
+          type: boolean
+        taxable:
+          type: boolean
     Address:
       type: object
       properties:
@@ -226,32 +252,6 @@ components:
           type: string
           nullable: true
         default:
-          type: boolean
-    LineItem:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        product_id:
-          type: integer
-          format: int64
-        variant_id:
-          type: integer
-          format: int64
-        title:
-          type: string
-        quantity:
-          type: integer
-        price:
-          type: string
-        sku:
-          type: string
-        vendor:
-          type: string
-        requires_shipping:
-          type: boolean
-        taxable:
           type: boolean
     Customer:
       type: object

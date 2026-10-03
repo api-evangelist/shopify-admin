@@ -225,6 +225,44 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ProductOption'
+    ProductImage:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        product_id:
+          type: integer
+          format: int64
+        position:
+          type: integer
+        src:
+          type: string
+          format: uri
+        alt:
+          type: string
+          nullable: true
+        width:
+          type: integer
+        height:
+          type: integer
+    ProductOption:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        product_id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        position:
+          type: integer
+        values:
+          type: array
+          items:
+            type: string
     ProductVariant:
       type: object
       properties:
@@ -279,44 +317,6 @@ components:
           type: array
           items:
             type: object
-    ProductImage:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        product_id:
-          type: integer
-          format: int64
-        position:
-          type: integer
-        src:
-          type: string
-          format: uri
-        alt:
-          type: string
-          nullable: true
-        width:
-          type: integer
-        height:
-          type: integer
-    ProductOption:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        product_id:
-          type: integer
-          format: int64
-        name:
-          type: string
-        position:
-          type: integer
-        values:
-          type: array
-          items:
-            type: string
   securitySchemes:
     AccessToken:
       type: apiKey

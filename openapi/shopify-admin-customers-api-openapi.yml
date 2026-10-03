@@ -140,6 +140,32 @@ paths:
                     $ref: '#/components/schemas/Customer'
 components:
   schemas:
+    CustomerInput:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        first_name:
+          type: string
+        last_name:
+          type: string
+        phone:
+          type: string
+        accepts_marketing:
+          type: boolean
+        note:
+          type: string
+        tags:
+          type: string
+        password:
+          type: string
+        password_confirmation:
+          type: string
+        addresses:
+          type: array
+          items:
+            type: object
     Address:
       type: object
       properties:
@@ -214,32 +240,6 @@ components:
             $ref: '#/components/schemas/Address'
         default_address:
           $ref: '#/components/schemas/Address'
-    CustomerInput:
-      type: object
-      properties:
-        email:
-          type: string
-          format: email
-        first_name:
-          type: string
-        last_name:
-          type: string
-        phone:
-          type: string
-        accepts_marketing:
-          type: boolean
-        note:
-          type: string
-        tags:
-          type: string
-        password:
-          type: string
-        password_confirmation:
-          type: string
-        addresses:
-          type: array
-          items:
-            type: object
   securitySchemes:
     AccessToken:
       type: apiKey
