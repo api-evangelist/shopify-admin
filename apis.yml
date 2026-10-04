@@ -405,6 +405,9 @@ apis:
   - type: Vocabulary
     url: vocabulary/shopify-admin-vocabulary.yml
 common:
+- type: CapabilityMap
+  url: capabilities/shopify-admin-capability-edges.yml
+  name: Shopify Admin API Business Capability Map
 - type: AgenticAccess
   url: agentic-access/shopify-admin-agentic-access.yml
 - type: DomainSecurity
