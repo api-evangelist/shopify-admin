@@ -171,6 +171,35 @@ paths:
           description: Product deleted successfully
 components:
   schemas:
+    ProductInput:
+      type: object
+      required:
+      - title
+      properties:
+        title:
+          type: string
+        body_html:
+          type: string
+        vendor:
+          type: string
+        product_type:
+          type: string
+        status:
+          type: string
+          enum:
+          - active
+          - archived
+          - draft
+        tags:
+          type: string
+        variants:
+          type: array
+          items:
+            type: object
+        images:
+          type: array
+          items:
+            type: object
     Product:
       type: object
       properties:
@@ -225,27 +254,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ProductOption'
-    ProductImage:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        product_id:
-          type: integer
-          format: int64
-        position:
-          type: integer
-        src:
-          type: string
-          format: uri
-        alt:
-          type: string
-          nullable: true
-        width:
-          type: integer
-        height:
-          type: integer
     ProductOption:
       type: object
       properties:
@@ -288,35 +296,27 @@ components:
           type: number
         weight_unit:
           type: string
-    ProductInput:
+    ProductImage:
       type: object
-      required:
-      - title
       properties:
-        title:
+        id:
+          type: integer
+          format: int64
+        product_id:
+          type: integer
+          format: int64
+        position:
+          type: integer
+        src:
           type: string
-        body_html:
+          format: uri
+        alt:
           type: string
-        vendor:
-          type: string
-        product_type:
-          type: string
-        status:
-          type: string
-          enum:
-          - active
-          - archived
-          - draft
-        tags:
-          type: string
-        variants:
-          type: array
-          items:
-            type: object
-        images:
-          type: array
-          items:
-            type: object
+          nullable: true
+        width:
+          type: integer
+        height:
+          type: integer
   securitySchemes:
     AccessToken:
       type: apiKey
