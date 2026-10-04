@@ -1,21 +1,19 @@
-# Kin Score artifact — shopify-admin — 2026-08-25T154045
+# Kin Score artifact — shopify-admin — 2026-09-23T000603
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: shopify-admin
-  schema_version: 0.14.0
-  scored_at: '2026-08-25'
-  run_ts: 2026-08-25T154045
-  composite: 38.7
-  band: thin
+  schema_version: 0.22.0
+  scored_at: '2026-09-23'
+  run_ts: 2026-09-23T000603
+  composite: 39.4
+  band: developing
   facets:
-    discoverability: 64.8
-    contract_quality: 79.7
-    governance: 28.8
-    operational_transparency: 28.9
-    developer_ergonomics: 9.5
-    commercial_clarity: 15.8
+    discoverability: 66.7
+    contract_quality: 78.8
     contract_governance: 28.8
+    operational_transparency: 28.9
+    developer_ergonomics: 16.7
     access_clarity: 15.8
   agent_readiness:
     score: 23.8
