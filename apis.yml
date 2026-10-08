@@ -405,6 +405,10 @@ apis:
   - type: Vocabulary
     url: vocabulary/shopify-admin-vocabulary.yml
 common:
+- type: Plans
+  url: plans/shopify-admin-plans-pricing.yml
+- type: FinOps
+  url: finops/shopify-admin-finops.yml
 - type: CapabilityMap
   url: capabilities/shopify-admin-capability-edges.yml
   name: Shopify Admin API Business Capability Map
