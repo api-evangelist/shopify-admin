@@ -1,0 +1,18 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/shopify-admin/integrations
+- https://zapier.com/apps/shopify-admin-api/integrations
+- https://n8n.io/integrations/shopify-admin/
+- https://composio.dev/toolkits/shopify-admin
+- https://monid.ai/tools/shopify-admin
+checked:
+- https://composio.dev/toolkits/shopify-admin
+- https://monid.ai/tools/shopify-admin
+- https://n8n.io/integrations/shopify-admin/
+- https://zapier.com/apps/shopify-admin-api/integrations
+- https://zapier.com/apps/shopify-admin/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
