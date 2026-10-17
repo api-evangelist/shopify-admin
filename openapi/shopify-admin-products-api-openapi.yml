@@ -171,6 +171,27 @@ paths:
           description: Product deleted successfully
 components:
   schemas:
+    ProductImage:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        product_id:
+          type: integer
+          format: int64
+        position:
+          type: integer
+        src:
+          type: string
+          format: uri
+        alt:
+          type: string
+          nullable: true
+        width:
+          type: integer
+        height:
+          type: integer
     ProductInput:
       type: object
       required:
@@ -200,6 +221,48 @@ components:
           type: array
           items:
             type: object
+    ProductVariant:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        product_id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        price:
+          type: string
+        sku:
+          type: string
+        inventory_quantity:
+          type: integer
+        inventory_management:
+          type: string
+        requires_shipping:
+          type: boolean
+        weight:
+          type: number
+        weight_unit:
+          type: string
+    ProductOption:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        product_id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        position:
+          type: integer
+        values:
+          type: array
+          items:
+            type: string
     Product:
       type: object
       properties:
@@ -254,69 +317,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ProductOption'
-    ProductOption:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        product_id:
-          type: integer
-          format: int64
-        name:
-          type: string
-        position:
-          type: integer
-        values:
-          type: array
-          items:
-            type: string
-    ProductVariant:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        product_id:
-          type: integer
-          format: int64
-        title:
-          type: string
-        price:
-          type: string
-        sku:
-          type: string
-        inventory_quantity:
-          type: integer
-        inventory_management:
-          type: string
-        requires_shipping:
-          type: boolean
-        weight:
-          type: number
-        weight_unit:
-          type: string
-    ProductImage:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        product_id:
-          type: integer
-          format: int64
-        position:
-          type: integer
-        src:
-          type: string
-          format: uri
-        alt:
-          type: string
-          nullable: true
-        width:
-          type: integer
-        height:
-          type: integer
   securitySchemes:
     AccessToken:
       type: apiKey
