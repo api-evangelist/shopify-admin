@@ -8,7 +8,10 @@ source:
 - https://monid.ai/tools/shopify-admin
 checked:
 - https://composio.dev/toolkits/shopify-admin
+- https://connectors.airbyte.com/files/registries/v0/cloud_registry.json
+- https://connectors.airbyte.com/files/registries/v0/oss_registry.json
 - https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/
+- https://github.com/meltano/hub
 - https://github.com/n8n-io/n8n/tree/860f1273ebd73fabbd668cbec2c49ed9b48a286d/packages/nodes-base/nodes/
 - https://monid.ai/tools/shopify-admin
 - https://n8n.io/integrations/shopify-admin/
@@ -68,4 +71,72 @@ edges:
     builder: Pipedream repo (component)
   detected_by: sweep-workflow-automation.py
   first_seen: '2026-10-15'
+- partner_name: Airbyte
+  partner: airbyte
+  partner_match: aggregator
+  type: marketplace
+  marketplace: airbyte-registry
+  channel: elt-connector
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://docs.airbyte.com/integrations/sources/shopify
+  category: null
+  contract_reference:
+    register: Airbyte connector registry (connectors.airbyte.com cloud_registry.json + oss_registry.json)
+    spec_file: null
+    role: elt-connector:airbyte-certified
+    registered_name: Shopify
+    matched_domain: shopify.dev
+    matched_by: domain+name-among-holders
+    detected_by: sweep-data-integration.py
+    detected: '2026-10-18'
+    signal_note: one edge per (provider, platform); connectors, streams, packages and usage are context, never read
+    connectors:
+    - airbyte/source-shopify
+    support_level:
+    - certified
+    release_stage:
+    - generally_available
+    in_cloud: true
+    builder: Airbyte (certified)
+    standard: Airbyte certified connector
+    certified_products:
+    - product: Airbyte certified source
+      type: source
+      lapsed: false
+      cloud: true
+  detected_by: sweep-data-integration.py
+  first_seen: '2026-10-18'
+- partner_name: Meltano
+  partner: meltano
+  partner_match: aggregator
+  type: marketplace
+  marketplace: meltano-hub
+  channel: elt-connector
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://hub.meltano.com/extractors/tap-shopify--airbyte
+  category: null
+  contract_reference:
+    register: Meltano Hub (github.com/meltano/hub _data/meltano extractors + loaders)
+    spec_file: null
+    role: elt-connector:meltano-hub
+    registered_name: Shopify
+    matched_domain: shopify.dev
+    matched_by: domain+name-among-holders
+    detected_by: sweep-data-integration.py
+    detected: '2026-10-18'
+    signal_note: one edge per (provider, platform); connectors, streams, packages and usage are context, never read
+    plugins:
+    - tap-shopify--airbyte
+    - tap-shopify--singer-io
+    maintenance_status:
+    - active
+    - beta
+    quality:
+    - bronze
+    - silver
+    builder: 'community (Meltano Hub variant maintainers: airbyte, singer-io)'
+  detected_by: sweep-data-integration.py
+  first_seen: '2026-10-18'
 templates: []
