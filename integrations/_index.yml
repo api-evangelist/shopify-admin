@@ -88,7 +88,7 @@
       type: source
       lapsed: false
       cloud: true
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: shopify-admin-meltano
   label: Meltano
@@ -120,5 +120,5 @@
     - bronze
     - silver
     builder: 'community (Meltano Hub variant maintainers: airbyte, singer-io)'
-  status: pending-partner-spec
+  status: not-a-workflow
   arazzo: null
