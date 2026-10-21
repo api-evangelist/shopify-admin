@@ -19,6 +19,11 @@ checked:
 - https://n8n.io/integrations/shopify-admin/
 - https://zapier.com/apps/shopify-admin-api/integrations
 - https://zapier.com/apps/shopify-admin/integrations
+- https://github.com/graphql-kit/graphql-apis
+- https://github.com/graphql/graphql.github.io/tree/source/src/code
+- https://graphql.landscape2.io/data/full.json
+- https://graphql.org/community/tools-and-libraries/
+- https://graphql.org/foundation/members/
 summary: null
 marketplace_apps: []
 edges:
@@ -141,4 +146,29 @@ edges:
     builder: Pipedream repo (component)
   detected_by: sweep-workflow-automation.py
   first_seen: '2026-10-15'
+- partner_name: graphql-kit public GraphQL APIs
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://github.com/graphql-kit/graphql-apis
+  category: public GraphQL API
+  contract_reference:
+    register: graphql-kit public GraphQL APIs, Official APIs (github.com/graphql-kit/graphql-apis README)
+    standard: GraphQL
+    spec_file: null
+    role: public-graphql-api
+    registered_name: Shopify Admin
+    register_id: https://github.com/graphql-kit/graphql-apis#official-apis
+    matched_domain: shopify.dev
+    matched_by: domain+name-among-holders
+    graphql_endpoints:
+    - https://shopify.dev/docs/admin-api/graphql/reference
+    signal_note: 'participation only: a listed public GraphQL API (endpoint named by the list, not guessed)'
+    detected_by: sweep-graphql-ecosystem.py
+    detected: '2026-10-21'
+  detected_by: sweep-graphql-ecosystem.py
+  first_seen: '2026-10-21'
 templates: []
