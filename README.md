@@ -1,4 +1,4 @@
-# Shopify Admin API (shopify-admin)
+# Shopify Admin API
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,138 +66,216 @@
 
 The Shopify Admin API provides programmatic access to manage Shopify store administration. It enables app developers and merchants to manage products, customers, orders, inventory, shipping, fulfillment, collections, webhooks, and store settings. The Admin API is available in both REST and GraphQL formats. Shopify is transitioning from REST to GraphQL as the primary API, with GraphQL recommended for all new development.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/shopify-admin/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/shopify-admin/refs/heads/main/apis.yml)
+**Areas:** Commerce · E-Commerce · Admin · Product · Order · Customers
 
-## Scope
+## Shopify Admin API on APIs.io
 
-- **Type:** Index
+Everything profiled for Shopify Admin API is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/shopify-admin/](https://apis.io/providers/shopify-admin/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (10)
 
-- Commerce
-- Ecommerce
-- Admin
-- Products
-- Orders
-- Customers
+- [Shopify Admin GraphQL API](https://apis.io/apis/shopify-admin/shopify-admin-graphql-api/) — The Shopify Admin GraphQL API is the recommended API for building Shopify apps and integrations. It provides access to all Shopify admin resources including…
+- [Shopify Webhooks](https://apis.io/apis/shopify-admin/shopify-webhooks/) — Shopify webhooks allow apps to subscribe to specific events that occur in a store. When an event occurs, Shopify sends an HTTP POST request with a JSON…
+- [Shopify Admin API Collections API](https://apis.io/apis/shopify-admin/shopify-admin-collections-api/) — The Collections API from Shopify Admin API — 2 operation(s) for collections.
+- [Shopify Admin API Customers API](https://apis.io/apis/shopify-admin/shopify-admin-customers-api/) — The Customers API from Shopify Admin API — 2 operation(s) for customers.
+- [Shopify Admin API Inventory API](https://apis.io/apis/shopify-admin/shopify-admin-inventory-api/) — The Inventory API from Shopify Admin API — 2 operation(s) for inventory.
+- [Shopify Admin API Locations API](https://apis.io/apis/shopify-admin/shopify-admin-locations-api/) — The Locations API from Shopify Admin API — 1 operation(s) for locations.
+- [Shopify Admin API Orders API](https://apis.io/apis/shopify-admin/shopify-admin-orders-api/) — The Orders API from Shopify Admin API — 3 operation(s) for orders.
+- [Shopify Admin API Products API](https://apis.io/apis/shopify-admin/shopify-admin-products-api/) — The Products API from Shopify Admin API — 2 operation(s) for products.
+- [Shopify Admin API Shop API](https://apis.io/apis/shopify-admin/shopify-admin-shop-api/) — The Shop API from Shopify Admin API — 1 operation(s) for shop.
+- [Shopify Admin API Webhooks API](https://apis.io/apis/shopify-admin/shopify-admin-webhooks-api/) — The Webhooks API from Shopify Admin API — 2 operation(s) for webhooks.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-05-02
-- **Modified:** 2026-05-30
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### AsyncAPI (1)
 
-### Shopify Admin REST API
+Event-driven and webhook contracts.
 
-The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. It provides access to products, customers, orders, inventory, fulfillment, shipping, and store configuration. All requests require a valid Shopify access token generated through OAuth. Note: Shopify is deprecating the REST Admin API in favor of GraphQL; new development should use the GraphQL Admin API.
+- [Shopify Admin Webhooks](https://apis.io/asyncapis/shopify-admin/shopify-admin-webhooks-asyncapi/)
 
-- **Human URL:** [https://shopify.dev/docs/api/admin-rest](https://shopify.dev/docs/api/admin-rest)
-- **Base URL:** `https://{store_name}.myshopify.com/admin/api/2024-10`
+#### Event channels (203)
 
-#### Tags
+Individual events and webhooks the provider emits.
 
-- Commerce
-- Ecommerce
-- Admin
-- REST
-- Products
-- Orders
-- Customers
+- [app_purchases_one_time/update](https://apis.io/channels/shopify-admin/app-purchases-one-time-update/)
+- [app/scopes_update](https://apis.io/channels/shopify-admin/app-scopes-update/)
+- [app_subscriptions/approaching_capped_amount](https://apis.io/channels/shopify-admin/app-subscriptions-approaching-capped-amount/)
+- [app_subscriptions/update](https://apis.io/channels/shopify-admin/app-subscriptions-update/)
+- [app/uninstalled](https://apis.io/channels/shopify-admin/app-uninstalled/)
+- [audit_events/admin_api_activity](https://apis.io/channels/shopify-admin/audit-events-admin-api-activity/)
+- [bulk_operations/finish](https://apis.io/channels/shopify-admin/bulk-operations-finish/)
+- [carts/create](https://apis.io/channels/shopify-admin/carts-create/)
+- [carts/update](https://apis.io/channels/shopify-admin/carts-update/)
+- [channels/delete](https://apis.io/channels/shopify-admin/channels-delete/)
+- [checkouts/create](https://apis.io/channels/shopify-admin/checkouts-create/)
+- [checkouts/delete](https://apis.io/channels/shopify-admin/checkouts-delete/)
+- [checkouts/update](https://apis.io/channels/shopify-admin/checkouts-update/)
+- [collection_listings/add](https://apis.io/channels/shopify-admin/collection-listings-add/)
+- [collection_listings/remove](https://apis.io/channels/shopify-admin/collection-listings-remove/)
+- [collection_listings/update](https://apis.io/channels/shopify-admin/collection-listings-update/)
+- [collection_publications/create](https://apis.io/channels/shopify-admin/collection-publications-create/)
+- [collection_publications/delete](https://apis.io/channels/shopify-admin/collection-publications-delete/)
+- [collection_publications/update](https://apis.io/channels/shopify-admin/collection-publications-update/)
+- [collections/create](https://apis.io/channels/shopify-admin/collections-create/)
+- [collections/delete](https://apis.io/channels/shopify-admin/collections-delete/)
+- [collections/update](https://apis.io/channels/shopify-admin/collections-update/)
+- [companies/create](https://apis.io/channels/shopify-admin/companies-create/)
+- [companies/delete](https://apis.io/channels/shopify-admin/companies-delete/)
+- [companies/update](https://apis.io/channels/shopify-admin/companies-update/)
+- …and 178 more published on APIs.io
 
-#### Properties
+#### GraphQL (1)
 
-- [Documentation](https://shopify.dev/docs/api/admin-rest)
-- [Reference](https://shopify.dev/docs/api/admin-rest/latest)
-- [Authentication](https://shopify.dev/docs/apps/auth/get-access-tokens)
-- [Rate Limits](https://shopify.dev/docs/api/usage/rate-limits)
-- [Versioning](https://shopify.dev/docs/api/usage/versioning)
-- [OpenAPI](openapi/shopify-admin-rest-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/shopify-admin-rest.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/shopify-admin-rest.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/shopify-admin-product-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/shopify-admin-order-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/shopify-admin-customer-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/shopify-admin-product-structure.json)
-- [J S O N L D Context](json-ld/shopify-admin-context.jsonld)
-- [Spectral Rules](rules/shopify-admin-rules.yml)
-- [Capabilities](capabilities/store-management.yaml)
-- [Vocabulary](vocabulary/shopify-admin-vocabulary.yml)
+GraphQL schemas.
 
-### Shopify Admin GraphQL API
+- [Shopify Admin API GraphQL API](https://apis.io/graphqls/shopify-admin/shopify-admin-graphql/)
 
-The Shopify Admin GraphQL API is the recommended API for building Shopify apps and integrations. It provides access to all Shopify admin resources including products, customers, orders, inventory, fulfillment, and analytics. GraphQL enables efficient data fetching with precise field selection, real-time subscriptions, and access to advanced platform features not available in REST.
+#### Agentic access (1)
 
-- **Human URL:** [https://shopify.dev/docs/api/admin-graphql](https://shopify.dev/docs/api/admin-graphql)
-- **Base URL:** `https://{store_name}.myshopify.com/admin/api/2024-10/graphql.json`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Shopify Admin Agentic Access](https://apis.io/agentic-access/shopify-admin/shopify-admin-agentic-access/)
 
-- Commerce
-- Ecommerce
-- Admin
-- GraphQL
-- Products
-- Orders
-- Customers
+#### JSON Schema (3)
 
-#### Properties
+The data models the API reads and writes.
 
-- [Documentation](https://shopify.dev/docs/api/admin-graphql)
-- [Reference](https://shopify.dev/docs/api/admin-graphql/latest)
-- [Getting Started](https://shopify.dev/docs/api/usage/graphql)
-- [Explorer](https://shopify.dev/docs/api/usage/api-exploration/admin-graphiql-explorer)
-- [Authentication](https://shopify.dev/docs/apps/auth/get-access-tokens)
-- [Rate Limits](https://shopify.dev/docs/api/usage/rate-limits)
-- [Postman Collection](collections/shopify-admin-rest.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/shopify-admin-rest.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Shopify Admin Customer](https://apis.io/schemas/shopify-admin/shopify-admin-customer/)
+- [Shopify Admin Order](https://apis.io/schemas/shopify-admin/shopify-admin-order/)
+- [Shopify Admin Product](https://apis.io/schemas/shopify-admin/shopify-admin-product/)
 
-### Shopify Webhooks
+#### JSON Structure (1)
 
-Shopify webhooks allow apps to subscribe to specific events that occur in a store. When an event occurs, Shopify sends an HTTP POST request with a JSON payload to the configured endpoint. Webhooks can be configured for events across all major Shopify resources including orders, products, customers, inventory, fulfillment, and app-specific events.
+Data models expressed in JSON Structure.
 
-- **Human URL:** [https://shopify.dev/docs/api/webhooks](https://shopify.dev/docs/api/webhooks)
+- [Shopify Admin Product Structure](https://apis.io/json-structure/shopify-admin/shopify-admin-product-structure/)
 
-#### Tags
+#### JSON-LD (1)
 
-- Commerce
-- Ecommerce
-- Webhooks
-- Events
+Linked-data contexts for the provider's vocabulary.
 
-#### Properties
+- [Shopify Admin Context](https://apis.io/jsonld/shopify-admin/shopify-admin-context/)
 
-- [Documentation](https://shopify.dev/docs/api/webhooks)
-- [Reference](https://shopify.dev/docs/api/webhooks/2024-10)
-- [AsyncAPI](asyncapi/shopify-admin-webhooks-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
-- [Postman Collection](collections/shopify-admin-rest.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/shopify-admin-rest.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Vocabulary (1)
 
-## Common Properties
+The provider's domain terms, defined.
 
-- [LinkedIn](https://www.linkedin.com/company/shopify)
+- [Shopify Admin API Vocabulary](https://apis.io/vocabularies/shopify-admin/shopify-admin-vocabulary/)
+
+#### Examples (2)
+
+Example requests and responses.
+
+- [Shopify Admin Create Order Example](https://apis.io/examples/shopify-admin/shopify-admin-create-order-example/)
+- [Shopify Admin List Products Example](https://apis.io/examples/shopify-admin/shopify-admin-list-products-example/)
+
+#### Collections (9)
+
+Postman and Open Collection request collections.
+
+- [Shopify Admin REST Collections API](https://apis.io/collections/shopify-admin/open-shopify-admin-collections-api/)
+- [Shopify Admin REST Collections Customers API](https://apis.io/collections/shopify-admin/open-shopify-admin-customers-api/)
+- [Shopify Admin REST Collections Inventory API](https://apis.io/collections/shopify-admin/open-shopify-admin-inventory-api/)
+- [Shopify Admin REST Collections Locations API](https://apis.io/collections/shopify-admin/open-shopify-admin-locations-api/)
+- [Shopify Admin REST Collections Orders API](https://apis.io/collections/shopify-admin/open-shopify-admin-orders-api/)
+- [Shopify Admin REST Collections Products API](https://apis.io/collections/shopify-admin/open-shopify-admin-products-api/)
+- [Shopify Admin REST API](https://apis.io/collections/shopify-admin/open-shopify-admin-rest/)
+- [Shopify Admin REST Collections Shop API](https://apis.io/collections/shopify-admin/open-shopify-admin-shop-api/)
+- [Shopify Admin REST Collections Webhooks API](https://apis.io/collections/shopify-admin/open-shopify-admin-webhooks-api/)
+
+#### Governance rules (3)
+
+Spectral rulesets for the provider's contracts.
+
+- [Shopify Admin API — asyncapi rules](https://apis.io/rules/shopify-admin/shopify-admin-asyncapi-spectral-rules/)
+- [Shopify Admin API — jsonschema rules](https://apis.io/rules/shopify-admin/shopify-admin-jsonschema-spectral-rules/)
+- [Shopify Admin API API Rules](https://apis.io/rules/shopify-admin/shopify-admin-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Shopify Admin Authentication](https://apis.io/security/shopify-admin/shopify-admin-authentication/)
+- [Shopify Admin Domain Security](https://apis.io/security/shopify-admin/shopify-admin-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Shopify Admin Plans Pricing](https://apis.io/plans/shopify-admin/shopify-admin-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Shopify Admin Rate Limits](https://apis.io/rate-limits/shopify-admin/shopify-admin-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Shopify Admin Finops](https://apis.io/finops/shopify-admin/shopify-admin-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://shopify.dev/)
 - [Documentation](https://shopify.dev/docs/api)
-- [Authentication](https://shopify.dev/docs/apps/auth/get-access-tokens)
-- [Rate Limits](https://shopify.dev/docs/api/usage/rate-limits)
-- [Versioning](https://shopify.dev/docs/api/usage/versioning)
 - [Changelog](https://shopify.dev/changelog)
 - [Blog](https://shopify.dev/blog)
-- [Git Hub](https://github.com/Shopify)
-- [JSON Schema](json-schema/shopify-admin-product-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/shopify-admin-order-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/shopify-admin-customer-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/shopify-admin-product-structure.json)
-- [J S O N L D Context](json-ld/shopify-admin-context.jsonld)
-- [Examples](examples/shopify-admin-list-products-example.json)
-- [Examples](examples/shopify-admin-create-order-example.json)
-- [Vocabulary](vocabulary/shopify-admin-vocabulary.yml)
-- [Spectral Rules](rules/shopify-admin-rules.yml)
-- [Capabilities](capabilities/store-management.yaml)
-- [Integrations](https://shopify.dev/docs/apps/build)
-- [L L Ms Txt](https://shopify.dev/llms.txt)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 36.3** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 64.3 |
+| Contract quality | 73.4 |
+| Contract governance | 27.3 |
+| Operational transparency | 28.9 |
+| Developer ergonomics | 16.7 |
+| Access clarity | 7.9 |
+
+**Agent readiness 23.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/shopify-admin/](https://apis.io/providers/shopify-admin/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Shopify Admin API: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/shopify-admin/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
